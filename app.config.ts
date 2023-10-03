@@ -101,11 +101,9 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
 		versionCode: semverToInt(details.version),
 		adaptiveIcon: {
 			foregroundImage: "./assets/adaptive-icon.png",
+			backgroundColor: "#ffffff",
 		},
 	},
-	// // web: {
-	// // 	bundler: 'metro',
-	// // },
 	plugins: ["sentry-expo", "expo-router"],
 	hooks: {
 		postPublish: [
