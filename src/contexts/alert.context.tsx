@@ -1,11 +1,11 @@
-import { createContext, useEffect, useState } from 'react';
+import { createContext, useEffect, useState } from "react";
 
-import { AlertModal } from '~/components/feedback/alert-modal.component';
-import { events } from '~/helpers/events.helpers';
+import { AlertModal } from "~/components/feedback/alert-modal.component";
+import { events } from "~/helpers/events.helpers";
 
-import type { PropsWithChildren } from 'react';
-import type { AlertModalProps } from '~/components/feedback/alert-modal.component';
-import type { EventMap } from '~/helpers/events.helpers';
+import type { PropsWithChildren } from "react";
+import type { AlertModalProps } from "~/components/feedback/alert-modal.component";
+import type { EventMap } from "~/helpers/events.helpers";
 
 const AlertContext = createContext(null);
 
@@ -13,9 +13,9 @@ export const AlertProvider = ({ children }: PropsWithChildren) => {
 	const [alert, setAlert] = useState<null | AlertModalProps>(null);
 
 	useEffect(() => {
-		const addListener = events.listen('addAlert', (data) => {
+		const addListener = events.listen("addAlert", (data) => {
 			setAlert(
-				typeof data === 'string'
+				typeof data === "string"
 					? { text: data }
 					: data instanceof Error
 					? { text: data.message }
@@ -23,7 +23,7 @@ export const AlertProvider = ({ children }: PropsWithChildren) => {
 			);
 		});
 
-		const removeListener = events.listen('removeAlert', () => {
+		const removeListener = events.listen("removeAlert", () => {
 			setAlert(null);
 		});
 
@@ -49,11 +49,11 @@ export const AlertProvider = ({ children }: PropsWithChildren) => {
 };
 
 /** fires the add-alert event to show the given alert */
-export const addAlert = (data: EventMap['addAlert']) => {
-	events.emit('addAlert', data);
+export const addAlert = (data: EventMap["addAlert"]) => {
+	events.emit("addAlert", data);
 };
 
 /** fires the remove-alert event to remove showing alerts */
 export const removeAlert = () => {
-	events.emit('removeAlert');
+	events.emit("removeAlert");
 };

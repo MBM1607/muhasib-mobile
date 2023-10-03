@@ -1,20 +1,20 @@
-import Constants from 'expo-constants';
-import { useRouter } from 'expo-router';
-import { SafeAreaView, View } from 'react-native';
-import { Surface, Text } from 'react-native-paper';
-import Animated, { SlideInLeft, SlideOutRight } from 'react-native-reanimated';
+import Constants from "expo-constants";
+import { useRouter } from "expo-router";
+import { SafeAreaView, View } from "react-native";
+import { Surface, Text } from "react-native-paper";
+import Animated, { SlideInLeft, SlideOutRight } from "react-native-reanimated";
 
-import { Background } from '~/components/app/background.component';
-import { LanguageControl } from '~/components/app/language-control.component';
-import { UserControl } from '~/components/app/user-control.component';
-import { IconButton } from '~/components/controls/icon-button.component';
-import { toggleMode, useMode } from '~/contexts/mode.context';
-import { useTheme } from '~/hooks/theme.hook';
+import { Background } from "~/components/app/background.component";
+import { LanguageControl } from "~/components/app/language-control.component";
+import { UserControl } from "~/components/app/user-control.component";
+import { IconButton } from "~/components/controls/icon-button.component";
+import { toggleMode, useMode } from "~/contexts/mode.context";
+import { useTheme } from "~/hooks/theme.hook";
 
-import type { ReactNode } from 'react';
-import type { StyleProp, ViewStyle } from 'react-native';
-import type { App } from '~/types/app.types';
-import type { Utils } from '~/types/utils.types';
+import type { ReactNode } from "react";
+import type { StyleProp, ViewStyle } from "react-native";
+import type { App } from "~/types/app.types";
+import type { Utils } from "~/types/utils.types";
 
 export type ScreenWrapperProps = App.propsWithStyle<{
 	/** the title to show on the page header */
@@ -53,25 +53,25 @@ export const ScreenWrapper = ({
 
 	return (
 		<SafeAreaView style={{ flex: 1, marginTop: Constants.statusBarHeight }}>
-			<Surface style={{ flex: 1, position: 'relative' }}>
+			<Surface style={{ flex: 1, position: "relative" }}>
 				{!hasPlainBackground && (
-					<Background style={{ position: 'absolute', zIndex: 0 }} />
+					<Background style={{ position: "absolute", zIndex: 0 }} />
 				)}
 
 				<View
 					style={{
-						flexDirection: theme.rtl ? 'row-reverse' : 'row',
+						flexDirection: theme.rtl ? "row-reverse" : "row",
 						height: 50,
 						flexShrink: 1,
-						flexWrap: 'nowrap',
-						alignItems: 'center',
-						justifyContent: 'flex-end',
+						flexWrap: "nowrap",
+						alignItems: "center",
+						justifyContent: "flex-end",
 					}}
 				>
 					<View style={[theme.styles.view.row, { flexShrink: 1, padding: 7 }]}>
 						{back && (
 							<IconButton
-								icon={theme.rtl ? 'arrow-next' : 'arrow-back'}
+								icon={theme.rtl ? "arrow-next" : "arrow-back"}
 								style={iconMargin}
 								onPress={() => {
 									router.back();
@@ -81,11 +81,11 @@ export const ScreenWrapper = ({
 
 						{Boolean(title) && (
 							<Text
-								variant='titleSmall'
+								variant="titleSmall"
 								style={{
 									color: theme.colors.primary,
-									textTransform: 'capitalize',
-									textAlign: theme.rtl ? 'right' : 'left',
+									textTransform: "capitalize",
+									textAlign: theme.rtl ? "right" : "left",
 									flexGrow: 1,
 								}}
 							>

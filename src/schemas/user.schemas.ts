@@ -1,10 +1,10 @@
-import { z } from 'zod';
+import { z } from "zod";
 
-import { createSchema, emailSchema, jwtSchema } from '~/helpers/schema.helpers';
+import { createSchema, emailSchema, jwtSchema } from "~/helpers/schema.helpers";
 
 const passwordSchema = z
 	.string()
-	.min(4, 'Password must be at least 8 characters long');
+	.min(4, "Password must be at least 8 characters long");
 
 export const [userSansMetaSchema, userSchema] = createSchema({
 	email: emailSchema,

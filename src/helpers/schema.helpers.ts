@@ -1,19 +1,19 @@
-import { isDayjs } from 'dayjs';
-import { z } from 'zod';
+import { isDayjs } from "dayjs";
+import { z } from "zod";
 
-import { JWT_REGEX, PHONE_REGEX } from '~/constants';
-import { dayjsUtc } from '~/helpers/date.helpers';
+import { JWT_REGEX, PHONE_REGEX } from "~/constants";
+import { dayjsUtc } from "~/helpers/date.helpers";
 
-import type { BulkResponse } from '~/helpers/api.helpers';
-import type { Utils } from '~/types/utils.types';
+import type { BulkResponse } from "~/helpers/api.helpers";
+import type { Utils } from "~/types/utils.types";
 
-export const dbIdSchema = z.number().int().positive().finite().brand('DbId');
+export const dbIdSchema = z.number().int().positive().finite().brand("DbId");
 
 export type ZodDbId = typeof dbIdSchema;
 
 export type DbId = z.infer<ZodDbId>;
 
-export const jwtSchema = z.string().regex(JWT_REGEX).brand('jwt');
+export const jwtSchema = z.string().regex(JWT_REGEX).brand("jwt");
 
 export type ZodJwt = typeof jwtSchema;
 
@@ -41,7 +41,7 @@ export const timeSchema = z.preprocess(
 	(value) => {
 		const parsed = isDayjs(value)
 			? value
-			: dayjsUtc.utc(value as never, 'HH:mm');
+			: dayjsUtc.utc(value as never, "HH:mm");
 		if (!parsed.isValid()) return value;
 		return { hour: parsed.hour(), minute: parsed.minute() };
 	},
@@ -64,7 +64,7 @@ export const _localIdSchema = z
 	.int()
 	.positive()
 	.finite()
-	.brand('_localId');
+	.brand("_localId");
 
 type _LocalId = z.infer<typeof _localIdSchema>;
 
@@ -107,7 +107,7 @@ export const zodAllOrNone = <T extends Record<string, z.Schema>>(
 	shape: T,
 ): z.Schema<
 	Utils.allOrNone<
-		Utils.makeUndefinedOptional<{ [k in keyof T]: T[k]['_output'] }>
+		Utils.makeUndefinedOptional<{ [k in keyof T]: T[k]["_output"] }>
 	>
 > => {
 	return z.strictObject(shape).or(
@@ -125,23 +125,23 @@ export const zodAllOrNone = <T extends Record<string, z.Schema>>(
 
 export type DefaultBulkResponseObj = z.ZodObject<
 	{},
-	'strip',
+	"strip",
 	z.ZodUnknown,
-	z.objectOutputType<{}, z.ZodUnknown, 'strip'>
+	z.objectOutputType<{}, z.ZodUnknown, "strip">
 >;
 
 export const createBulkResponseSchema = <
 	Schema extends z.ZodObject<z.ZodRawShape> = DefaultBulkResponseObj,
 >(
 	input?: Schema,
-): z.Schema<BulkResponse<Schema['_output']>> => {
+): z.Schema<BulkResponse<Schema["_output"]>> => {
 	const schema = input ?? z.object({}).catchall(z.unknown());
 	const errorSchema = schema.extend({ error: z.string() });
 	const bulkSchema = z.strictObject({
 		successful: z.array(schema),
 		failed: z.array(errorSchema),
 	});
-	return bulkSchema as z.Schema<BulkResponse<Schema['_output']>>;
+	return bulkSchema as z.Schema<BulkResponse<Schema["_output"]>>;
 };
 
 export const dbMetaSchema = z.strictObject({

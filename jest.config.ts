@@ -1,22 +1,22 @@
-import type { Config } from 'jest';
+import type { Config } from "jest";
 
 const config: Config = {
-	preset: 'jest-expo',
+	preset: "jest-expo",
 	collectCoverage: true,
 	collectCoverageFrom: [
-		'**/*.{js,jsx,ts,tsx}',
-		'!**/coverage/**',
-		'!**/node_modules/**',
-		'!**/.eslintrc.cjs',
-		'!**/babel.config.cjs',
-		'!**/jest.setup.js',
+		"**/*.{js,jsx,ts,tsx}",
+		"!**/coverage/**",
+		"!**/node_modules/**",
+		"!**/.eslintrc.cjs",
+		"!**/babel.config.cjs",
+		"!**/jest.setup.js",
 	],
-	setupFilesAfterEnv: ['@testing-library/jest-native/extend-expect'],
+	setupFilesAfterEnv: ["@testing-library/jest-native/extend-expect"],
 	clearMocks: true,
 	globals: {
-		'ts-jest': {
+		"ts-jest": {
 			tsconfig: {
-				jsx: 'react',
+				jsx: "react",
 			},
 		},
 	},

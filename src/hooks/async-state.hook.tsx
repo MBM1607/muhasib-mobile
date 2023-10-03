@@ -1,6 +1,6 @@
-import { useReducer } from 'react';
+import { useReducer } from "react";
 
-import type { Reducer } from 'react';
+import type { Reducer } from "react";
 
 export type AsyncState<T> =
 	| [isLoading: true, value: null]
@@ -16,7 +16,7 @@ export const useAsyncState = <
 	return useReducer<Reducer<AsyncState<T>, AsyncSetter<T>>>(
 		(state, action) => {
 			const value =
-				typeof action === 'function' ? (action(state[1]) as T | null) : action;
+				typeof action === "function" ? (action(state[1]) as T | null) : action;
 			return [false, value];
 		},
 		initialValue ? [false, initialValue] : [true, null],

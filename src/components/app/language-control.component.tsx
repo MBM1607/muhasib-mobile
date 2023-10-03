@@ -1,13 +1,13 @@
-import { useState } from 'react';
-import { Menu } from 'react-native-paper';
+import { useState } from "react";
+import { Menu } from "react-native-paper";
 
-import { appIconMap } from '~/components/app/icon.component';
-import { IconButton } from '~/components/controls/icon-button.component';
-import { updateLanguage, useI18n } from '~/contexts/i18n.context';
-import { useTheme } from '~/hooks/theme.hook';
-import { languages } from '~/i18n';
+import { appIconMap } from "~/components/app/icon.component";
+import { IconButton } from "~/components/controls/icon-button.component";
+import { updateLanguage, useI18n } from "~/contexts/i18n.context";
+import { useTheme } from "~/hooks/theme.hook";
+import { languages } from "~/i18n";
 
-import type { StyleProp, ViewStyle } from 'react-native';
+import type { StyleProp, ViewStyle } from "react-native";
 
 export type LanguageControlProps = {
 	buttonStyle?: StyleProp<ViewStyle>;
@@ -22,13 +22,13 @@ export const LanguageControl = ({ buttonStyle }: LanguageControlProps) => {
 	return (
 		<Menu
 			visible={visible}
-			anchorPosition='bottom'
-			overlayAccessibilityLabel='Select Language'
+			anchorPosition="bottom"
+			overlayAccessibilityLabel="Select Language"
 			contentStyle={{ padding: 8, borderRadius: 10 }}
 			anchor={
 				<IconButton
 					style={buttonStyle}
-					icon={'language'}
+					icon={"language"}
 					onPress={() => {
 						setVisible(true);
 					}}
@@ -42,12 +42,12 @@ export const LanguageControl = ({ buttonStyle }: LanguageControlProps) => {
 				<Menu.Item
 					key={lang}
 					title={lang}
-					leadingIcon={appIconMap[language === lang ? 'checked' : 'unchecked']}
-					titleStyle={{ textTransform: 'capitalize' }}
+					leadingIcon={appIconMap[language === lang ? "checked" : "unchecked"]}
+					titleStyle={{ textTransform: "capitalize" }}
 					style={{
 						backgroundColor:
 							language === lang
-								? theme.getColor('primary', 'container')
+								? theme.getColor("primary", "container")
 								: undefined,
 						borderRadius: 6,
 					}}

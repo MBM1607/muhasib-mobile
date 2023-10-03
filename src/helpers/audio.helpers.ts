@@ -1,16 +1,16 @@
-import { Audio } from 'expo-av';
+import { Audio } from "expo-av";
 
-import notification from '~/assets/audios/notification.mp3';
+import notification from "~/assets/audios/notification.mp3";
 
-import type { AVPlaybackStatusSuccess } from 'expo-av';
+import type { AVPlaybackStatusSuccess } from "expo-av";
 
 export const audios = {
 	notification,
 };
 
 export type GetAudioResponse = Promise<null | {
-	play: () => ReturnType<Audio.Sound['playAsync']>;
-	unload: () => ReturnType<Audio.Sound['unloadAsync']>;
+	play: () => ReturnType<Audio.Sound["playAsync"]>;
+	unload: () => ReturnType<Audio.Sound["unloadAsync"]>;
 	duration: number;
 }>;
 

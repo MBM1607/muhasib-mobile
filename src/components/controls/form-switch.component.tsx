@@ -1,13 +1,13 @@
-import { useRef } from 'react';
-import { View } from 'react-native';
-import { Switch, Text, TouchableRipple } from 'react-native-paper';
+import { useRef } from "react";
+import { View } from "react-native";
+import { Switch, Text, TouchableRipple } from "react-native-paper";
 
-import { Icon } from '~/components/app/icon.component';
-import { FormControlWrapper } from '~/components/controls/form-control-wrapper.component';
-import { useTheme } from '~/hooks/theme.hook';
+import { Icon } from "~/components/app/icon.component";
+import { FormControlWrapper } from "~/components/controls/form-control-wrapper.component";
+import { useTheme } from "~/hooks/theme.hook";
 
-import type { Switch as RefType, StyleProp, ViewStyle } from 'react-native';
-import type { SwitchProps } from 'react-native-paper';
+import type { Switch as RefType, StyleProp, ViewStyle } from "react-native";
+import type { SwitchProps } from "react-native-paper";
 
 type styles = {
 	container?: StyleProp<ViewStyle>;
@@ -16,7 +16,7 @@ type styles = {
 	control?: StyleProp<ViewStyle>;
 };
 
-export type FormSwitchProps = Pick<SwitchProps, 'disabled'> & {
+export type FormSwitchProps = Pick<SwitchProps, "disabled"> & {
 	/** the current value of the input field */
 	value: boolean;
 
@@ -68,10 +68,10 @@ export const FormSwitch = ({
 			>
 				<View
 					style={{
-						flexDirection: 'row',
-						alignItems: 'center',
-						flexWrap: 'nowrap',
-						alignContent: 'center',
+						flexDirection: "row",
+						alignItems: "center",
+						flexWrap: "nowrap",
+						alignContent: "center",
 						paddingVertical: 0,
 						paddingHorizontal: 15,
 						gap: 15,
@@ -86,15 +86,15 @@ export const FormSwitch = ({
 					{hasIcon ? (
 						<Icon
 							style={styles?.icon}
-							name={'check'}
+							name={"check"}
 							size={20}
 							color={theme.colors.onPrimaryContainer}
 						/>
 					) : undefined}
 					<Text
-						variant='bodyMedium'
+						variant="bodyMedium"
 						style={{
-							fontWeight: '300',
+							fontWeight: "300",
 							color: theme.colors.onPrimaryContainer,
 							flexGrow: 1,
 						}}

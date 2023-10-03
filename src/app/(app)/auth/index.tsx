@@ -1,10 +1,10 @@
-import { useRouter } from 'expo-router';
-import { Text } from 'react-native-paper';
+import { useRouter } from "expo-router";
+import { Text } from "react-native-paper";
 
-import { Button } from '~/components/controls/button.component';
-import { ScreenWrapper } from '~/components/layout/screen-wrapper.component';
-import { useI18n } from '~/contexts/i18n.context';
-import { useTheme } from '~/hooks/theme.hook';
+import { Button } from "~/components/controls/button.component";
+import { ScreenWrapper } from "~/components/layout/screen-wrapper.component";
+import { useI18n } from "~/contexts/i18n.context";
+import { useTheme } from "~/hooks/theme.hook";
 
 const Auth = () => {
 	const theme = useTheme();
@@ -20,7 +20,7 @@ const Auth = () => {
 			}}
 		>
 			<Text
-				variant='headlineLarge'
+				variant="headlineLarge"
 				style={theme.styles.text.heading}
 			>
 				{content.headings.welcome}
@@ -29,14 +29,14 @@ const Auth = () => {
 			<Button
 				label={content.action.register}
 				onPress={() => {
-					router.push('/auth/register');
+					router.push("/auth/register");
 				}}
 			/>
 
 			<Button
 				label={content.action.login}
 				onPress={() => {
-					router.push('/auth/login');
+					router.push("/auth/login");
 				}}
 			/>
 		</ScreenWrapper>

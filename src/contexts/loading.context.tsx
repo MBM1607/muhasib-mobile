@@ -1,9 +1,9 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from "react";
 
-import { LoadingModal } from '~/components/feedback/loading-modal.component';
-import { events } from '~/helpers/events.helpers';
+import { LoadingModal } from "~/components/feedback/loading-modal.component";
+import { events } from "~/helpers/events.helpers";
 
-import type { PropsWithChildren, SetStateAction } from 'react';
+import type { PropsWithChildren, SetStateAction } from "react";
 
 const LoadingContext = createContext<boolean>(false);
 
@@ -11,8 +11,8 @@ export const LoadingProvider = ({ children }: PropsWithChildren) => {
 	const [isLoading, setIsLoading] = useState(false);
 
 	useEffect(() => {
-		const listener = events.listen('setIsLoading', (value) => {
-			if (typeof value === 'function' || typeof value === 'boolean') {
+		const listener = events.listen("setIsLoading", (value) => {
+			if (typeof value === "function" || typeof value === "boolean") {
 				setIsLoading(value);
 				return;
 			}
@@ -39,7 +39,7 @@ export const useLoading = () => {
 	const isLoading = useContext(LoadingContext);
 	// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
 	if (isLoading === undefined)
-		throw new Error('useLoading must be used within an LoadingProvider');
+		throw new Error("useLoading must be used within an LoadingProvider");
 
 	return isLoading;
 };
@@ -47,5 +47,5 @@ export const useLoading = () => {
 export const setIsLoading = (
 	value: SetStateAction<boolean> | Promise<unknown>,
 ) => {
-	events.emit('setIsLoading', value);
+	events.emit("setIsLoading", value);
 };

@@ -1,12 +1,12 @@
-import { useRouter } from 'expo-router';
-import { Text } from 'react-native-paper';
+import { useRouter } from "expo-router";
+import { Text } from "react-native-paper";
 
-import { Icon } from '~/components/app/icon.component';
-import { Button } from '~/components/controls/button.component';
-import { ScreenWrapper } from '~/components/layout/screen-wrapper.component';
-import { isSmallerScreen } from '~/config';
-import { useI18n } from '~/contexts/i18n.context';
-import { useTheme } from '~/hooks/theme.hook';
+import { Icon } from "~/components/app/icon.component";
+import { Button } from "~/components/controls/button.component";
+import { ScreenWrapper } from "~/components/layout/screen-wrapper.component";
+import { isSmallerScreen } from "~/config";
+import { useI18n } from "~/contexts/i18n.context";
+import { useTheme } from "~/hooks/theme.hook";
 
 export type ErrorPageProps = {
 	/** the title of the error page */
@@ -37,23 +37,23 @@ export const ErrorPage = ({
 			title={title ?? content.error}
 			style={{
 				flex: 1,
-				justifyContent: 'center',
-				alignItems: 'center',
+				justifyContent: "center",
+				alignItems: "center",
 			}}
 			back
 		>
 			<Icon
-				name='error'
+				name="error"
 				size={isSmallerScreen ? 100 : 125}
 				color={theme.colors.error}
 			/>
 
 			<Text
-				variant='headlineLarge'
+				variant="headlineLarge"
 				style={{
-					maxWidth: '70%',
-					textAlign: 'center',
-					textTransform: 'capitalize',
+					maxWidth: "70%",
+					textAlign: "center",
+					textTransform: "capitalize",
 					color: theme.colors.error,
 				}}
 			>
@@ -61,11 +61,11 @@ export const ErrorPage = ({
 			</Text>
 
 			<Text
-				variant='bodyLarge'
+				variant="bodyLarge"
 				style={{
-					maxWidth: '70%',
-					textAlign: 'center',
-					textTransform: 'capitalize',
+					maxWidth: "70%",
+					textAlign: "center",
+					textTransform: "capitalize",
 					paddingVertical: 20,
 				}}
 			>
@@ -74,7 +74,7 @@ export const ErrorPage = ({
 
 			<Button
 				label={buttonLabel ?? content.action.back}
-				icon='arrow-back'
+				icon="arrow-back"
 				style={{ width: 150 }}
 				onPress={() => {
 					router.back();

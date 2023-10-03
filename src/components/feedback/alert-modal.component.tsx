@@ -1,19 +1,19 @@
-import { DeviceEventEmitter, Dimensions, ScrollView, View } from 'react-native';
-import { Dialog, Portal, Text } from 'react-native-paper';
+import { DeviceEventEmitter, Dimensions, ScrollView, View } from "react-native";
+import { Dialog, Portal, Text } from "react-native-paper";
 
-import { Icon } from '~/components/app/icon.component';
-import { Button } from '~/components/controls/button.component';
-import { isSmallerScreen } from '~/config';
-import { useI18n } from '~/contexts/i18n.context';
-import { useTheme } from '~/hooks/theme.hook';
+import { Icon } from "~/components/app/icon.component";
+import { Button } from "~/components/controls/button.component";
+import { isSmallerScreen } from "~/config";
+import { useI18n } from "~/contexts/i18n.context";
+import { useTheme } from "~/hooks/theme.hook";
 
-import type { DialogProps } from 'react-native-paper';
-import type { ButtonProps } from '~/components/controls/button.component';
-import type { ThemeColor } from '~/theme';
+import type { DialogProps } from "react-native-paper";
+import type { ButtonProps } from "~/components/controls/button.component";
+import type { ThemeColor } from "~/theme";
 
 export type AlertModalProps = Pick<
 	DialogProps,
-	'dismissable' | 'dismissableBackButton'
+	"dismissable" | "dismissableBackButton"
 > & {
 	/** the title of the dialog */
 	title?: string;
@@ -40,7 +40,7 @@ export type AlertModalProps = Pick<
 export const AlertModal = ({
 	title: passedTitle,
 	text,
-	type = 'error',
+	type = "error",
 	closeLabel,
 	actions: passedActions,
 	onClose,
@@ -51,25 +51,25 @@ export const AlertModal = ({
 	const theme = useTheme();
 	const { content } = useI18n();
 
-	const actions: AlertModalProps['actions'] = [
+	const actions: AlertModalProps["actions"] = [
 		...(passedActions ?? []),
 		{
 			label: closeLabel ?? content.action.close,
-			color: 'error',
-			icon: 'close',
+			color: "error",
+			icon: "close",
 			onPress: onClose,
 		},
 	];
 
 	const handleClose = () => {
-		DeviceEventEmitter.emit('remove-alert');
+		DeviceEventEmitter.emit("remove-alert");
 		onClose?.();
 	};
 
-	const title = passedTitle ?? (type === 'error' ? 'Error' : 'Alert');
+	const title = passedTitle ?? (type === "error" ? "Error" : "Alert");
 
-	const screenWidth = Dimensions.get('screen').width;
-	const screenHeight = Dimensions.get('screen').height;
+	const screenWidth = Dimensions.get("screen").width;
+	const screenHeight = Dimensions.get("screen").height;
 
 	return (
 		<Portal>
@@ -79,12 +79,12 @@ export const AlertModal = ({
 				style={{
 					width: screenWidth - (isSmallerScreen ? 50 : 100),
 					height: screenHeight - (isSmallerScreen ? 80 : 160),
-					marginTop: 'auto',
-					marginBottom: 'auto',
-					marginLeft: 'auto',
-					marginRight: 'auto',
+					marginTop: "auto",
+					marginBottom: "auto",
+					marginLeft: "auto",
+					marginRight: "auto",
 					borderRadius: 10,
-					overflow: 'hidden',
+					overflow: "hidden",
 					opacity: 0.95,
 				}}
 				visible
@@ -105,16 +105,16 @@ export const AlertModal = ({
 						<Icon
 							name={theme.icons[type]}
 							size={25}
-							color={theme.getColor(type, 'on-normal')}
+							color={theme.getColor(type, "on-normal")}
 						/>
 					)}
 					<Text
-						variant='titleMedium'
+						variant="titleMedium"
 						numberOfLines={1}
 						style={{
-							textAlign: 'center',
-							textTransform: 'capitalize',
-							color: theme.getColor(type, 'on-normal'),
+							textAlign: "center",
+							textTransform: "capitalize",
+							color: theme.getColor(type, "on-normal"),
 						}}
 					>
 						{title}
@@ -125,16 +125,16 @@ export const AlertModal = ({
 					contentContainerStyle={{
 						padding: 15,
 						flexGrow: 1,
-						justifyContent: 'center',
-						alignItems: 'center',
+						justifyContent: "center",
+						alignItems: "center",
 					}}
 				>
 					<Text
-						variant='bodyLarge'
+						variant="bodyLarge"
 						style={{
-							textAlign: 'center',
-							fontWeight: 'normal',
-							color: theme.getColor(type, 'on-container'),
+							textAlign: "center",
+							fontWeight: "normal",
+							color: theme.getColor(type, "on-container"),
 							lineHeight: 25,
 						}}
 					>
@@ -145,7 +145,7 @@ export const AlertModal = ({
 				<View
 					style={[
 						theme.styles.view.row,
-						{ justifyContent: 'center', padding: 10, gap: 10 },
+						{ justifyContent: "center", padding: 10, gap: 10 },
 					]}
 				>
 					{actions.map((action, index) => (

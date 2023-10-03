@@ -1,9 +1,7 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import * as SecureStore from 'expo-secure-store';
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import * as SecureStore from "expo-secure-store";
 
-import type { z } from 'zod';
-
-
+import type { z } from "zod";
 
 const storeMethodsMap = {
 	secure: {
@@ -20,7 +18,7 @@ const storeMethodsMap = {
 
 type CreateStoreOpts<
 	Schema extends z.ZodSchema,
-	Default extends Schema['_output'] = never,
+	Default extends Schema["_output"] = never,
 > = {
 	/** the key to store the value under */
 	key: string;
@@ -34,34 +32,34 @@ type CreateStoreOpts<
 
 export type Store<
 	Schema extends z.ZodSchema,
-	Default extends Schema['_output'] = never,
+	Default extends Schema["_output"] = never,
 > = {
 	key: string;
 	defaultVal: Default;
 	get: () => Promise<
-		Schema['_output'] | ([Default] extends [never] ? null : Default)
+		Schema["_output"] | ([Default] extends [never] ? null : Default)
 	>;
-	set: (value: Schema['_output']) => Promise<boolean>;
+	set: (value: Schema["_output"]) => Promise<boolean>;
 	remove: () => Promise<boolean>;
 };
 
 export const createStore = <
 	Schema extends z.ZodSchema,
-	Default extends Schema['_output'] = never,
+	Default extends Schema["_output"] = never,
 >({
 	key,
 	secureStore,
 	schema,
 	defaultVal,
 }: CreateStoreOpts<Schema, Default>): Store<Schema, Default> => {
-	const store = storeMethodsMap[secureStore ? 'secure' : 'async'];
+	const store = storeMethodsMap[secureStore ? "secure" : "async"];
 	return {
 		key,
 		defaultVal: defaultVal as never,
 		get: async () => {
 			try {
 				const string = await store.get(key);
-				if (!string) throw new Error('not found');
+				if (!string) throw new Error("not found");
 				return schema.parse(JSON.parse(string)) as never;
 			} catch {
 				if (defaultVal !== undefined) {
@@ -72,7 +70,7 @@ export const createStore = <
 				return null;
 			}
 		},
-		set: async (value: Schema['_output']) => {
+		set: async (value: Schema["_output"]) => {
 			try {
 				await store.set(key, JSON.stringify(value));
 				return true;

@@ -1,9 +1,9 @@
-import { View } from 'react-native';
-import { Text } from 'react-native-paper';
+import { View } from "react-native";
+import { Text } from "react-native-paper";
 
-import { useTheme } from '~/hooks/theme.hook';
+import { useTheme } from "~/hooks/theme.hook";
 
-import type { App } from '~/types/app.types';
+import type { App } from "~/types/app.types";
 
 export type StepperProps<T extends readonly string[]> = App.propsWithStyle<{
 	/** the list of step names */
@@ -29,10 +29,10 @@ export const Stepper = <T extends readonly string[]>({
 		<View
 			style={[
 				{
-					flexDirection: 'row',
-					alignItems: 'stretch',
-					justifyContent: 'space-between',
-					flexWrap: 'nowrap',
+					flexDirection: "row",
+					alignItems: "stretch",
+					justifyContent: "space-between",
+					flexWrap: "nowrap",
 					gap: 5,
 				},
 				style,
@@ -41,10 +41,10 @@ export const Stepper = <T extends readonly string[]>({
 			{steps.map((step, index) => {
 				const color = theme.getColor(
 					step === currentStep
-						? 'primary'
+						? "primary"
 						: steps.indexOf(currentStep) > index
-						? 'success'
-						: 'error',
+						? "success"
+						: "error",
 				);
 				return (
 					<View
@@ -52,14 +52,14 @@ export const Stepper = <T extends readonly string[]>({
 						style={{ flex: 1, gap: 2 }}
 					>
 						<Text
-							variant='labelMedium'
+							variant="labelMedium"
 							style={{
-								textTransform: 'capitalize',
+								textTransform: "capitalize",
 								color,
-								textAlign: 'center',
+								textAlign: "center",
 							}}
 						>
-							{removePrefix ? step.replace(removePrefix, '') : step}
+							{removePrefix ? step.replace(removePrefix, "") : step}
 						</Text>
 
 						<View style={{ height: 3, backgroundColor: color }} />

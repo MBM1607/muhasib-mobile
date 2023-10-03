@@ -1,16 +1,16 @@
-import { loadAsync } from 'expo-font';
-import { Slot, SplashScreen } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
-import * as Updates from 'expo-updates';
-import { useEffect, useState } from 'react';
-import { PaperProvider } from 'react-native-paper';
+import { loadAsync } from "expo-font";
+import { Slot, SplashScreen } from "expo-router";
+import { StatusBar } from "expo-status-bar";
+import * as Updates from "expo-updates";
+import { useEffect, useState } from "react";
+import { PaperProvider } from "react-native-paper";
 
-import { env } from '~/config';
-import { AlertProvider, addAlert } from '~/contexts/alert.context';
-import { I18nProvider } from '~/contexts/i18n.context';
-import { LoadingProvider } from '~/contexts/loading.context';
-import { ModeProvider, useMode } from '~/contexts/mode.context';
-import { darkTheme, lightTheme } from '~/theme';
+import { env } from "~/config";
+import { AlertProvider, addAlert } from "~/contexts/alert.context";
+import { I18nProvider } from "~/contexts/i18n.context";
+import { LoadingProvider } from "~/contexts/loading.context";
+import { ModeProvider, useMode } from "~/contexts/mode.context";
+import { darkTheme, lightTheme } from "~/theme";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -22,9 +22,9 @@ const Providers = () => {
 	useEffect(() => {
 		loadAsync({
 			// eslint-disable-next-line @typescript-eslint/no-var-requires
-			InterRegular: require('~/assets/fonts/inter-regular.otf') as string,
+			InterRegular: require("~/assets/fonts/inter-regular.otf") as string,
 			// eslint-disable-next-line @typescript-eslint/no-var-requires
-			InterBold: require('~/assets/fonts/inter-bold.otf') as string,
+			InterBold: require("~/assets/fonts/inter-bold.otf") as string,
 		}).then(() => {
 			setLoaded(true);
 			SplashScreen.hideAsync();
@@ -35,12 +35,12 @@ const Providers = () => {
 
 	return (
 		<I18nProvider>
-			<PaperProvider theme={mode.scheme === 'dark' ? darkTheme : lightTheme}>
+			<PaperProvider theme={mode.scheme === "dark" ? darkTheme : lightTheme}>
 				<AlertProvider>
 					<LoadingProvider>
 						<StatusBar
-							style='light'
-							backgroundColor='#000000'
+							style="light"
+							backgroundColor="#000000"
 						/>
 						<Slot />
 					</LoadingProvider>
@@ -52,7 +52,7 @@ const Providers = () => {
 
 const RootLayout = () => {
 	useEffect(() => {
-		if (env !== 'production' || typeof Updates.addListener !== 'function')
+		if (env !== "production" || typeof Updates.addListener !== "function")
 			return;
 
 		Updates.addListener((event) => {
@@ -60,13 +60,13 @@ const RootLayout = () => {
 
 			setTimeout(() => {
 				addAlert({
-					title: 'Update Available!',
-					text: 'A New Update Is Available For The App.\nRestart The Application To Apply Updates.',
-					closeLabel: 'Later',
+					title: "Update Available!",
+					text: "A New Update Is Available For The App.\nRestart The Application To Apply Updates.",
+					closeLabel: "Later",
 					noIcon: true,
 					actions: [
 						{
-							label: 'Restart & Update',
+							label: "Restart & Update",
 							onPress: async () => Updates.reloadAsync(),
 						},
 					],

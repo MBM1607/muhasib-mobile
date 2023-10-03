@@ -1,14 +1,14 @@
-import { Button as Component } from 'react-native-paper';
+import { Button as Component } from "react-native-paper";
 
-import { appIconMap } from '~/components/app/icon.component';
-import { useTheme } from '~/hooks/theme.hook';
+import { appIconMap } from "~/components/app/icon.component";
+import { useTheme } from "~/hooks/theme.hook";
 
-import type { ReactNode } from 'react';
-import type { ButtonProps as Props } from 'react-native-paper';
-import type { IconName } from '~/components/app/icon.component';
-import type { ThemeColor } from '~/theme';
+import type { ReactNode } from "react";
+import type { ButtonProps as Props } from "react-native-paper";
+import type { IconName } from "~/components/app/icon.component";
+import type { ThemeColor } from "~/theme";
 
-export type ButtonProps = Omit<Props, 'icon' | 'children'> & {
+export type ButtonProps = Omit<Props, "icon" | "children"> & {
 	/** the label to show on the button */
 	label: ReactNode;
 
@@ -21,16 +21,16 @@ export type ButtonProps = Omit<Props, 'icon' | 'children'> & {
 
 export const Button = ({
 	style,
-	color = 'primary',
+	color = "primary",
 	label,
-	mode = 'contained',
+	mode = "contained",
 	disabled,
 	icon: iconName,
 	...restProps
 }: ButtonProps) => {
 	const { getColor, rtl } = useTheme();
 
-	const icon: Props['icon'] | undefined = iconName
+	const icon: Props["icon"] | undefined = iconName
 		? appIconMap[iconName]
 		: undefined;
 
@@ -39,23 +39,23 @@ export const Button = ({
 			{...restProps}
 			mode={mode}
 			disabled={disabled || restProps.loading}
-			labelStyle={{ textTransform: 'capitalize' }}
+			labelStyle={{ textTransform: "capitalize" }}
 			icon={icon}
-			contentStyle={{ flexDirection: rtl ? 'row-reverse' : 'row' }}
+			contentStyle={{ flexDirection: rtl ? "row-reverse" : "row" }}
 			style={[
-				{ borderRadius: 10, borderColor: getColor(color, 'normal') },
+				{ borderRadius: 10, borderColor: getColor(color, "normal") },
 				style,
 			]}
 			theme={{
 				colors: {
-					primary: getColor(color, 'normal'),
-					onPrimary: getColor(color, 'on-normal'),
-					primaryContainer: getColor(color, 'container'),
-					onPrimaryContainer: getColor(color, 'on-container'),
-					secondary: getColor(color, 'normal'),
-					onSecondary: getColor(color, 'on-normal'),
-					secondaryContainer: getColor(color, 'container'),
-					onSecondaryContainer: getColor(color, 'on-container'),
+					primary: getColor(color, "normal"),
+					onPrimary: getColor(color, "on-normal"),
+					primaryContainer: getColor(color, "container"),
+					onPrimaryContainer: getColor(color, "on-container"),
+					secondary: getColor(color, "normal"),
+					onSecondary: getColor(color, "on-normal"),
+					secondaryContainer: getColor(color, "container"),
+					onSecondaryContainer: getColor(color, "on-container"),
 				},
 			}}
 		>

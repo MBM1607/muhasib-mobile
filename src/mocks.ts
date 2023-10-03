@@ -1,12 +1,12 @@
-import { wait } from '~/helpers/async.helpers';
-import { dayjsUtc } from '~/helpers/date.helpers';
+import { wait } from "~/helpers/async.helpers";
+import { dayjsUtc } from "~/helpers/date.helpers";
 
-import type { DbId, DbMeta, Jwt } from '~/helpers/schema.helpers';
-import type { User } from '~/schemas/user.schemas';
+import type { DbId, DbMeta, Jwt } from "~/helpers/schema.helpers";
+import type { User } from "~/schemas/user.schemas";
 
 export const mockToken =
 	/** cSpell: disable-next-line */
-	'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c' as Jwt;
+	"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c" as Jwt;
 
 export const createMockedData = <T extends DbMeta>(
 	data: Omit<T, keyof DbMeta>[],
@@ -22,10 +22,10 @@ export const createMockedData = <T extends DbMeta>(
 export const mockData = {
 	user: createMockedData<User>([
 		{
-			email: 'testing@test.com',
-			name: 'test',
-			password: '12345',
-			image_url: 'https://images.unsplash.com/photo-1527980965255-d3b416303d12',
+			email: "testing@test.com",
+			name: "test",
+			password: "12345",
+			image_url: "https://images.unsplash.com/photo-1527980965255-d3b416303d12",
 		},
 	]),
 };

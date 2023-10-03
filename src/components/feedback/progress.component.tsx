@@ -1,18 +1,18 @@
-import { useEffect } from 'react';
-import { TextInput, View } from 'react-native';
+import { useEffect } from "react";
+import { TextInput, View } from "react-native";
 import Animated, {
 	useAnimatedProps,
 	useDerivedValue,
 	useSharedValue,
 	withTiming,
-} from 'react-native-reanimated';
-import { Circle, default as Svg } from 'react-native-svg';
+} from "react-native-reanimated";
+import { Circle, default as Svg } from "react-native-svg";
 
-import { useTheme } from '~/hooks/theme.hook';
+import { useTheme } from "~/hooks/theme.hook";
 
-import type { TextInputProps } from 'react-native';
-import type { CircleProps } from 'react-native-svg';
-import type { App } from '~/types/app.types';
+import type { TextInputProps } from "react-native";
+import type { CircleProps } from "react-native-svg";
+import type { App } from "~/types/app.types";
 
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 const AnimatedText = Animated.createAnimatedComponent(TextInput);
@@ -26,16 +26,16 @@ export type ProgressProps = App.propsWithStyle<{
 	size?: number;
 
 	/** the background color of the circle */
-	circleBackground?: CircleProps['fill'];
+	circleBackground?: CircleProps["fill"];
 
 	/** the background opacity of the circle */
-	circleBackgroundOpacity?: CircleProps['fillOpacity'];
+	circleBackgroundOpacity?: CircleProps["fillOpacity"];
 
 	/** the color of the progress circle */
-	circleColor?: CircleProps['stroke'];
+	circleColor?: CircleProps["stroke"];
 
 	/** the opacity of the progress circle */
-	circleOpacity?: CircleProps['strokeOpacity'];
+	circleOpacity?: CircleProps["strokeOpacity"];
 
 	/** the callback function when the animation starts */
 	onStart?: () => void;
@@ -87,19 +87,19 @@ export const Progress = ({
 		<View
 			style={[
 				{
-					justifyContent: 'center',
-					alignItems: 'center',
+					justifyContent: "center",
+					alignItems: "center",
 					width: size,
 					height: size,
-					position: 'relative',
+					position: "relative",
 				},
 				style,
 			]}
 		>
 			<Svg
-				height='100%'
-				width='100%'
-				viewBox='0 0 100 100'
+				height="100%"
+				width="100%"
+				viewBox="0 0 100 100"
 			>
 				<AnimatedCircle
 					animatedProps={animatedCircleProps}
@@ -118,11 +118,11 @@ export const Progress = ({
 				<AnimatedText
 					animatedProps={animatedTextProps}
 					editable={false}
-					underlineColorAndroid='transparent'
+					underlineColorAndroid="transparent"
 					style={{
-						position: 'absolute',
+						position: "absolute",
 						fontSize: radius / 2.5,
-						fontWeight: 'bold',
+						fontWeight: "bold",
 						color: circleColor ?? theme.colors.onSurfaceVariant,
 					}}
 				/>

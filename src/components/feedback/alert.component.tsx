@@ -1,13 +1,13 @@
-import { View } from 'react-native';
-import { Text } from 'react-native-paper';
-import Animated, { SlideInLeft, SlideOutRight } from 'react-native-reanimated';
+import { View } from "react-native";
+import { Text } from "react-native-paper";
+import Animated, { SlideInLeft, SlideOutRight } from "react-native-reanimated";
 
-import { Icon } from '~/components/app/icon.component';
-import { IconButton } from '~/components/controls/icon-button.component';
-import { useTheme } from '~/hooks/theme.hook';
+import { Icon } from "~/components/app/icon.component";
+import { IconButton } from "~/components/controls/icon-button.component";
+import { useTheme } from "~/hooks/theme.hook";
 
-import type { ThemeColor } from '~/theme';
-import type { App } from '~/types/app.types';
+import type { ThemeColor } from "~/theme";
+import type { App } from "~/types/app.types";
 
 export type AlertProps = App.propsWithStyle<{
 	/** the title of the alert. Omitting this prop will not render a title */
@@ -30,22 +30,22 @@ export const Alert = ({
 	style,
 	title,
 	text,
-	type = 'error',
+	type = "error",
 	onClose,
 	noIcon,
 }: AlertProps) => {
 	const theme = useTheme();
 
-	const background = theme.getColor(type, 'container');
-	const foreground = theme.getColor(type, 'on-container');
+	const background = theme.getColor(type, "container");
+	const foreground = theme.getColor(type, "on-container");
 
 	const textJsx = (
 		<Text
-			variant='bodyMedium'
+			variant="bodyMedium"
 			numberOfLines={1}
 			style={{
 				color: foreground,
-				textTransform: 'capitalize',
+				textTransform: "capitalize",
 				lineHeight: 13,
 			}}
 		>
@@ -60,12 +60,12 @@ export const Alert = ({
 			style={[
 				style,
 				{
-					flexDirection: 'row',
-					alignItems: 'center',
-					flexWrap: 'nowrap',
+					flexDirection: "row",
+					alignItems: "center",
+					flexWrap: "nowrap",
 					backgroundColor: background,
 					borderWidth: 1.5,
-					borderStyle: 'solid',
+					borderStyle: "solid",
 					borderColor: foreground,
 					borderRadius: 5,
 				},
@@ -83,13 +83,13 @@ export const Alert = ({
 			{title ? (
 				<View>
 					<Text
-						variant='bodyMedium'
+						variant="bodyMedium"
 						numberOfLines={1}
 						style={{
 							color: foreground,
-							textTransform: 'capitalize',
+							textTransform: "capitalize",
 							lineHeight: 15,
-							fontWeight: 'bold',
+							fontWeight: "bold",
 						}}
 					>
 						{title}
@@ -102,11 +102,11 @@ export const Alert = ({
 
 			{onClose && (
 				<IconButton
-					icon='close'
+					icon="close"
 					iconColor={foreground}
 					containerColor={background}
 					size={20}
-					style={{ padding: 0, margin: 0, marginLeft: 'auto' }}
+					style={{ padding: 0, margin: 0, marginLeft: "auto" }}
 					onPress={onClose}
 				/>
 			)}

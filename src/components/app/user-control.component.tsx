@@ -1,14 +1,14 @@
-import { useState } from 'react';
-import { Image, View } from 'react-native';
-import { Divider, Menu, Text, TouchableRipple } from 'react-native-paper';
+import { useState } from "react";
+import { Image, View } from "react-native";
+import { Divider, Menu, Text, TouchableRipple } from "react-native-paper";
 
-import { Icon } from '~/components/app/icon.component';
-import { Button } from '~/components/controls/button.component';
-import { logout, useUserOrNull } from '~/contexts/auth.context';
-import { useI18n } from '~/contexts/i18n.context';
-import { useTheme } from '~/hooks/theme.hook';
+import { Icon } from "~/components/app/icon.component";
+import { Button } from "~/components/controls/button.component";
+import { logout, useUserOrNull } from "~/contexts/auth.context";
+import { useI18n } from "~/contexts/i18n.context";
+import { useTheme } from "~/hooks/theme.hook";
 
-import type { ImageStyle, StyleProp, ViewStyle } from 'react-native';
+import type { ImageStyle, StyleProp, ViewStyle } from "react-native";
 
 const Avatar = (props: {
 	size: number;
@@ -25,8 +25,8 @@ const Avatar = (props: {
 						width: props.size,
 						height: props.size,
 						borderRadius: 10,
-						marginLeft: 'auto',
-						marginRight: 'auto',
+						marginLeft: "auto",
+						marginRight: "auto",
 					},
 					props.style,
 				]}
@@ -40,11 +40,11 @@ const Avatar = (props: {
 	}
 	return (
 		<Icon
-			name='user-account'
+			name="user-account"
 			color={theme.colors.primary}
 			size={props.size - 5}
 			style={[
-				{ padding: 2.5, marginLeft: 'auto', marginRight: 'auto' },
+				{ padding: 2.5, marginLeft: "auto", marginRight: "auto" },
 				props.style,
 			]}
 		/>
@@ -67,7 +67,7 @@ export const UserControl = ({ buttonStyle }: UserControlProps) => {
 	return (
 		<Menu
 			visible={visible}
-			anchorPosition='bottom'
+			anchorPosition="bottom"
 			contentStyle={{ padding: 8, borderRadius: 10 }}
 			anchor={
 				<TouchableRipple
@@ -106,15 +106,15 @@ export const UserControl = ({ buttonStyle }: UserControlProps) => {
 					}}
 				/>
 				<Text
-					variant='titleMedium'
-					style={{ color: theme.colors.primary, textAlign: 'center' }}
+					variant="titleMedium"
+					style={{ color: theme.colors.primary, textAlign: "center" }}
 					numberOfLines={1}
 				>
 					{user.name}
 				</Text>
 				<Text
-					variant='labelMedium'
-					style={{ color: theme.colors.primary, textAlign: 'center' }}
+					variant="labelMedium"
+					style={{ color: theme.colors.primary, textAlign: "center" }}
 					numberOfLines={1}
 				>
 					{user.email}
@@ -124,10 +124,10 @@ export const UserControl = ({ buttonStyle }: UserControlProps) => {
 					bold
 				/>
 				<Button
-					icon='logout'
+					icon="logout"
 					label={content.action.logout}
-					color='error'
-					mode='outlined'
+					color="error"
+					mode="outlined"
 					onPress={logout}
 				/>
 			</View>

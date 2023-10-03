@@ -1,8 +1,8 @@
-import { View } from 'react-native';
-import { HelperText } from 'react-native-paper';
+import { View } from "react-native";
+import { HelperText } from "react-native-paper";
 
-import type { PropsWithChildren } from 'react';
-import type { App } from '~/types/app.types';
+import type { PropsWithChildren } from "react";
+import type { App } from "~/types/app.types";
 
 export type FormControlWrapperProps = PropsWithChildren<
 	App.propsWithStyle<{
@@ -28,7 +28,7 @@ export const FormControlWrapper = ({
 		<View style={style}>
 			{children}
 			<HelperText
-				type={error ? 'error' : 'info'}
+				type={error ? "error" : "info"}
 				visible={Boolean(error || caption)}
 				disabled={disabled}
 			>

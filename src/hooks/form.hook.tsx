@@ -1,19 +1,19 @@
-import { useReducer, useRef } from 'react';
-import { Keyboard } from 'react-native';
-import { z } from 'zod';
+import { useReducer, useRef } from "react";
+import { Keyboard } from "react-native";
+import { z } from "zod";
 
-import { shouldAutoFill } from '~/config';
-import { stringifyError } from '~/errors';
-import { dayjsUtc } from '~/helpers/date.helpers';
-import { humanizeToken } from '~/helpers/humanize-token.helpers';
-import { objectEntries } from '~/helpers/object.helpers';
+import { shouldAutoFill } from "~/config";
+import { stringifyError } from "~/errors";
+import { dayjsUtc } from "~/helpers/date.helpers";
+import { humanizeToken } from "~/helpers/humanize-token.helpers";
+import { objectEntries } from "~/helpers/object.helpers";
 
-import type { RefObject } from 'react';
-import type { TextInput } from 'react-native';
-import type { ButtonProps } from '~/components/controls/button.component';
-import type { AlertProps } from '~/components/feedback/alert.component';
-import type { ZodDate, ZodTime } from '~/helpers/schema.helpers';
-import type { Utils } from '~/types/utils.types';
+import type { RefObject } from "react";
+import type { TextInput } from "react-native";
+import type { ButtonProps } from "~/components/controls/button.component";
+import type { AlertProps } from "~/components/feedback/alert.component";
+import type { ZodDate, ZodTime } from "~/helpers/schema.helpers";
+import type { Utils } from "~/types/utils.types";
 
 type fieldMap = {
 	string: z.ZodString;
@@ -37,8 +37,8 @@ type workingTypeMap = {
 	int: string;
 	float: string;
 	boolean: boolean;
-	date: ZodDate['_output'] | null;
-	time: ZodTime['_output'] | null;
+	date: ZodDate["_output"] | null;
+	time: ZodTime["_output"] | null;
 };
 
 type fieldType = keyof fieldMap;
@@ -47,14 +47,14 @@ type fieldZod = fieldMap[keyof fieldMap];
 
 type textFieldZod = Exclude<
 	fieldZod,
-	fieldMap['boolean'] | fieldMap['date'] | fieldMap['time']
+	fieldMap["boolean"] | fieldMap["date"] | fieldMap["time"]
 >;
 
 type reverseMap<T extends fieldZod> = fieldType &
 	keyof {
 		[k in keyof fieldMap as Utils.equal<
-			NonNullable<T['_output']>,
-			NonNullable<fieldMap[k]['_output']>
+			NonNullable<T["_output"]>,
+			NonNullable<fieldMap[k]["_output"]>
 		> extends false
 			? never
 			: k]: true;
@@ -63,15 +63,15 @@ type reverseMap<T extends fieldZod> = fieldType &
 const formDefaults: {
 	[k in keyof fieldMap]: workingTypeMap[k];
 } = {
-	string: 'test',
-	int: '25',
-	float: '25.255',
-	date: dayjsUtc.utc('2022-10-20T10:20:00.000Z'),
+	string: "test",
+	int: "25",
+	float: "25.255",
+	date: dayjsUtc.utc("2022-10-20T10:20:00.000Z"),
 	time: { hours: 10, minutes: 20 },
-	email: 'testing@test.com',
-	password: '12345',
-	phone: '090078601',
-	search: '',
+	email: "testing@test.com",
+	password: "12345",
+	phone: "090078601",
+	search: "",
 	boolean: false,
 };
 
@@ -83,7 +83,7 @@ type notRequired<T extends fieldZod> = T extends z.ZodNullable<z.ZodTypeAny>
 	? boolean
 	: false;
 
-type validSchema = z.ZodObject<Record<string, fieldZod>, 'strict'>;
+type validSchema = z.ZodObject<Record<string, fieldZod>, "strict">;
 
 type Raw<T extends validSchema> = T extends
 	| z.ZodObject<infer R>
@@ -101,7 +101,7 @@ type details<Zod extends validSchema> = {
 		type: reverseMap<Raw<Zod>[k]>;
 
 		/** the default value for the form state */
-		default?: Raw<Zod>[k]['_output'];
+		default?: Raw<Zod>[k]["_output"];
 
 		/** can the field's value be null?  */
 		notRequired?: boolean;
@@ -115,15 +115,15 @@ type details<Zod extends validSchema> = {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type State<T extends details<any>> = {
-	values: { [k in keyof T]: workingTypeMap[T[k]['type']] };
+	values: { [k in keyof T]: workingTypeMap[T[k]["type"]] };
 	status:
-		| { type: 'idle' | 'submitting' }
+		| { type: "idle" | "submitting" }
 		| {
-				type: 'error';
+				type: "error";
 				message: string | null;
 				fieldErrors: Partial<Record<keyof T, string>>;
 		  }
-		| { type: 'success'; message: string };
+		| { type: "success"; message: string };
 };
 
 export const useForm = <
@@ -137,7 +137,7 @@ export const useForm = <
 	details: Details;
 
 	/** the form submission handler. Return a string to show as success message */
-	onSubmit: (state: Zod['_output']) => Promise<string | undefined>;
+	onSubmit: (state: Zod["_output"]) => Promise<string | undefined>;
 }) => {
 	const textRefs = useRef<Record<textFields<Zod>, TextInput | null>>(
 		{} as never,
@@ -155,21 +155,21 @@ export const useForm = <
 			old: State<Details>,
 			action:
 				| {
-						type: 'updateState';
+						type: "updateState";
 						value: Partial<State<Details>>;
 				  }
-				| { type: 'updateStatus'; value: State<Details>['status'] },
+				| { type: "updateStatus"; value: State<Details>["status"] },
 		): State<Details> => {
 			switch (action.type) {
-				case 'updateState':
+				case "updateState":
 					return {
 						...old,
 						values: { ...old.values, ...action.value },
 					};
-				case 'updateStatus':
+				case "updateStatus":
 					return { ...old, status: action.value };
 				default:
-					throw new Error('unknown action type');
+					throw new Error("unknown action type");
 			}
 		},
 		{
@@ -180,15 +180,15 @@ export const useForm = <
 						field.default ??
 						(shouldAutoFill
 							? formDefaults[field.type]
-							: field.type === 'boolean'
+							: field.type === "boolean"
 							? false
-							: ['date', 'time'].includes(field.type)
+							: ["date", "time"].includes(field.type)
 							? null
-							: ''),
+							: ""),
 				}),
 				{},
 			) as never,
-			status: { type: 'idle' },
+			status: { type: "idle" },
 		},
 	);
 
@@ -197,7 +197,7 @@ export const useForm = <
 	const handleSubmit = async () => {
 		try {
 			Keyboard.dismiss();
-			dispatch({ type: 'updateStatus', value: { type: 'submitting' } });
+			dispatch({ type: "updateStatus", value: { type: "submitting" } });
 
 			const parsed = z
 				.strictObject(
@@ -212,11 +212,11 @@ export const useForm = <
 				)
 				.parse(state.values);
 			const result = await onSubmit(parsed);
-			const message = result ?? 'Submission Successful!';
+			const message = result ?? "Submission Successful!";
 
-			dispatch({ type: 'updateStatus', value: { type: 'success', message } });
+			dispatch({ type: "updateStatus", value: { type: "success", message } });
 			setTimeout(() => {
-				dispatch({ type: 'updateStatus', value: { type: 'idle' } });
+				dispatch({ type: "updateStatus", value: { type: "idle" } });
 			}, 2500);
 		} catch (error) {
 			if (error instanceof z.ZodError) {
@@ -230,22 +230,22 @@ export const useForm = <
 				const otherIssue = error.issues.find(({ code, path }) => {
 					const name = path[0];
 					return (
-						code === 'custom' ||
-						(typeof name === 'string' && !Object.keys(details).includes(name))
+						code === "custom" ||
+						(typeof name === "string" && !Object.keys(details).includes(name))
 					);
 				});
 				const message = otherIssue
-					? `${otherIssue.path.join('.')}: ${otherIssue.message}`
+					? `${otherIssue.path.join(".")}: ${otherIssue.message}`
 					: null;
 				dispatch({
-					type: 'updateStatus',
-					value: { type: 'error', message, fieldErrors },
+					type: "updateStatus",
+					value: { type: "error", message, fieldErrors },
 				});
 			} else {
 				dispatch({
-					type: 'updateStatus',
+					type: "updateStatus",
 					value: {
-						type: 'error',
+						type: "error",
 						message: stringifyError(error),
 						fieldErrors: {},
 					},
@@ -263,10 +263,10 @@ export const useForm = <
 				notRequired: field.notRequired ?? false,
 				value: values[key],
 				onChange: (value: unknown) => {
-					dispatch({ type: 'updateState', value: { [key]: value } });
+					dispatch({ type: "updateState", value: { [key]: value } });
 				},
-				error: status.type === 'error' ? status.fieldErrors[key] : undefined,
-				ref: !['boolean', 'date', 'time'].includes(field.type)
+				error: status.type === "error" ? status.fieldErrors[key] : undefined,
+				ref: !["boolean", "date", "time"].includes(field.type)
 					? (element: TextInput | null) => {
 							textRefs.current[key as keyof typeof textRefs.current] = element;
 					  }
@@ -282,35 +282,35 @@ export const useForm = <
 	) as Utils.prettify<{
 		[k in keyof Details]: Utils.prettify<
 			{
-				type: Details[k]['type'];
+				type: Details[k]["type"];
 				label: string;
-				notRequired: Details[k]['notRequired'] extends true ? true : false;
-				value: workingTypeMap[Details[k]['type']];
-				onChange: (value: workingTypeMap[Details[k]['type']]) => void;
+				notRequired: Details[k]["notRequired"] extends true ? true : false;
+				value: workingTypeMap[Details[k]["type"]];
+				onChange: (value: workingTypeMap[Details[k]["type"]]) => void;
 				error: string | undefined;
 			} & (k extends textFields<Zod> ? { ref: RefObject<TextInput> } : {}) &
-				(Details[k]['next'] extends textFields<Zod>
+				(Details[k]["next"] extends textFields<Zod>
 					? { next: () => TextInput | null }
 					: {})
 		>;
 	}>;
 
 	const statusProps =
-		(status.type === 'error' || status.type === 'success') && status.message
+		(status.type === "error" || status.type === "success") && status.message
 			? ({
 					type: status.type,
 					text: status.message,
 					onClose: () => {
-						dispatch({ type: 'updateStatus', value: { type: 'idle' } });
+						dispatch({ type: "updateStatus", value: { type: "idle" } });
 					},
 			  } satisfies AlertProps)
 			: null;
 
 	const buttonProps = {
-		icon: 'submit',
-		label: status.type === 'submitting' ? 'Submitting...' : 'Submit',
-		loading: status.type === 'submitting',
-		disabled: ['success', 'submitting'].includes(status.type),
+		icon: "submit",
+		label: status.type === "submitting" ? "Submitting..." : "Submit",
+		loading: status.type === "submitting",
+		disabled: ["success", "submitting"].includes(status.type),
 		onPress: handleSubmit,
 	} satisfies ButtonProps;
 

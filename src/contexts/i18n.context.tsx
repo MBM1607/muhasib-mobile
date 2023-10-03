@@ -1,14 +1,14 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from "react";
 
-import { events } from '~/helpers/events.helpers';
-import { createStore } from '~/helpers/store.helpers';
-import { content, defaultLanguage, languageSchema } from '~/i18n';
+import { events } from "~/helpers/events.helpers";
+import { createStore } from "~/helpers/store.helpers";
+import { content, defaultLanguage, languageSchema } from "~/i18n";
 
-import type { PropsWithChildren, SetStateAction } from 'react';
-import type { Language } from '~/i18n';
+import type { PropsWithChildren, SetStateAction } from "react";
+import type { Language } from "~/i18n";
 
 const languageStore = createStore({
-	key: 'language',
+	key: "language",
 	schema: languageSchema,
 	defaultVal: defaultLanguage,
 });
@@ -19,9 +19,9 @@ export const I18nProvider = ({ children }: PropsWithChildren) => {
 	const [language, setLanguage] = useState<Language>(defaultLanguage);
 
 	useEffect(() => {
-		const updateListener = events.listen('updateLanguage', (value) => {
+		const updateListener = events.listen("updateLanguage", (value) => {
 			setLanguage((prev) => {
-				const newLanguage = typeof value === 'function' ? value(prev) : value;
+				const newLanguage = typeof value === "function" ? value(prev) : value;
 				languageStore.set(newLanguage);
 				return newLanguage;
 			});
@@ -46,16 +46,16 @@ export const useI18n = () => {
 
 	// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
 	if (language === undefined)
-		throw new Error('useDarkMode must be used within an DarkModeProvider');
+		throw new Error("useDarkMode must be used within an DarkModeProvider");
 
 	return {
 		language,
-		direction: language === 'urdu' ? 'rtl' : 'ltr',
-		rtl: language === 'urdu',
+		direction: language === "urdu" ? "rtl" : "ltr",
+		rtl: language === "urdu",
 		content: content[language],
 	} as const;
 };
 
 export const updateLanguage = (language: SetStateAction<Language>) => {
-	events.emit('updateLanguage', language);
+	events.emit("updateLanguage", language);
 };

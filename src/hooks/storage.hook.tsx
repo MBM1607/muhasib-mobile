@@ -1,17 +1,17 @@
-import { useEffect } from 'react';
+import { useEffect } from "react";
 
-import { useAsyncState } from './async-state.hook';
+import { useAsyncState } from "./async-state.hook";
 
-import type { z } from 'zod';
-import type { Store } from '~/helpers/store.helpers';
+import type { z } from "zod";
+import type { Store } from "~/helpers/store.helpers";
 
 export const useStorage = <
 	Schema extends z.ZodSchema,
-	Default extends Schema['_output'] = never,
+	Default extends Schema["_output"] = never,
 >(
 	store: Store<Schema, Default>,
 ) => {
-	const [state, setState] = useAsyncState<Awaited<Schema['_output']>>(
+	const [state, setState] = useAsyncState<Awaited<Schema["_output"]>>(
 		store.defaultVal,
 	);
 

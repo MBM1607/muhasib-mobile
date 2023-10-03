@@ -1,20 +1,20 @@
-import { readFile, readdir, writeFile } from 'fs/promises';
-import path from 'path';
+import { readFile, readdir, writeFile } from "fs/promises";
+import path from "path";
 
-import { parse } from 'node-html-parser';
-import { optimize } from 'svgo';
+import { parse } from "node-html-parser";
+import { optimize } from "svgo";
 
 const colors = {
-	reset: '\x1b[0m',
-	dim: '\x1b[2m',
-	red: '\x1b[31m',
-	green: '\x1b[32m',
-	blue: '\x1b[34m',
+	reset: "\x1b[0m",
+	dim: "\x1b[2m",
+	red: "\x1b[31m",
+	green: "\x1b[32m",
+	blue: "\x1b[34m",
 };
 
-const sourceFolder = 'src/assets/icons';
-const spritesPath = path.join(sourceFolder, 'sprites.svg');
-const namesPath = path.join(sourceFolder, 'icon-names.ts');
+const sourceFolder = "src/assets/icons";
+const spritesPath = path.join(sourceFolder, "sprites.svg");
+const namesPath = path.join(sourceFolder, "icon-names.ts");
 
 const getIconDetails = async (folder: string = sourceFolder) => {
 	const files = await readdir(folder, {
@@ -26,11 +26,11 @@ const getIconDetails = async (folder: string = sourceFolder) => {
 
 	for (const file of files) {
 		const filePath = path.join(file.path, file.name);
-		const name = file.name.replace(/\.svg$/u, '');
+		const name = file.name.replace(/\.svg$/u, "");
 		if (
 			!file.isFile() ||
-			file.name === 'sprites.svg' ||
-			!file.name.endsWith('.svg')
+			file.name === "sprites.svg" ||
+			!file.name.endsWith(".svg")
 		)
 			continue;
 		if (names.includes(name)) {
@@ -40,30 +40,30 @@ const getIconDetails = async (folder: string = sourceFolder) => {
 			continue;
 		}
 
-		const input = await readFile(filePath, 'utf-8');
+		const input = await readFile(filePath, "utf-8");
 		const optimized = optimize(input, {
 			path: filePath,
 			plugins: [
 				{
-					name: 'preset-default',
+					name: "preset-default",
 					params: { overrides: { removeViewBox: false } },
 				},
-				'reusePaths',
-				'sortAttrs',
-				'removeDimensions',
+				"reusePaths",
+				"sortAttrs",
+				"removeDimensions",
 				{
-					name: 'removeAttrs',
-					params: { attrs: '*:(stroke|fill):((?!^none$).)*' },
+					name: "removeAttrs",
+					params: { attrs: "*:(stroke|fill):((?!^none$).)*" },
 				},
 			],
 		});
-		await writeFile(filePath, optimized.data, 'utf-8');
+		await writeFile(filePath, optimized.data, "utf-8");
 		const root = parse(optimized.data);
-		const svg = root.querySelector('svg');
-		if (!svg) throw new Error('No SVG element found');
-		svg.tagName = 'symbol';
-		svg.setAttribute('id', name);
-		['xmlns', 'xmlns:xlink', 'version', 'width', 'height'].forEach((attr) => {
+		const svg = root.querySelector("svg");
+		if (!svg) throw new Error("No SVG element found");
+		svg.tagName = "symbol";
+		svg.setAttribute("id", name);
+		["xmlns", "xmlns:xlink", "version", "width", "height"].forEach((attr) => {
 			svg.removeAttribute(attr);
 		});
 		symbols.push(root.toString().trim());
@@ -87,23 +87,23 @@ const generateIcons = async () => {
 		...symbols,
 		`</defs>`,
 		`</svg>`,
-	].join('\n');
+	].join("\n");
 
 	const types = [
-		'//? Auto-generated from the generate-icon script.',
-		'//! DO NOT CHANGE MANUALLY!',
-		'',
-		'export const iconNames = [',
-		names.map((name) => `\t'${name}',`).join('\n'),
-		'] as const;',
-		'',
-		'export type IconName = (typeof iconNames)[number];',
-		'',
-	].join('\n');
+		"//? Auto-generated from the generate-icon script.",
+		"//! DO NOT CHANGE MANUALLY!",
+		"",
+		"export const iconNames = [",
+		names.map((name) => `\t'${name}',`).join("\n"),
+		"] as const;",
+		"",
+		"export type IconName = (typeof iconNames)[number];",
+		"",
+	].join("\n");
 
 	await Promise.all([
-		writeFile(spritesPath, output, 'utf8'),
-		writeFile(namesPath, types, 'utf8'),
+		writeFile(spritesPath, output, "utf8"),
+		writeFile(namesPath, types, "utf8"),
 	]);
 	console.info(
 		`${colors.dim}Created ${colors.green}${spritesPath}!${colors.reset}`,

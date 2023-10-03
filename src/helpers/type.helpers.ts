@@ -1,24 +1,24 @@
-import { stringifyError } from '~/errors';
-import { createBulkResponseSchema } from '~/helpers/schema.helpers';
+import { stringifyError } from "~/errors";
+import { createBulkResponseSchema } from "~/helpers/schema.helpers";
 
-import type { z } from 'zod';
-import type { BulkResponse } from '~/helpers/api.helpers';
-import type { DefaultBulkResponseObj } from '~/helpers/schema.helpers';
-import type { Utils } from '~/types/utils.types';
+import type { z } from "zod";
+import type { BulkResponse } from "~/helpers/api.helpers";
+import type { DefaultBulkResponseObj } from "~/helpers/schema.helpers";
+import type { Utils } from "~/types/utils.types";
 
 export const readableTypeOf = (value: unknown) => {
-	if (typeof value !== 'object') return typeof value;
-	if (value === null) return 'null';
-	if (Array.isArray(value)) return 'array';
-	return 'object';
+	if (typeof value !== "object") return typeof value;
+	if (value === null) return "null";
+	if (Array.isArray(value)) return "array";
+	return "object";
 };
 
 export const isObject = (value: unknown): value is Obj =>
-	readableTypeOf(value) === 'object';
+	readableTypeOf(value) === "object";
 
 export const assertObject: Utils.assertFunction<Obj> = (value) => {
 	const type = readableTypeOf(value);
-	if (type !== 'object')
+	if (type !== "object")
 		throw new TypeError(`Expected object, received ${type}`);
 };
 
@@ -66,6 +66,6 @@ export const isBulkResponse = <
 >(
 	value: unknown,
 	schema?: Schema,
-): value is BulkResponse<Schema['_output']> => {
+): value is BulkResponse<Schema["_output"]> => {
 	return createBulkResponseSchema(schema).safeParse(value).success;
 };

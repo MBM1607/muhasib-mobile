@@ -1,67 +1,67 @@
-import { isDayjs } from 'dayjs';
-import { forwardRef, useState } from 'react';
-import { View } from 'react-native';
-import { TextInput } from 'react-native-paper';
-import { DatePickerModal, TimePickerModal } from 'react-native-paper-dates';
+import { isDayjs } from "dayjs";
+import { forwardRef, useState } from "react";
+import { View } from "react-native";
+import { TextInput } from "react-native-paper";
+import { DatePickerModal, TimePickerModal } from "react-native-paper-dates";
 
-import { appIconMap } from '~/components/app/icon.component';
-import { Button } from '~/components/controls/button.component';
-import { FormControlWrapper } from '~/components/controls/form-control-wrapper.component';
-import { isSmallerScreen } from '~/config';
-import { dayjsUtc } from '~/helpers/date.helpers';
-import { useTheme } from '~/hooks/theme.hook';
+import { appIconMap } from "~/components/app/icon.component";
+import { Button } from "~/components/controls/button.component";
+import { FormControlWrapper } from "~/components/controls/form-control-wrapper.component";
+import { isSmallerScreen } from "~/config";
+import { dayjsUtc } from "~/helpers/date.helpers";
+import { useTheme } from "~/hooks/theme.hook";
 
-import type { Dayjs } from 'dayjs';
-import type { ForwardedRef, RefObject } from 'react';
+import type { Dayjs } from "dayjs";
+import type { ForwardedRef, RefObject } from "react";
 import type {
 	KeyboardTypeOptions,
 	TextInput as RefType,
 	StyleProp,
 	ViewStyle,
-} from 'react-native';
-import type { TextInputProps } from 'react-native-paper';
-import type { TextInputLabelProp } from 'react-native-paper/lib/typescript/components/TextInput/types';
-import type { z } from 'zod';
-import type { IconName } from '~/components/app/icon.component';
-import type { ButtonProps } from '~/components/controls/button.component';
-import type { ZodTime } from '~/helpers/schema.helpers';
+} from "react-native";
+import type { TextInputProps } from "react-native-paper";
+import type { TextInputLabelProp } from "react-native-paper/lib/typescript/components/TextInput/types";
+import type { z } from "zod";
+import type { IconName } from "~/components/app/icon.component";
+import type { ButtonProps } from "~/components/controls/button.component";
+import type { ZodTime } from "~/helpers/schema.helpers";
 
 export const formControlType = [
-	'email',
-	'float',
-	'int',
-	'phone',
-	'password',
-	'string',
-	'search',
-	'date',
-	'time',
+	"email",
+	"float",
+	"int",
+	"phone",
+	"password",
+	"string",
+	"search",
+	"date",
+	"time",
 ] as const;
 
 export type FormControlType = (typeof formControlType)[number];
 
 const keyboardTypes: Record<FormControlType, KeyboardTypeOptions> = {
-	email: 'email-address',
-	float: 'decimal-pad',
-	int: 'number-pad',
-	phone: 'phone-pad',
-	password: 'default',
-	string: 'default',
-	search: 'default',
-	date: 'default',
-	time: 'default',
+	email: "email-address",
+	float: "decimal-pad",
+	int: "number-pad",
+	phone: "phone-pad",
+	password: "default",
+	string: "default",
+	search: "default",
+	date: "default",
+	time: "default",
 };
 
 const icons: Record<FormControlType, IconName> = {
-	email: 'email-at',
-	float: 'number',
-	int: 'number',
-	phone: 'phone',
-	password: 'password',
-	string: 'text',
-	search: 'search',
-	date: 'date',
-	time: 'time',
+	email: "email-at",
+	float: "number",
+	int: "number",
+	phone: "phone",
+	password: "password",
+	string: "text",
+	search: "search",
+	date: "date",
+	time: "time",
 };
 
 type styles = {
@@ -69,14 +69,14 @@ type styles = {
 	icon?: StyleProp<ViewStyle>;
 	button?: StyleProp<ViewStyle>;
 	control?: {
-		style: TextInputProps['style'];
-		outline?: TextInputProps['outlineStyle'];
-		content?: TextInputProps['contentStyle'];
-		underline?: TextInputProps['underlineStyle'];
+		style: TextInputProps["style"];
+		outline?: TextInputProps["outlineStyle"];
+		content?: TextInputProps["contentStyle"];
+		underline?: TextInputProps["underlineStyle"];
 	};
 };
 
-export type FormControlProps = Pick<TextInputProps, 'disabled'> & {
+export type FormControlProps = Pick<TextInputProps, "disabled"> & {
 	/** the type of the input field */
 	type: unknown;
 
@@ -101,7 +101,7 @@ export type FormControlProps = Pick<TextInputProps, 'disabled'> & {
 	/** the button to show on the right side of the input */
 	button?: Pick<
 		ButtonProps,
-		'color' | 'label' | 'onPress' | 'icon' | 'style' | 'disabled' | 'loading'
+		"color" | "label" | "onPress" | "icon" | "style" | "disabled" | "loading"
 	>;
 
 	/** the text input to select after this */
@@ -110,24 +110,24 @@ export type FormControlProps = Pick<TextInputProps, 'disabled'> & {
 	/** the props to apply to the TextInput */
 	inputProps?: Omit<
 		TextInputProps,
-		| 'disabled'
-		| 'label'
-		| 'underlineStyle'
-		| 'outlineStyle'
-		| 'contentStyle'
-		| 'style'
-		| 'type'
-		| 'value'
-		| 'onChangeText'
-		| 'left'
-		| 'right'
-		| 'keyboardType'
-		| 'secureTextEntry'
-		| 'error'
-		| 'dense'
-		| 'editable'
-		| 'returnKeyType'
-		| 'onSubmitEditing'
+		| "disabled"
+		| "label"
+		| "underlineStyle"
+		| "outlineStyle"
+		| "contentStyle"
+		| "style"
+		| "type"
+		| "value"
+		| "onChangeText"
+		| "left"
+		| "right"
+		| "keyboardType"
+		| "secureTextEntry"
+		| "error"
+		| "dense"
+		| "editable"
+		| "returnKeyType"
+		| "onSubmitEditing"
 	>;
 
 	/** is the form field not required? */
@@ -137,17 +137,17 @@ export type FormControlProps = Pick<TextInputProps, 'disabled'> & {
 	hasIcon?: boolean;
 } & (
 		| {
-				type: 'date';
+				type: "date";
 				value: Dayjs | null;
 				onChange: (value: Dayjs | null) => void;
 		  }
 		| {
-				type: 'time';
+				type: "time";
 				value: z.infer<ZodTime> | null;
 				onChange: (value: z.infer<ZodTime> | null) => void;
 		  }
 		| {
-				type: Exclude<FormControlType, 'date' | 'time' | 'boolean'>;
+				type: Exclude<FormControlType, "date" | "time" | "boolean">;
 				value: string;
 				onChange: (value: string) => void;
 		  }
@@ -182,13 +182,13 @@ const FormControlComponent = (
 			{...styles?.control}
 			ref={ref}
 			style={[button && { flex: 1 }, styles?.control?.style]}
-			mode={inputProps?.mode ?? 'outlined'}
+			mode={inputProps?.mode ?? "outlined"}
 			keyboardType={keyboardTypes[type]}
-			secureTextEntry={type === 'password' && isSecret}
+			secureTextEntry={type === "password" && isSecret}
 			error={Boolean(error)}
 			disabled={disabled}
-			editable={!['date', 'time'].includes(type)}
-			returnKeyType={next ? 'next' : 'done'}
+			editable={!["date", "time"].includes(type)}
+			returnKeyType={next ? "next" : "done"}
 			blurOnSubmit={!next}
 			left={
 				hasIcon ? (
@@ -201,28 +201,28 @@ const FormControlComponent = (
 			label={
 				<>
 					{label}
-					{!notRequired && ' *'}
+					{!notRequired && " *"}
 				</>
 			}
 			value={
 				isDayjs(value)
-					? value.format('YYYY-MM-DD')
-					: typeof value === 'string'
+					? value.format("YYYY-MM-DD")
+					: typeof value === "string"
 					? value
 					: value
 					? `${value.hours}:${value.minutes}`
-					: ''
+					: ""
 			}
 			right={
-				type === 'password' ? (
+				type === "password" ? (
 					<TextInput.Icon
-						icon={appIconMap[isSecret ? 'hidden' : 'visible']}
+						icon={appIconMap[isSecret ? "hidden" : "visible"]}
 						disabled={disabled}
 						onPress={() => {
 							setIsSecret((prev) => !prev);
 						}}
 					/>
-				) : type === 'date' || type === 'time' ? (
+				) : type === "date" || type === "time" ? (
 					<TextInput.Icon
 						icon={appIconMap[type]}
 						disabled={disabled}
@@ -233,9 +233,9 @@ const FormControlComponent = (
 				) : undefined
 			}
 			dense
-			onChangeText={type === 'date' || type === 'time' ? undefined : onChange}
+			onChangeText={type === "date" || type === "time" ? undefined : onChange}
 			onSubmitEditing={() =>
-				(typeof next === 'function' ? next() : next?.current)?.focus()
+				(typeof next === "function" ? next() : next?.current)?.focus()
 			}
 		/>
 	);
@@ -265,10 +265,10 @@ const FormControlComponent = (
 				inputJsx
 			)}
 
-			{type === 'date' && (
+			{type === "date" && (
 				<DatePickerModal
-					locale='en'
-					mode='single'
+					locale="en"
+					mode="single"
 					visible={showingPicker}
 					date={value?.toDate()}
 					inputEnabled={false}
@@ -283,7 +283,7 @@ const FormControlComponent = (
 				/>
 			)}
 
-			{type === 'time' && (
+			{type === "time" && (
 				<TimePickerModal
 					visible={showingPicker}
 					hours={value?.hours}

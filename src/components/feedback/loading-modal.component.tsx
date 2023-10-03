@@ -1,6 +1,6 @@
-import { ActivityIndicator, Modal, Portal } from 'react-native-paper';
+import { ActivityIndicator, Modal, Portal } from "react-native-paper";
 
-import { useTheme } from '~/hooks/theme.hook';
+import { useTheme } from "~/hooks/theme.hook";
 
 export const LoadingModal = () => {
 	const theme = useTheme();
@@ -9,8 +9,8 @@ export const LoadingModal = () => {
 			<Modal
 				dismissable={false}
 				style={{
-					justifyContent: 'center',
-					alignItems: 'center',
+					justifyContent: "center",
+					alignItems: "center",
 					backgroundColor: theme.colors.backdrop,
 				}}
 				contentContainerStyle={{
@@ -24,7 +24,7 @@ export const LoadingModal = () => {
 			>
 				<ActivityIndicator
 					color={theme.colors.onPrimary}
-					size='large'
+					size="large"
 				/>
 			</Modal>
 		</Portal>

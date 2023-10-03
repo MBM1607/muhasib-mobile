@@ -1,11 +1,11 @@
-import { getNetworkStateAsync } from 'expo-network';
-import { z } from 'zod';
+import { getNetworkStateAsync } from "expo-network";
+import { z } from "zod";
 
-import { backendPath, disableAuth, isFetchMocked } from '~/config';
-import { authStore, logout } from '~/contexts/auth.context';
-import { ApiError, AuthError, ConnectionError, stringifyError } from '~/errors';
+import { backendPath, disableAuth, isFetchMocked } from "~/config";
+import { authStore, logout } from "~/contexts/auth.context";
+import { ApiError, AuthError, ConnectionError, stringifyError } from "~/errors";
 
-import type { Utils } from '~/types/utils.types';
+import type { Utils } from "~/types/utils.types";
 
 const responseSchema = z.strictObject({
 	errorCode: z.string(),
@@ -22,7 +22,7 @@ const responseSchema = z.strictObject({
  */
 const apiRequest = async <Response = unknown>(
 	apiPath: string,
-	method: 'GET' | 'PATCH' | 'PUT' | 'POST' | 'DELETE',
+	method: "GET" | "PATCH" | "PUT" | "POST" | "DELETE",
 	body?: Obj | Obj[] | FormData,
 	isPublic: boolean = false,
 ): Promise<Response> => {
@@ -30,34 +30,34 @@ const apiRequest = async <Response = unknown>(
 		if (!isFetchMocked) {
 			const { isInternetReachable } = await getNetworkStateAsync();
 			if (!isInternetReachable)
-				throw new ConnectionError('not connected to the internet!');
+				throw new ConnectionError("not connected to the internet!");
 		}
 
-		const options: Omit<RequestInit, 'headers'> & { headers: Headers } = {
+		const options: Omit<RequestInit, "headers"> & { headers: Headers } = {
 			method,
 			headers: new Headers(),
 		};
 
 		if (!isPublic && !disableAuth) {
 			const user = await authStore.get();
-			if (!user) throw new AuthError('user auth token not found!');
-			options.headers.set('Authorization', `Bearer ${user.token}`);
+			if (!user) throw new AuthError("user auth token not found!");
+			options.headers.set("Authorization", `Bearer ${user.token}`);
 		}
 
 		if (body && !(body instanceof FormData)) {
 			options.body = JSON.stringify(body);
-			options.headers.set('Content-Type', 'application/json');
+			options.headers.set("Content-Type", "application/json");
 		} else {
 			options.body = body;
 		}
 
 		const response = await fetch(`${backendPath}/${apiPath}`, options);
-		if (response.status === 401) throw new AuthError('login expired!');
+		if (response.status === 401) throw new AuthError("login expired!");
 
 		const result = responseSchema.safeParse(await response.json());
-		if (!result.success) throw new ApiError('invalid api response format!');
+		if (!result.success) throw new ApiError("invalid api response format!");
 		const { errorCode, errorDescription, data } = result.data;
-		if (errorCode !== '0') throw new ApiError(errorDescription);
+		if (errorCode !== "0") throw new ApiError(errorDescription);
 		return data as Response;
 	} catch (error) {
 		if (error instanceof AuthError) logout();
@@ -80,7 +80,7 @@ export const getRequest = async <Schema extends z.ZodSchema = z.ZodUnknown>(
 		isPublic?: boolean;
 	},
 ): Promise<z.infer<Schema>> => {
-	const response = apiRequest(apiPath, 'GET', undefined, options?.isPublic);
+	const response = apiRequest(apiPath, "GET", undefined, options?.isPublic);
 	if (!options?.schema) return response;
 	return response.then(async (data) => {
 		return (options.schema ? options.schema.parse(data) : data) as Promise<
@@ -99,7 +99,7 @@ export const patchRequest = async <Response = unknown>(
 	apiPath: string,
 	body: Obj | FormData,
 	isPublic?: boolean,
-) => apiRequest<Response>(apiPath, 'PATCH', body, isPublic);
+) => apiRequest<Response>(apiPath, "PATCH", body, isPublic);
 
 /**
  * the helper to send a `PUT` request to the backend
@@ -111,7 +111,7 @@ export const putRequest = async <Response = unknown>(
 	apiPath: string,
 	body: Obj | FormData,
 	isPublic?: boolean,
-) => apiRequest<Response>(apiPath, 'PUT', body, isPublic);
+) => apiRequest<Response>(apiPath, "PUT", body, isPublic);
 
 /**
  * the helper to send a `POST` request to the backend
@@ -123,7 +123,7 @@ export const postRequest = async <Response = unknown>(
 	apiPath: string,
 	body: Obj | Obj[] | FormData,
 	isPublic?: boolean,
-) => apiRequest<Response>(apiPath, 'POST', body, isPublic);
+) => apiRequest<Response>(apiPath, "POST", body, isPublic);
 
 export type BulkResponse<Type extends Obj = Obj> = {
 	successful: Type[];
@@ -168,4 +168,4 @@ export const bulkPostRequest = async <Type extends Obj>(
 export const deleteRequest = async <Response = unknown>(
 	apiPath: string,
 	isPublic?: boolean,
-) => apiRequest<Response>(apiPath, 'DELETE', undefined, isPublic);
+) => apiRequest<Response>(apiPath, "DELETE", undefined, isPublic);

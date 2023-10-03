@@ -1,14 +1,14 @@
-import Constants from 'expo-constants';
-import { Dimensions } from 'react-native';
-import * as Sentry from 'sentry-expo';
+import Constants from "expo-constants";
+import { Dimensions } from "react-native";
+import * as Sentry from "sentry-expo";
 
-import type { App } from '~/types/app.types';
+import type { App } from "~/types/app.types";
 
 const { env, backendPath, sentry } = Constants.expoConfig?.extra as App.env;
 
 export { backendPath, env };
 
-if (env === 'production') {
+if (env === "production") {
 	Sentry.init({
 		dsn: sentry.dsn,
 		enableInExpoDevelopment: true,
@@ -26,7 +26,7 @@ const isFetchMockedConfig: Record<typeof env, boolean> = {
 /** should the app use mocked fetch? used for demos and testing */
 export const isFetchMocked: boolean = isFetchMockedConfig[env];
 
-export const isSmallerScreen = Dimensions.get('screen').width <= 400;
+export const isSmallerScreen = Dimensions.get("screen").width <= 400;
 
 const disableAuthConfig: Record<typeof env, boolean> = {
 	development: true,
