@@ -45,7 +45,7 @@ const details = {
 	description: "Prayer Times + Tracking App",
 	github: "https://github.com/mbm1607/muhasib-mobile",
 	version: "0.0.1",
-	easProjectId: "ea224914-8891-44d6-ad18-2a67bc487176",
+	easProjectId: "7ab8f232-40f2-4e38-bdc2-fa882fdf65fe",
 	primaryColor: "#26784e",
 } as const;
 
