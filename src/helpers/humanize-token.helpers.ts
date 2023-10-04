@@ -3,7 +3,7 @@ import {
 	lowerAlphabet,
 	upperAlphabet,
 	wordSeparators,
-} from "~/helpers/string-literals.helpers";
+} from "./string-literals.helpers";
 
 export const humanizeCases = ["lower", "sentence", "title", "upper"] as const;
 

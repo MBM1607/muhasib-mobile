@@ -2,7 +2,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { createContext, useContext, useEffect, useReducer } from "react";
 import { Appearance } from "react-native";
 
-import { events } from "~/helpers/events.helpers";
+import { events } from "../helpers/events.helpers";
 
 import type { PropsWithChildren, Reducer } from "react";
 

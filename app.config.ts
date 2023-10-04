@@ -67,7 +67,6 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
 	userInterfaceStyle: "automatic",
 	experiments: {
 		typedRoutes: true,
-		tsconfigPaths: true,
 	},
 	extra: {
 		...extra,
