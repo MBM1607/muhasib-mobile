@@ -39,8 +39,12 @@ const Providers = () => {
 				<AlertProvider>
 					<LoadingProvider>
 						<StatusBar
-							style="light"
-							backgroundColor="#000000"
+							style="auto"
+							backgroundColor={
+								mode.scheme === "dark"
+									? darkTheme.colors.primary
+									: lightTheme.colors.primary
+							}
 						/>
 						<Slot />
 					</LoadingProvider>
