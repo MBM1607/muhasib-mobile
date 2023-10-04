@@ -14,7 +14,11 @@ import {
 	mockedGet,
 	mockedUpdate,
 } from "../mocks";
-import { loggedInUserSchema, userSchema } from "../schemas/user.schemas";
+import {
+	loggedInUserSchema,
+	userSansPasswordSchema,
+	userSchema,
+} from "../schemas/user.schemas";
 
 import type { DbId } from "../helpers/schema.helpers";
 import type { LoggedInUser, User, UserSansMeta } from "../schemas/user.schemas";
@@ -24,12 +28,12 @@ export const userEndpoints = {
 		email: string;
 		password: string;
 	}): Promise<LoggedInUser> => {
-		const response = await postRequest("user/login", body, true);
+		const response = await postRequest("session", body, true);
 		return loggedInUserSchema.parse(response);
 	},
 	add: async (body: UserSansMeta): Promise<Omit<User, "password">> => {
 		const response = await postRequest("user", body, true);
-		return userSchema.parse(response);
+		return userSansPasswordSchema.parse(response);
 	},
 	get: async (): Promise<Omit<User, "password">[]> => {
 		return getRequest("user", { schema: z.array(userSchema) });

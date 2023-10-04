@@ -1,5 +1,4 @@
 import { useRouter } from "expo-router";
-import { Text } from "react-native-paper";
 
 import { Button } from "../../../components/controls/button.component";
 import { FormControl } from "../../../components/controls/form-control.component";
@@ -9,11 +8,9 @@ import { login } from "../../../contexts/auth.context";
 import { useI18n } from "../../../contexts/i18n.context";
 import { endpoints } from "../../../endpoints/endpoints";
 import { useForm } from "../../../hooks/form.hook";
-import { useTheme } from "../../../hooks/theme.hook";
 import { userSchema } from "../../../schemas/user.schemas";
 
 const Login = () => {
-	const theme = useTheme();
 	const { content } = useI18n();
 	const router = useRouter();
 	// // const { email } = useLocalSearchParams<{ email?: string }>();
@@ -36,16 +33,9 @@ const Login = () => {
 	return (
 		<ScreenWrapper
 			title={content.pages.login}
-			style={{ padding: 15, gap: 5 }}
+			style={{ padding: 15, gap: 5, justifyContent: "center" }}
 			back
 		>
-			<Text
-				variant="headlineMedium"
-				style={theme.styles.text.heading}
-			>
-				{content.headings.login}
-			</Text>
-
 			<FormControl
 				{...props.field.email}
 				hasIcon

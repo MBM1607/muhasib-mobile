@@ -1,22 +1,11 @@
 import { getNetworkStateAsync } from "expo-network";
-import { z } from "zod";
 
 import { backendPath, disableAuth, isFetchMocked } from "../config";
 import { authStore, logout } from "../contexts/auth.context";
-import {
-	ApiError,
-	AuthError,
-	ConnectionError,
-	stringifyError,
-} from "../errors";
+import { AuthError, ConnectionError, stringifyError } from "../errors";
 
+import type { z } from "zod";
 import type { Utils } from "../types/utils.types";
-
-const responseSchema = z.strictObject({
-	errorCode: z.string(),
-	errorDescription: z.string(),
-	data: z.unknown().optional(),
-});
 
 /**
  * the helper to send a request to the backend
@@ -59,11 +48,9 @@ const apiRequest = async <Response = unknown>(
 		const response = await fetch(`${backendPath}/${apiPath}`, options);
 		if (response.status === 401) throw new AuthError("login expired!");
 
-		const result = responseSchema.safeParse(await response.json());
-		if (!result.success) throw new ApiError("invalid api response format!");
-		const { errorCode, errorDescription, data } = result.data;
-		if (errorCode !== "0") throw new ApiError(errorDescription);
-		return data as Response;
+		const result = await response.json();
+
+		return result as Response;
 	} catch (error) {
 		if (error instanceof AuthError) logout();
 		throw error;

@@ -11,11 +11,9 @@ export type Language = (typeof languages)[number];
 export const defaultLanguage: Language = "english";
 
 const english = {
-	title: "react native starter",
+	title: "Muhasib",
 	headings: {
-		welcome: "welcome to\nreact native\nstarter!",
-		login: "hi,\nplease\nlogin!",
-		register: "welcome,\nlet's get started!",
+		welcome: "Welcome\nto Muhasib",
 	},
 	action: {
 		login: "login",
@@ -53,11 +51,9 @@ const english = {
 export type Content = typeof english;
 
 const urdu: Content = {
-	title: "ری ایکٹ نیٹو ابتدائی",
+	title: "محاسب",
 	headings: {
-		welcome: "ابتدائی\nری اکٹ نیٹو\nمیں خوش آمدید",
-		login: "براہ کرم لاگ ان کریں",
-		register: "خوش آمدید،\nآئیے شروع کرتے ہیں۔",
+		welcome: "محاسب\nمیں خوش آمدید",
 	},
 	action: {
 		login: "داخل ہوں",

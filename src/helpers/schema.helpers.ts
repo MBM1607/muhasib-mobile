@@ -147,8 +147,8 @@ export const createBulkResponseSchema = <
 
 export const dbMetaSchema = z.strictObject({
 	id: dbIdSchema,
-	created_at: dateSchema,
-	updated_at: dateSchema,
+	createdAt: dateSchema,
+	updatedAt: dateSchema,
 });
 
 export type DbMeta = z.infer<typeof dbMetaSchema>;

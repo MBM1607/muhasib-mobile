@@ -13,8 +13,8 @@ export const createMockedData = <T extends DbMeta>(
 ) => {
 	return data.map((row, index) => ({
 		id: (index + 1) as DbId,
-		created_at: dayjsUtc(),
-		updated_at: dayjsUtc(),
+		createdAt: dayjsUtc(),
+		updatedAt: dayjsUtc(),
 		...row,
 	})) as T[];
 };
@@ -25,7 +25,6 @@ export const mockData = {
 			email: "testing@test.com",
 			name: "test",
 			password: "12345",
-			image_url: "https://images.unsplash.com/photo-1527980965255-d3b416303d12",
 		},
 	]),
 };
@@ -63,8 +62,8 @@ export const mockedAdd = async <
 	const now = dayjsUtc();
 	const added = {
 		id: newId as DbId,
-		created_at: now,
-		updated_at: now,
+		createdAt: now,
+		updatedAt: now,
 		...body,
 	} as Type;
 	list.push(added);

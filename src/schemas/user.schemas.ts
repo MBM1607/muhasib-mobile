@@ -14,12 +14,15 @@ export const [userSansMetaSchema, userSchema] = createSchema({
 	email: emailSchema,
 	name: z.string(),
 	password: passwordSchema,
-	image_url: z.string().url().nullable(),
 });
 
+export const userSansPasswordSchema = userSchema.omit({
+	password: true,
+});
 export type UserSansMeta = z.infer<typeof userSansMetaSchema>;
 
 export type User = z.infer<typeof userSchema>;
+export type UserSansPassword = z.infer<typeof userSansPasswordSchema>;
 
 export const loggedInUserSchema = userSchema
 	.omit({ password: true })

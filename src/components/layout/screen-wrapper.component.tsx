@@ -6,7 +6,6 @@ import Animated, { SlideInLeft, SlideOutRight } from "react-native-reanimated";
 
 import { toggleMode, useMode } from "../../contexts/mode.context";
 import { useTheme } from "../../hooks/theme.hook";
-import { Background } from "../app/background.component";
 import { LanguageControl } from "../app/language-control.component";
 import { UserControl } from "../app/user-control.component";
 import { IconButton } from "../controls/icon-button.component";
@@ -22,9 +21,6 @@ export type ScreenWrapperProps = App.propsWithStyle<{
 
 	/** should a back button be shown on the page header */
 	back?: boolean;
-
-	/** should the screen render a plain white background instead of the gradient? */
-	hasPlainBackground?: boolean;
 
 	children: ReactNode;
 }> &
@@ -43,7 +39,6 @@ export const ScreenWrapper = ({
 	scroll,
 	scrollStyle,
 	back,
-	hasPlainBackground,
 }: ScreenWrapperProps) => {
 	const router = useRouter();
 	const theme = useTheme();
@@ -54,10 +49,6 @@ export const ScreenWrapper = ({
 	return (
 		<SafeAreaView style={{ flex: 1, marginTop: Constants.statusBarHeight }}>
 			<Surface style={{ flex: 1, position: "relative" }}>
-				{!hasPlainBackground && (
-					<Background style={{ position: "absolute", zIndex: 0 }} />
-				)}
-
 				<View
 					style={{
 						flexDirection: theme.rtl ? "row-reverse" : "row",

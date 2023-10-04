@@ -18,8 +18,8 @@ if (env === "production") {
 }
 
 const isFetchMockedConfig: Record<typeof env, boolean> = {
-	development: true,
-	production: true,
+	development: false,
+	production: false,
 	test: true,
 };
 

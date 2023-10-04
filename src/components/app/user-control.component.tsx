@@ -14,7 +14,7 @@ import type { ImageStyle, StyleProp, ViewStyle } from "react-native";
 const Avatar = (props: {
 	size: number;
 	style?: StyleProp<ImageStyle>;
-	url: string | null;
+	url?: string | null;
 }) => {
 	const theme = useTheme();
 
@@ -86,10 +86,7 @@ export const UserControl = ({ buttonStyle }: UserControlProps) => {
 						setVisible(true);
 					}}
 				>
-					<Avatar
-						size={35}
-						url={user.image_url}
-					/>
+					<Avatar size={35} />
 				</TouchableRipple>
 			}
 			onDismiss={() => {
@@ -99,9 +96,7 @@ export const UserControl = ({ buttonStyle }: UserControlProps) => {
 			<View style={{ gap: 0, minWidth: 150 }}>
 				<Avatar
 					size={70}
-					url={user.image_url}
 					style={{
-						borderWidth: user.image_url ? 3 : undefined,
 						borderColor: theme.colors.primaryContainer,
 						marginBottom: 5,
 					}}
