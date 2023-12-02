@@ -88,15 +88,12 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
 	},
 	assetBundlePatterns: ["**/*"],
 	ios: {
-		bundleIdentifier: `app.${details.org}.${details.id}`,
+		bundleIdentifier: `app.${details.id}`,
 		buildNumber: details.version,
 		supportsTablet: true,
 	},
 	android: {
-		package: `app.${details.org.replace(/-/gu, ".")}.${details.id.replace(
-			/-/gu,
-			".",
-		)}`,
+		package: `app.${details.id.replace(/-/gu, ".")}}`,
 		versionCode: semverToInt(details.version),
 		adaptiveIcon: {
 			foregroundImage: "./assets/adaptive-icon.png",
