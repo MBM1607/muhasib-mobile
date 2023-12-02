@@ -1,5 +1,5 @@
 import { View } from "react-native";
-import { Text } from "react-native-paper";
+import { Text, Tooltip } from "react-native-paper";
 
 import { useTheme } from "../../hooks/theme.hook";
 import { IconButton } from "../controls/icon-button.component";
@@ -56,29 +56,38 @@ export const PrayerTimesBar = () => {
 			}}
 		>
 			{prayers.map((prayer) => (
-				<View
+				<Tooltip
 					key={prayer.name}
-					style={{
-						flexDirection: "column",
-						gap: 5,
-						justifyContent: "center",
-						alignItems: "center",
-					}}
+					title={prayer.name}
+					enterTouchDelay={0}
+					leaveTouchDelay={1500}
 				>
-					<IconButton
-						icon={prayer.icon}
-						size={16}
-					/>
-					<Text
+					<View
 						style={{
-							fontFamily: "RobotoSlabBold",
-							fontSize: 10,
-							color: theme.colors.onPrimaryContainer,
+							flexDirection: "column",
+							gap: 5,
+							justifyContent: "center",
+							alignItems: "center",
 						}}
 					>
-						{prayer.time}
-					</Text>
-				</View>
+						<IconButton
+							icon={prayer.icon}
+							size={16}
+							style={{
+								backgroundColor: theme.colors.onPrimary,
+							}}
+						/>
+						<Text
+							style={{
+								fontFamily: "RobotoSlabBold",
+								fontSize: 10,
+								color: theme.colors.onPrimaryContainer,
+							}}
+						>
+							{prayer.time}
+						</Text>
+					</View>
+				</Tooltip>
 			))}
 		</View>
 	);
