@@ -22,9 +22,7 @@ const Providers = () => {
 	useEffect(() => {
 		loadAsync({
 			// eslint-disable-next-line @typescript-eslint/no-var-requires
-			InterRegular: require("../assets/fonts/inter-regular.otf") as string,
-			// eslint-disable-next-line @typescript-eslint/no-var-requires
-			InterBold: require("../assets/fonts/inter-bold.otf") as string,
+			RobotoSlab: require("../assets/fonts/roboto-slab.ttf") as string,
 		}).then(() => {
 			setLoaded(true);
 			SplashScreen.hideAsync();
