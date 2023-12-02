@@ -64,8 +64,8 @@ export const lightTheme: AppTheme = {
 		onErrorContainer: "rgb(65, 0, 2)",
 		background: "rgb(251, 253, 248)",
 		onBackground: "rgb(25, 28, 26)",
-		surface: "rgb(251, 253, 248)",
-		onSurface: "rgb(25, 28, 26)",
+		surface: "rgba(104, 219, 175, 0.5)",
+		onSurface: "rgb(0, 109, 65)",
 		surfaceVariant: "rgba(104, 219, 175, 0.5)",
 		onSurfaceVariant: "rgb(65, 73, 66)",
 		outline: "rgb(113, 121, 114)",
@@ -168,4 +168,5 @@ export type ThemeColor =
 	| "error"
 	| "success"
 	| "warning"
-	| "info";
+	| "info"
+	| "surface";

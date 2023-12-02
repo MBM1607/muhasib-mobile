@@ -18,12 +18,24 @@ export const TopBar = () => {
 				flex: 1,
 			}}
 		>
-			<IconButton
-				icon="settings"
-				onPress={() => {
-					router.push("/menu");
+			<Surface
+				style={{
+					backgroundColor: theme.colors.primaryContainer,
+					borderRadius: 50,
 				}}
-			/>
+			>
+				<IconButton
+					icon="settings"
+					style={{
+						backgroundColor: theme.colors.primaryContainer,
+						flex: 1,
+					}}
+					onPress={() => {
+						router.push("/menu");
+					}}
+				/>
+			</Surface>
+
 			<TouchableRipple
 				style={{
 					flex: 1,

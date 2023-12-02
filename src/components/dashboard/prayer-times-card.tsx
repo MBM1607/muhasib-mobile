@@ -45,6 +45,7 @@ export const PrayerTimesCard = () => {
 				icon="location"
 				label={"Lahore"}
 				mode="contained"
+				color="surface"
 				onPress={() => {
 					router.push("/auth/login");
 				}}
