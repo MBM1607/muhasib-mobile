@@ -43,7 +43,7 @@ export const Button = ({
 			icon={icon}
 			contentStyle={{ flexDirection: rtl ? "row-reverse" : "row" }}
 			style={[
-				{ borderRadius: 10, borderColor: getColor(color, "normal") },
+				{ borderRadius: 25, borderColor: getColor(color, "normal") },
 				style,
 			]}
 			theme={{

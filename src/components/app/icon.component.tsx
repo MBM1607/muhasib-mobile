@@ -41,6 +41,21 @@ export const appIconMap = {
 	language: "translate",
 	unchecked: "check-circle-outline",
 	checked: "check-circle",
+	settings: "cog-outline",
+	location: "map-marker-outline",
+	fajr: "weather-night-partly-cloudy",
+	sunrise: "weather-sunset-up",
+	dhuhr: "weather-sunny",
+	asr: "weather-sunset-down",
+	maghrib: "weather-sunset",
+	isha: "weather-night",
+	dua: "hands-pray",
+	"islamic-calendar": "calendar-text",
+	prayers: "hands-pray",
+	qibla: "compass",
+	quran: "book-open-variant",
+	fasting: "food-apple-outline",
+	"muhasib-gpt": "robot",
 } as const;
 
 type _ =

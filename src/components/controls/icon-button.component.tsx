@@ -19,7 +19,6 @@ export const IconButton = ({
 			icon={appIconMap[iconName]}
 			mode={mode}
 			{...props}
-			style={[{ borderRadius: 10 }, props.style]}
 		/>
 	);
 };

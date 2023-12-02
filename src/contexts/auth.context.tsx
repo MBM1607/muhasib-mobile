@@ -48,8 +48,7 @@ export const AuthProvider = ({ defaultUser, children }: AuthProviderProps) => {
 
 	useEffect(() => {
 		if (rootSegment === "[...404]") return;
-		if (!user && rootSegment !== "auth") router.replace("/auth/");
-		else if (user && rootSegment === "auth") router.replace("/");
+		if (user && rootSegment === "auth") router.replace("/");
 	}, [rootNavigationState, router, user, rootSegment]);
 
 	return <UserContext.Provider value={user}>{children}</UserContext.Provider>;
