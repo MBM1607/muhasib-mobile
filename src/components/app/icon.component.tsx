@@ -55,7 +55,7 @@ export const appIconMap = {
 	qibla: "compass",
 	quran: "book-open-variant",
 	fasting: "food-apple-outline",
-	"muhasib-gpt": "robot",
+	"ai-chat": "robot",
 } as const;
 
 type _ =

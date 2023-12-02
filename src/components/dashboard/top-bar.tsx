@@ -36,43 +36,46 @@ export const TopBar = () => {
 				/>
 			</Surface>
 
-			<TouchableRipple
+			<Surface
 				style={{
 					flex: 1,
-				}}
-				onPress={() => {
-					router.push("/islamic-calendar");
+					backgroundColor: theme.colors.primaryContainer,
+					borderRadius: 25,
+					overflow: "hidden",
 				}}
 			>
-				<Surface
+				<TouchableRipple
 					style={{
 						flex: 1,
-						backgroundColor: theme.colors.primaryContainer,
-						borderRadius: 25,
 						justifyContent: "center",
 						alignItems: "center",
 					}}
+					onPress={() => {
+						router.push("/islamic-calendar");
+					}}
 				>
-					<Text
-						style={{
-							fontFamily: "RobotoSlabBold",
-							fontSize: 16,
-							color: theme.colors.onPrimaryContainer,
-						}}
-					>
-						18th Jamaada al-Awwal 1442
-					</Text>
-					<Text
-						style={{
-							fontFamily: "RobotoSlabRegular",
-							fontSize: 16,
-							color: theme.colors.onPrimaryContainer,
-						}}
-					>
-						2nd December 2023
-					</Text>
-				</Surface>
-			</TouchableRipple>
+					<>
+						<Text
+							style={{
+								fontFamily: "RobotoSlabBold",
+								fontSize: 16,
+								color: theme.colors.onPrimaryContainer,
+							}}
+						>
+							18th Jamaada al-Awwal 1442
+						</Text>
+						<Text
+							style={{
+								fontFamily: "RobotoSlabRegular",
+								fontSize: 16,
+								color: theme.colors.onPrimaryContainer,
+							}}
+						>
+							2nd December 2023
+						</Text>
+					</>
+				</TouchableRipple>
+			</Surface>
 		</View>
 	);
 };
