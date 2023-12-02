@@ -32,8 +32,8 @@ export const MenuButton = ({ icon, label, onPress }: MenuButtonProps) => {
 			<TouchableRipple
 				style={{
 					flex: 1,
-					gap: 10,
-					padding: 25,
+					gap: 5,
+					padding: 15,
 					justifyContent: "center",
 					alignItems: "center",
 				}}
@@ -44,10 +44,13 @@ export const MenuButton = ({ icon, label, onPress }: MenuButtonProps) => {
 						icon={icon}
 						mode="contained"
 						size={36}
+						style={{
+							backgroundColor: "transparent",
+						}}
 					/>
 					<Text
 						style={{
-							fontSize: 21,
+							fontSize: 18,
 							fontFamily: "RobotoSlabBold",
 						}}
 					>
