@@ -5,6 +5,7 @@ import {
 	LocationProvider,
 	locationStore,
 } from "../../contexts/location.context";
+import { PrayerTimesProvider } from "../../contexts/prayer-times.context";
 import { useStorage } from "../../hooks/storage.hook";
 
 const RootLayout = () => {
@@ -16,7 +17,9 @@ const RootLayout = () => {
 	return (
 		<AuthProvider defaultUser={user}>
 			<LocationProvider defaultLocation={location}>
-				<Slot />
+				<PrayerTimesProvider>
+					<Slot />
+				</PrayerTimesProvider>
 			</LocationProvider>
 		</AuthProvider>
 	);
