@@ -15,6 +15,7 @@ const english = {
 	headings: {
 		welcome: "Welcome\nto Muhasib",
 		setLocation: "Allow Location",
+		updateLocation: "Update Location",
 	},
 	location: {
 		explanation:
@@ -74,6 +75,7 @@ const urdu: Content = {
 	headings: {
 		welcome: "محاسب\nمیں خوش آمدید",
 		setLocation: "برائے مہربانی مقام کی اجازت دیں",
+		updateLocation: "مقام تبدیل کریں",
 	},
 	location: {
 		explanation:

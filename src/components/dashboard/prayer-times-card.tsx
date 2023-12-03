@@ -4,12 +4,14 @@ import { Surface, Text } from "react-native-paper";
 
 import { PrayerTimesBar } from "./prayer-times-bar";
 
+import { useLocationOrNull } from "../../contexts/location.context";
 import { useTheme } from "../../hooks/theme.hook";
 import { Button } from "../controls/button.component";
 
 export const PrayerTimesCard = () => {
 	const router = useRouter();
 	const theme = useTheme();
+	const location = useLocationOrNull();
 
 	return (
 		<Surface
@@ -43,11 +45,12 @@ export const PrayerTimesCard = () => {
 			</Text>
 			<Button
 				icon="location"
-				label={"Lahore"}
+				label={location?.geoData.city || "Set Location"}
 				mode="contained"
 				color="surface"
 				onPress={() => {
-					router.push("/auth/login");
+					if (location) router.push("/location/update");
+					else router.push("/location/set");
 				}}
 			/>
 			<PrayerTimesBar />
