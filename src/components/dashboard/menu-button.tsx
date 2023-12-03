@@ -1,5 +1,6 @@
-import { Surface, Text, TouchableRipple, useTheme } from "react-native-paper";
+import { Surface, Text, TouchableRipple } from "react-native-paper";
 
+import { useTheme } from "../../hooks/theme.hook";
 import { IconButton } from "../controls/icon-button.component";
 
 type MenuIcon =
@@ -49,9 +50,12 @@ export const MenuButton = ({ icon, label, onPress }: MenuButtonProps) => {
 						}}
 					/>
 					<Text
+						variant="titleMedium"
 						style={{
-							fontSize: 18,
 							fontFamily: "RobotoSlabBold",
+							color: theme.colors.primary,
+							textTransform: "capitalize",
+							textAlign: theme.rtl ? "right" : "left",
 						}}
 					>
 						{label}

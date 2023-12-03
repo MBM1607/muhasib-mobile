@@ -36,19 +36,20 @@ export const LocationProvider = ({
 				const added = await locationStore.set(newLocation);
 				if (!added) return;
 				setLocation(newLocation);
+				router.push("/");
 			},
 		);
 
 		return () => {
 			setLocationListener.remove();
 		};
-	}, []);
+	}, [router]);
 
 	useEffect(() => {
 		if (!location && rootSegment !== "location") router.push("/location/set");
 		else if (location && rootSegment === "location/set")
 			router.push("/location/update");
-	}, [router, location, rootSegment]);
+	}, [location, rootSegment, router]);
 
 	return (
 		<LocationContext.Provider value={location}>

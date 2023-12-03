@@ -1,5 +1,4 @@
 import * as Location from "expo-location";
-import { useRouter } from "expo-router";
 import { useState } from "react";
 import { Icon, Text } from "react-native-paper";
 
@@ -13,7 +12,6 @@ import { useTheme } from "../../../hooks/theme.hook";
 import { geoDataSchema } from "../../../schemas/location.schemas";
 
 const SetLocation = () => {
-	const router = useRouter();
 	const { content } = useI18n();
 	const theme = useTheme();
 
@@ -51,7 +49,6 @@ const SetLocation = () => {
 				coords: currentLocation.coords,
 				geoData: parsedGeoData.data,
 			});
-			router.push("/");
 		} catch (error: unknown) {
 			console.error(error);
 			addAlert({

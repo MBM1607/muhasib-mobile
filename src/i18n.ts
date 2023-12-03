@@ -55,7 +55,7 @@ const english = {
 		prayerStatistics: "prayer statistics",
 		qibla: "qibla",
 		quran: "quran",
-		islamicCalendar: "islamic calendar",
+		islamicCalendar: "calendar",
 		fasting: "fasting",
 		aiChat: "ai chat",
 		duas: "duas",
