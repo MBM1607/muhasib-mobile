@@ -41,6 +41,8 @@ const english = {
 	resetSent: "a reset code has been sent to your email",
 	pathNotFound: (pathname: string) => `path ${pathname} does not exist`,
 	pages: {
+		setLocation: "Set Location",
+		updateLocation: "Update Location",
 		prayers: "prayers",
 		prayerStatistics: "prayer statistics",
 		qibla: "qibla",
@@ -90,6 +92,8 @@ const urdu: Content = {
 	resetSent: "تبدیلی کا کوڈ آپ کو بھیج دیا گیا ہے",
 	pathNotFound: (pathname: string) => `نامعلوم صفحہ: ${pathname}`,
 	pages: {
+		setLocation: "مقام تعین کریں",
+		updateLocation: "مقام تبدیل کریں",
 		prayers: "نمازیں",
 		prayerStatistics: "نمازیں کی شماریات",
 		qibla: "قبلہ",

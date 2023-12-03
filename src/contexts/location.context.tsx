@@ -45,7 +45,9 @@ export const LocationProvider = ({
 	}, []);
 
 	useEffect(() => {
-		if (!location && rootSegment !== "location") router.push("/location");
+		if (!location && rootSegment !== "location") router.push("/location/set");
+		else if (location && rootSegment === "location/set")
+			router.push("/location/update");
 	}, [router, location, rootSegment]);
 
 	return (
