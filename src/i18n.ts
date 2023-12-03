@@ -13,7 +13,6 @@ export const defaultLanguage: Language = "english";
 const english = {
 	title: "Muhasib",
 	headings: {
-		welcome: "Welcome\nto Muhasib",
 		setLocation: "Allow Location",
 		updateLocation: "Update Location",
 	},
@@ -74,7 +73,6 @@ export type Content = typeof english;
 const urdu: Content = {
 	title: "محاسب",
 	headings: {
-		welcome: "محاسب\nمیں خوش آمدید",
 		setLocation: "برائے مہربانی مقام کی اجازت دیں",
 		updateLocation: "مقام تبدیل کریں",
 	},

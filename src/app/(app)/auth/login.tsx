@@ -34,6 +34,7 @@ const Login = () => {
 		<ScreenWrapper
 			title={content.pages.login}
 			style={{ padding: 15, gap: 5, justifyContent: "center" }}
+			settingsControl
 			back
 		>
 			<FormControl

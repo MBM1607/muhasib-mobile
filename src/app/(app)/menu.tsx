@@ -9,6 +9,7 @@ const Menu = () => {
 	return (
 		<ScreenWrapper
 			title={content.pages.menu}
+			settingsControl
 			back
 		>
 			<Text>{content.pages.menu}</Text>

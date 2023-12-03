@@ -9,6 +9,7 @@ const Quran = () => {
 	return (
 		<ScreenWrapper
 			title={content.pages.quran}
+			settingsControl
 			back
 		>
 			<Text>{content.pages.quran}</Text>

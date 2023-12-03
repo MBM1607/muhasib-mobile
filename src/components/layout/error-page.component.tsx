@@ -41,6 +41,7 @@ export const ErrorPage = ({
 				justifyContent: "center",
 				alignItems: "center",
 			}}
+			settingsControl
 			back
 		>
 			<Icon

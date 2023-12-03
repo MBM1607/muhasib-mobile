@@ -9,6 +9,7 @@ const IslamicCalendar = () => {
 	return (
 		<ScreenWrapper
 			title={content.pages.islamicCalendar}
+			settingsControl
 			back
 		>
 			<Text>{content.pages.islamicCalendar}</Text>

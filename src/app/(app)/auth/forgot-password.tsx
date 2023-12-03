@@ -117,6 +117,7 @@ export const ForgotPassword = () => {
 	return (
 		<ScreenWrapper
 			title={content.pages.resetPassword}
+			settingsControl
 			back
 		>
 			<View
@@ -215,8 +216,8 @@ export const ForgotPassword = () => {
 							!codeEnabled && !emailStage
 								? "success"
 								: status !== "verifying-code-failed"
-								? "error"
-								: "normal"
+								  ? "error"
+								  : "normal"
 						],
 					color: status === "verifying-code-failed" ? "error" : "primary",
 					loading: status === "verifying-code",

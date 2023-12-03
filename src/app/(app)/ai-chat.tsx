@@ -9,6 +9,7 @@ const AiChat = () => {
 	return (
 		<ScreenWrapper
 			title={content.pages.aiChat}
+			settingsControl
 			back
 		>
 			<Text>{content.pages.aiChat}</Text>

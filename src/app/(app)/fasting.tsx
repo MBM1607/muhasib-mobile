@@ -9,6 +9,7 @@ const Fasting = () => {
 	return (
 		<ScreenWrapper
 			title={content.pages.fasting}
+			settingsControl
 			back
 		>
 			<Text>{content.pages.fasting}</Text>

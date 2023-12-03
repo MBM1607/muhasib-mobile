@@ -9,6 +9,7 @@ const Duas = () => {
 	return (
 		<ScreenWrapper
 			title={content.pages.duas}
+			settingsControl
 			back
 		>
 			<Text>{content.pages.duas}</Text>

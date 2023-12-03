@@ -9,6 +9,7 @@ const PrayerStatistics = () => {
 	return (
 		<ScreenWrapper
 			title={content.pages.prayerStatistics}
+			settingsControl
 			back
 		>
 			<Text>{content.pages.prayerStatistics}</Text>

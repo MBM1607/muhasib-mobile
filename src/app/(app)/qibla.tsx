@@ -9,6 +9,7 @@ const Qibla = () => {
 	return (
 		<ScreenWrapper
 			title={content.pages.qibla}
+			settingsControl
 			back
 		>
 			<Text>{content.pages.qibla}</Text>

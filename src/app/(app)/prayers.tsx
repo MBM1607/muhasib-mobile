@@ -9,6 +9,7 @@ const Prayers = () => {
 	return (
 		<ScreenWrapper
 			title={content.pages.prayers}
+			settingsControl
 			back
 		>
 			<Text>{content.pages.prayers}</Text>
