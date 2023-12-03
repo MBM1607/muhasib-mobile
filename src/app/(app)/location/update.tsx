@@ -78,6 +78,7 @@ const UpdateLocation = () => {
 			>
 				{content.headings.updateLocation}
 			</Text>
+			{/* TODO Show google maps with marker on current location and search bar to enter location manually */}
 			<Button
 				label={content.location.button.detect}
 				style={theme.styles.button.fullWidth}
