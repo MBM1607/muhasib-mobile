@@ -41,7 +41,17 @@ export const useTheme = () => {
 		direction,
 		rtl,
 		styles: {
+			button: {
+				fullWidth: {
+					width: "100%",
+				},
+			},
 			view: {
+				centeredScreen: {
+					flex: 1,
+					gap: 20,
+					alignItems: "center",
+				},
 				row: {
 					flexDirection: rtl ? "row-reverse" : "row",
 					flexWrap: "nowrap",
@@ -54,6 +64,9 @@ export const useTheme = () => {
 					color: theme.colors.primary,
 					marginBottom: "auto",
 					textTransform: "capitalize",
+				},
+				center: {
+					textAlign: "center",
 				},
 			} satisfies Record<string, StyleProp<TextStyle>>,
 		},

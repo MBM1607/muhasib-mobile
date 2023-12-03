@@ -22,6 +22,15 @@ export type ScreenWrapperProps = App.propsWithStyle<{
 	/** should a back button be shown on the page header */
 	back?: boolean;
 
+	/** should the user control be shown on the page header */
+	userControl?: boolean;
+
+	/** should the language control be shown on the page header */
+	languageControl?: boolean;
+
+	/** should the mode control be shown on the page header */
+	modeControl?: boolean;
+
 	children: ReactNode;
 }> &
 	Utils.allOrNone<{
@@ -39,6 +48,9 @@ export const ScreenWrapper = ({
 	scroll,
 	scrollStyle,
 	back,
+	userControl,
+	languageControl,
+	modeControl,
 }: ScreenWrapperProps) => {
 	const router = useRouter();
 	const theme = useTheme();
@@ -85,15 +97,27 @@ export const ScreenWrapper = ({
 						)}
 					</View>
 
-					<UserControl buttonStyle={iconMargin} />
+					{
+						userControl && (
+							<UserControl buttonStyle={iconMargin} />
+						)
+					}
 
-					<LanguageControl buttonStyle={iconMargin} />
+					{
+						languageControl && (
+							<LanguageControl buttonStyle={iconMargin} />
+						)
+					}
 
-					<IconButton
-						icon={`${mode.setting}-mode`}
-						style={iconMargin}
-						onPress={toggleMode}
-					/>
+					{
+						modeControl && (
+							<IconButton
+								icon={`${mode.setting}-mode`}
+								style={iconMargin}
+								onPress={toggleMode}
+							/>
+						)
+					}
 				</View>
 
 				{scroll ? (

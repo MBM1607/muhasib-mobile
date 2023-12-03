@@ -14,6 +14,14 @@ const english = {
 	title: "Muhasib",
 	headings: {
 		welcome: "Welcome\nto Muhasib",
+		setLocation: "Allow Location",
+	},
+	location: {
+		explanation:
+			"Location access allows Muhasib to calculate prayer times. The location is not stored anywhere except your device. You can change the location later in the settings.",
+		buttons: {
+			allow: "Allow",
+		},
 	},
 	action: {
 		login: "login",
@@ -65,6 +73,14 @@ const urdu: Content = {
 	title: "محاسب",
 	headings: {
 		welcome: "محاسب\nمیں خوش آمدید",
+		setLocation: "برائے مہربانی مقام کی اجازت دیں",
+	},
+	location: {
+		explanation:
+			"مقام کی اجازت نماز کے اوقات کا حساب کرنے کی اجازت دیتی ہے ، مقام کو آپ کے آلے کے علاوہ کہیں بھی ذخیرہ نہیں کیا جاتا ہے۔ آپ بعد میں ترتیبات میں مقام تبدیل کرسکتے ہیں۔",
+		buttons: {
+			allow: "اجازت دیں",
+		},
 	},
 	action: {
 		login: "داخل ہوں",
