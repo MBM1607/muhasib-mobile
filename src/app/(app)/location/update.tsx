@@ -78,14 +78,8 @@ const UpdateLocation = () => {
 			>
 				{content.headings.updateLocation}
 			</Text>
-			<Text
-				variant="bodyLarge"
-				style={theme.styles.text.center}
-			>
-				{content.location.explanation}
-			</Text>
 			<Button
-				label={content.location.buttons.allow}
+				label={content.location.button.detect}
 				style={theme.styles.button.fullWidth}
 				loading={loading}
 				onPress={allowLocation}

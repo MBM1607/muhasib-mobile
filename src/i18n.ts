@@ -20,8 +20,9 @@ const english = {
 	location: {
 		explanation:
 			"Location access allows Muhasib to calculate prayer times. The location is not stored anywhere except your device. You can change the location later in the settings.",
-		buttons: {
+		button: {
 			allow: "Allow",
+			detect: "Set to Current Location",
 		},
 	},
 	action: {
@@ -80,8 +81,9 @@ const urdu: Content = {
 	location: {
 		explanation:
 			"مقام کی اجازت نماز کے اوقات کا حساب کرنے کی اجازت دیتی ہے ، مقام کو آپ کے آلے کے علاوہ کہیں بھی ذخیرہ نہیں کیا جاتا ہے۔ آپ بعد میں ترتیبات میں مقام تبدیل کرسکتے ہیں۔",
-		buttons: {
+		button: {
 			allow: "اجازت دیں",
+			detect: "موجودہ مقام پر ترتیب دیں",
 		},
 	},
 	action: {

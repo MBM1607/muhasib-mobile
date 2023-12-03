@@ -83,7 +83,7 @@ const SetLocation = () => {
 				{content.location.explanation}
 			</Text>
 			<Button
-				label={content.location.buttons.allow}
+				label={content.location.button.allow}
 				style={theme.styles.button.fullWidth}
 				loading={loading}
 				onPress={allowLocation}
