@@ -48,7 +48,7 @@ export const ScreenWrapper = ({
 
 	return (
 		<SafeAreaView style={{ flex: 1, marginTop: Constants.statusBarHeight }}>
-			<Surface style={{ flex: 1, position: "relative" }}>
+			<Surface style={{ flex: 1, position: "relative", padding: 10 }}>
 				<View
 					style={{
 						flexDirection: theme.rtl ? "row-reverse" : "row",

@@ -95,7 +95,7 @@ const urdu: Content = {
 		qibla: "قبلہ",
 		quran: "قرآن",
 		islamicCalendar: "اسلامی کیلنڈر",
-		fasting: "روزہ",
+		fasting: "روزے",
 		aiChat: "چیٹ بوٹ",
 		duas: "دعائیں",
 		menu: "مینو",

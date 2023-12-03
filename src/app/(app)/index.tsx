@@ -8,13 +8,9 @@ import { MenuButton } from "../../components/dashboard/menu-button";
 import { PrayerTimesCard } from "../../components/dashboard/prayer-times-card";
 import { TopBar } from "../../components/dashboard/top-bar";
 import { useI18n } from "../../contexts/i18n.context";
-import { useMode } from "../../contexts/mode.context";
-import { useTheme } from "../../hooks/theme.hook";
 
 const App = () => {
 	const router = useRouter();
-	const theme = useTheme();
-	const mode = useMode();
 	const { content } = useI18n();
 
 	return (
@@ -36,7 +32,7 @@ const App = () => {
 						<PrayerTimesCard />
 						<MenuButton
 							icon={"prayers"}
-							label={"Prayers"}
+							label={content.pages.prayers}
 							onPress={() => {
 								router.push("/prayers");
 							}}
@@ -50,14 +46,14 @@ const App = () => {
 						>
 							<MenuButton
 								icon={"qibla"}
-								label={"Qibla"}
+								label={content.pages.qibla}
 								onPress={() => {
 									router.push("/qibla");
 								}}
 							/>
 							<MenuButton
 								icon={"quran"}
-								label={"Quran"}
+								label={content.pages.quran}
 								onPress={() => {
 									router.push("/quran");
 								}}
@@ -72,14 +68,14 @@ const App = () => {
 						>
 							<MenuButton
 								icon={"islamic-calendar"}
-								label={"Calendar"}
+								label={content.pages.islamicCalendar}
 								onPress={() => {
 									router.push("/islamic-calendar");
 								}}
 							/>
 							<MenuButton
 								icon={"fasting"}
-								label={"Fasting"}
+								label={content.pages.fasting}
 								onPress={() => {
 									router.push("/fasting");
 								}}
@@ -94,14 +90,14 @@ const App = () => {
 						>
 							<MenuButton
 								icon={"ai-chat"}
-								label={"AI Chat"}
+								label={content.pages.aiChat}
 								onPress={() => {
 									router.push("/ai-chat");
 								}}
 							/>
 							<MenuButton
 								icon={"dua"}
-								label={"Duas"}
+								label={content.pages.duas}
 								onPress={() => {
 									router.push("/duas");
 								}}
