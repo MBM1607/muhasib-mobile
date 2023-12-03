@@ -168,5 +168,4 @@ export type ThemeColor =
 	| "error"
 	| "success"
 	| "warning"
-	| "info"
-	| "surface";
+	| "info";

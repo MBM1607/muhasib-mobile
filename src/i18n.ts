@@ -66,6 +66,12 @@ const english = {
 		register: "register",
 		resetPassword: "reset password",
 	},
+	qibla: {
+		trueNorth: "True North",
+		magneticField: "Magnetic Field",
+		kaaba: "Ka'aba",
+		fromTrueNorth: "from True North",
+	},
 };
 
 export type Content = typeof english;
@@ -125,6 +131,12 @@ const urdu: Content = {
 		login: "داخلہ",
 		register: "اندراج",
 		resetPassword: "پاسورڈ تبدیلی",
+	},
+	qibla: {
+		trueNorth: "سچا شمال",
+		magneticField: "مقناطیسی میدان",
+		kaaba: "کعبہ",
+		fromTrueNorth: "سچا شمال سے",
 	},
 };
 

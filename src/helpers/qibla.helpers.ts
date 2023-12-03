@@ -16,3 +16,17 @@ export const getQiblaDirection = (coords: Coords): number => {
 
 	return Math.round(arctan2(numerator, denominator));
 };
+
+export const getCompassAngleFromMagnetometerData = (magnetometerData: {
+	x: number;
+	y: number;
+	z: number;
+}): number => {
+	const { x, y } = magnetometerData;
+
+	return Math.round(
+		Math.atan2(y, x) >= 0
+			? Math.atan2(y, x) * (180 / Math.PI)
+			: (Math.atan2(y, x) + 2 * Math.PI) * (180 / Math.PI),
+	);
+};
