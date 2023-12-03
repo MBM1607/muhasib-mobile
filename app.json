@@ -21,6 +21,16 @@
 				"backgroundColor": "#ffffff"
 			}
 		},
-		"owner": "muhasib"
+		"owner": "muhasib",
+		"plugins": [
+			"sentry-expo",
+			"expo-router",
+			[
+				"expo-location",
+				{
+					"locationAlwaysAndWhenInUsePermission": "Allow $(PRODUCT_NAME) to use your location."
+				}
+			]
+		]
 	}
 }

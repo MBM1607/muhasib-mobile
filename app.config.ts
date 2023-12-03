@@ -100,7 +100,17 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
 			backgroundColor: "#ffffff",
 		},
 	},
-	plugins: ["sentry-expo", "expo-router"],
+	plugins: [
+		"sentry-expo",
+		"expo-router",
+		[
+			"expo-location",
+			{
+				locationAlwaysAndWhenInUsePermission:
+					"Allow $(PRODUCT_NAME) to use your location.",
+			},
+		],
+	],
 	hooks: {
 		postPublish: [
 			{
