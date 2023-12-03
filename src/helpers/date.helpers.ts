@@ -41,3 +41,27 @@ export const dayjsFormatPatterns = {
 	time: "h:mm:ss A",
 	datetime: "YYYY-MM-DD h:mm A",
 };
+
+// Convert Gregorian date to Julian day
+// Ref: Astronomical Algorithms by Jean Meeus
+export const gregorianToJulian = (date: dayjs.Dayjs): number => {
+	let year = date.year();
+	let month = date.month() + 1; // Convert to 1-based month
+	const day = date.date();
+
+	if (month <= 2) {
+		year -= 1;
+		month += 12;
+	}
+
+	const a = Math.floor(year / 100);
+	const b = 2 - a + Math.floor(a / 4);
+	const julianDate =
+		Math.floor(365.25 * (year + 4716)) +
+		Math.floor(30.6001 * (month + 1)) +
+		day +
+		b -
+		1524.5;
+
+	return julianDate;
+};

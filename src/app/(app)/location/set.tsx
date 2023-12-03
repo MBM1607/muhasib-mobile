@@ -30,10 +30,9 @@ const SetLocation = () => {
 			}
 
 			const currentLocation = await Location.getCurrentPositionAsync({});
-			const currentLocationGeoCode = await Location.reverseGeocodeAsync({
-				latitude: currentLocation.coords.latitude,
-				longitude: currentLocation.coords.longitude,
-			});
+			const currentLocationGeoCode = await Location.reverseGeocodeAsync(
+				currentLocation.coords,
+			);
 
 			const parsedGeoData = geoDataSchema.safeParse(currentLocationGeoCode[0]);
 

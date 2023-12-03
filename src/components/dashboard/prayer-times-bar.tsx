@@ -1,6 +1,7 @@
 import { View } from "react-native";
 import { Text, Tooltip } from "react-native-paper";
 
+import { usePrayerTimesOrNull } from "../../contexts/prayer-times.context";
 import { useTheme } from "../../hooks/theme.hook";
 import { IconButton } from "../controls/icon-button.component";
 
@@ -10,41 +11,35 @@ type PrayerIcon = "fajr" | "sunrise" | "dhuhr" | "asr" | "maghrib" | "isha";
 type Prayer = {
 	name: PrayerName;
 	icon: PrayerIcon;
-	time: string;
 };
 
 export const PrayerTimesBar = () => {
 	const theme = useTheme();
+	const prayerTimes = usePrayerTimesOrNull();
 	const prayers: Prayer[] = [
 		{
 			name: "Fajr",
 			icon: "fajr",
-			time: "5:30 AM",
 		},
 		{
 			name: "Sunrise",
 			icon: "sunrise",
-			time: "6:30 AM",
 		},
 		{
 			name: "Dhuhr",
 			icon: "dhuhr",
-			time: "1:30 PM",
 		},
 		{
 			name: "Asr",
 			icon: "asr",
-			time: "5:30 PM",
 		},
 		{
 			name: "Maghrib",
 			icon: "maghrib",
-			time: "6:30 PM",
 		},
 		{
 			name: "Isha",
 			icon: "isha",
-			time: "7:30 PM",
 		},
 	];
 
@@ -84,7 +79,7 @@ export const PrayerTimesBar = () => {
 								color: theme.colors.onPrimaryContainer,
 							}}
 						>
-							{prayer.time}
+							{prayerTimes?.[prayer.icon] || "--:--"}
 						</Text>
 					</View>
 				</Tooltip>

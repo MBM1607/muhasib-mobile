@@ -15,6 +15,7 @@ export type EventMap = {
 	removeAlert: undefined;
 	setIsLoading: SetStateAction<boolean> | Promise<unknown>;
 	updateLanguage: SetStateAction<Language>;
+	calculatePrayerTimes: undefined;
 };
 
 export const events = {
