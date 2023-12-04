@@ -1,13 +1,14 @@
 import dayjs from "dayjs";
 import { useEffect, useState } from "react";
 import { View } from "react-native";
-import { Text } from "react-native-paper";
+import { Surface, Text } from "react-native-paper";
 
 import { Icon } from "../../components/app/icon.component";
 import { PrayerMethod } from "../../components/app/prayer-method.component";
 import { FormSwitch } from "../../components/controls/form-switch.component";
 import { IconButton } from "../../components/controls/icon-button.component";
 import { ScreenWrapper } from "../../components/layout/screen-wrapper.component";
+import { useCalendarSettings } from "../../contexts/calendar-settings.context";
 import { useI18n } from "../../contexts/i18n.context";
 import {
 	togglePrayerReminder,
@@ -29,6 +30,7 @@ const Prayers = () => {
 	const theme = useTheme();
 	const prayers = usePrayers();
 	const notificationsSettings = useNotificationsSettings();
+	const { hijriDateAdjustment } = useCalendarSettings();
 
 	const [datePrayers, setDatePrayers] =
 		useState<PerformablePrayer>(UNFILLED_PRAYER_DATA);
@@ -66,7 +68,15 @@ const Prayers = () => {
 			settingsControl
 			back
 		>
-			<View style={theme.styles.view.row}>
+			<Surface
+				style={[
+					theme.styles.view.row,
+					{
+						borderRadius: 16,
+						paddingVertical: 8,
+					},
+				]}
+			>
 				<IconButton
 					icon="arrow-back"
 					mode="outlined"
@@ -78,15 +88,33 @@ const Prayers = () => {
 						setDate(date.subtract(1, "day"));
 					}}
 				/>
-				<Text
-					variant="headlineSmall"
+				<View
 					style={{
 						flexGrow: 1,
-						textAlign: "center",
 					}}
 				>
-					{date.format("YYYY-MM-DD")}
-				</Text>
+					<Text
+						variant="headlineSmall"
+						style={{
+							textAlign: "center",
+							fontSize: 18,
+						}}
+					>
+						{date
+							.toCalendarSystem("islamic")
+							.add(hijriDateAdjustment, "day")
+							.format("Do MMMM YYYY")}
+					</Text>
+					<Text
+						variant="bodyMedium"
+						style={{
+							textAlign: "center",
+							fontSize: 14,
+						}}
+					>
+						{date.toCalendarSystem("gregory").format("Do MMMM YYYY")}
+					</Text>
+				</View>
 				<IconButton
 					icon="arrow-next"
 					mode="outlined"
@@ -103,7 +131,7 @@ const Prayers = () => {
 						setDate(date.add(1, "day"));
 					}}
 				/>
-			</View>
+			</Surface>
 			<View>
 				<Text
 					variant="headlineSmall"
