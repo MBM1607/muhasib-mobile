@@ -100,6 +100,10 @@ const english = {
 			title: "Calendar",
 			description: "Hijri Date Adjustment",
 		},
+		hijriAdjustment: {
+			title: "Hijri Date Adjustment",
+			overlayLabel: "Select Hijri Date Adjustment",
+		},
 	},
 	duasSettings: {
 		card: {
@@ -282,6 +286,10 @@ const urdu: Content = {
 		card: {
 			title: "کیلنڈر",
 			description: "ہجری تاریخ کی ترمیم",
+		},
+		hijriAdjustment: {
+			title: "ہجری تاریخ کی ترمیم",
+			overlayLabel: "ہجری تاریخ کی ترمیم منتخب کریں",
 		},
 	},
 	duasSettings: {

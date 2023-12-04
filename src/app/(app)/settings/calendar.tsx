@@ -1,5 +1,4 @@
-import { Text } from "react-native-paper";
-
+import { HijriDateControl } from "../../../components/controls/hijri-date-control";
 import { ScreenWrapper } from "../../../components/layout/screen-wrapper.component";
 import { MetaAppOptions } from "../../../components/settings/meta-app-options";
 import { useI18n } from "../../../contexts/i18n.context";
@@ -18,7 +17,7 @@ const CalendarSettings = () => {
 			}}
 			back
 		>
-			<Text>{content.pages.calendarSettings}</Text>
+			<HijriDateControl />
 			<MetaAppOptions />
 		</ScreenWrapper>
 	);

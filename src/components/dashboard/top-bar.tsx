@@ -2,6 +2,7 @@ import { useRouter } from "expo-router";
 import { View } from "react-native";
 import { Surface, Text, TouchableRipple } from "react-native-paper";
 
+import { useCalendarSettings } from "../../contexts/calendar-settings.context";
 import { dayjsExtended } from "../../helpers/date.helpers";
 import { useTheme } from "../../hooks/theme.hook";
 import { IconButton } from "../controls/icon-button.component";
@@ -9,6 +10,8 @@ import { IconButton } from "../controls/icon-button.component";
 export const TopBar = () => {
 	const router = useRouter();
 	const theme = useTheme();
+	const { hijriDateAdjustment } = useCalendarSettings();
+
 	const today = dayjsExtended();
 
 	return (
@@ -46,7 +49,10 @@ export const TopBar = () => {
 								color: theme.colors.onPrimaryContainer,
 							}}
 						>
-							{today.toCalendarSystem("islamic").format("Do MMMM YYYY")}
+							{today
+								.toCalendarSystem("islamic")
+								.add(hijriDateAdjustment, "day")
+								.format("Do MMMM YYYY")}
 						</Text>
 						<Text
 							style={{

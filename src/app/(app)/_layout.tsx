@@ -3,6 +3,11 @@ import { Slot } from "expo-router";
 import { AuthProvider, authStore } from "../../contexts/auth.context";
 import { CalculationSettingsProvider } from "../../contexts/calculation-settings.context";
 import {
+	CalendarSettingsProvider,
+	DEFAULT_CALENDAR_SETTINGS,
+	calendarSettingsStore,
+} from "../../contexts/calendar-settings.context";
+import {
 	FastingRecordProvider,
 	fastingRecordStore,
 } from "../../contexts/fasting-record.context";
@@ -28,13 +33,17 @@ const RootLayout = () => {
 	const [[isLoadingNotificationsSettings, notificationsSettings]] = useStorage(
 		notificationsSettingsStore,
 	);
+	const [[isLoadingCalendarSettings, calendarSettings]] = useStorage(
+		calendarSettingsStore,
+	);
 
 	if (
 		isLoadingUser ||
 		isLoadingLocation ||
 		isLoadingPrayers ||
 		isLoadingFastingRecord ||
-		isLoadingNotificationsSettings
+		isLoadingNotificationsSettings ||
+		isLoadingCalendarSettings
 	)
 		return null;
 
@@ -48,11 +57,17 @@ const RootLayout = () => {
 								notificationsSettings || DEFAULT_NOTIFICATION_SETTINGS
 							}
 						>
-							<CalculationSettingsProvider>
-								<PrayerTimesProvider>
-									<Slot />
-								</PrayerTimesProvider>
-							</CalculationSettingsProvider>
+							<CalendarSettingsProvider
+								defaultCalendarSettings={
+									calendarSettings || DEFAULT_CALENDAR_SETTINGS
+								}
+							>
+								<CalculationSettingsProvider>
+									<PrayerTimesProvider>
+										<Slot />
+									</PrayerTimesProvider>
+								</CalculationSettingsProvider>
+							</CalendarSettingsProvider>
 						</NotificationsSettingsProvider>
 					</FastingRecordProvider>
 				</PrayersProvider>

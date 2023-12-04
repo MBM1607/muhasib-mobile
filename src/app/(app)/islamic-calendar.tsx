@@ -6,6 +6,7 @@ import { Surface, Text } from "react-native-paper";
 import { PrayerMethod } from "../../components/app/prayer-method.component";
 import { FormSwitch } from "../../components/controls/form-switch.component";
 import { ScreenWrapper } from "../../components/layout/screen-wrapper.component";
+import { useCalendarSettings } from "../../contexts/calendar-settings.context";
 import {
 	toggleFastingRecord,
 	useFastingRecord,
@@ -28,13 +29,14 @@ const IslamicCalendar = () => {
 
 	const fastingRecord = useFastingRecord();
 	const prayers = usePrayers();
+	const { hijriDateAdjustment } = useCalendarSettings();
 
 	const [selected, setSelected] = useState(dayjsExtended());
 	const [selectedFormatted, setSelectedFormatted] = useState(
 		selected.format("YYYY-MM-DD"),
 	);
 	const [selectedInHijri, setSelectedInHijri] = useState(
-		dayjsExtended().toCalendarSystem("islamic"),
+		dayjsExtended().toCalendarSystem("islamic").add(hijriDateAdjustment, "day"),
 	);
 	const [muslimHolidays, setMuslimHolidays] = useState(
 		getMuslimHolidays(selectedInHijri.year()),
@@ -48,7 +50,9 @@ const IslamicCalendar = () => {
 		setSelected(newDayJs);
 		setSelectedFormatted(date);
 		setDatePrayers(prayers[date] || UNFILLED_PRAYER_DATA);
-		const newHijri = newDayJs.toCalendarSystem("islamic");
+		const newHijri = newDayJs
+			.toCalendarSystem("islamic")
+			.add(hijriDateAdjustment, "day");
 		setSelectedInHijri(newHijri);
 		setMuslimHolidays(getMuslimHolidays(newHijri.year()));
 	};

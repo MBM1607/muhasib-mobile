@@ -39,6 +39,7 @@ export type EventMap = {
 	toggleFastingReminder: undefined;
 	togglePrayerReminder: undefined;
 	toggleAnnouncements: undefined;
+	setHijriDateAdjustment: number;
 };
 
 export const events = {
