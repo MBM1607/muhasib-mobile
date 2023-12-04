@@ -40,6 +40,10 @@ export const LocationProvider = ({
 			},
 		);
 
+		(async () => {
+			setLocation(await locationStore.get());
+		})();
+
 		return () => {
 			setLocationListener.remove();
 		};

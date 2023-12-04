@@ -10,6 +10,10 @@ import type {
 	HighLatitudeMethod,
 	TimeFormat,
 } from "../schemas/prayer-times.schemas";
+import type {
+	PerformablePrayerName,
+	PrayerPerformMethod,
+} from "../schemas/prayers.schemas";
 import type { LoggedInUser } from "../schemas/user.schemas";
 
 export type EventMap = {
@@ -26,6 +30,11 @@ export type EventMap = {
 	setAsrMethod: AsrJuristicMethodName;
 	setHighLatitudeMethod: HighLatitudeMethod;
 	setTimeFormat: TimeFormat;
+	performPrayer: {
+		date: string;
+		prayer: PerformablePrayerName;
+		prayerPerformMethod: PrayerPerformMethod;
+	};
 };
 
 export const events = {

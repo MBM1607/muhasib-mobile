@@ -26,7 +26,6 @@ export const PrayerTimesCard = () => {
 			const now = dayjs();
 
 			const prayerTimesArray = Object.values(prayerTimes).map((prayerTime) => {
-				const utcOffset = now.utcOffset();
 				const parts = prayerTime.split(":");
 
 				if (!parts[0] || !parts[1]) throw new Error("Invalid prayer time");

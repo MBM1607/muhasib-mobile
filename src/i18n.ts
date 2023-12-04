@@ -153,7 +153,7 @@ const english = {
 			body: "It's time to break your fast!",
 		},
 	},
-	prayers: {
+	prayer: {
 		imsak: "Imsak/Suhoor",
 		fajr: "Fajr",
 		sunrise: "Sunrise",
@@ -162,6 +162,12 @@ const english = {
 		sunset: "Sunset/Iftar",
 		maghrib: "Maghrib",
 		isha: "Isha",
+	},
+	prayerPerformMethod: {
+		"Not Performed": "Not Performed",
+		Qadha: "Qadha",
+		Infradi: "Infradi",
+		Jamaat: "Jamaat",
 	},
 };
 
@@ -309,7 +315,7 @@ const urdu: Content = {
 		fastingInputLabel: "کیا آپ آج روزہ رکھ رہے ہیں؟",
 		timeTable: "روزے کا وقت کا جدول",
 	},
-	prayers: {
+	prayer: {
 		imsak: "اِمساک / سحری",
 		fajr: "فجر",
 		sunrise: "طلوع آفتاب",
@@ -318,6 +324,12 @@ const urdu: Content = {
 		sunset: "غروب آفتاب / افطار",
 		maghrib: "مغرب",
 		isha: "عشاء",
+	},
+	prayerPerformMethod: {
+		"Not Performed": "نہیں پڑھی",
+		Qadha: "قضا",
+		Infradi: "انفرادی",
+		Jamaat: "جماعت",
 	},
 };
 

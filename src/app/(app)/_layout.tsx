@@ -7,22 +7,26 @@ import {
 	locationStore,
 } from "../../contexts/location.context";
 import { PrayerTimesProvider } from "../../contexts/prayer-times.context";
+import { PrayersProvider, prayersStore } from "../../contexts/prayers.context";
 import { useStorage } from "../../hooks/storage.hook";
 
 const RootLayout = () => {
 	const [[isLoadingUser, user]] = useStorage(authStore);
 	const [[isLoadingLocation, location]] = useStorage(locationStore);
+	const [[isLoadingPrayers, prayers]] = useStorage(prayersStore);
 
-	if (isLoadingUser || isLoadingLocation) return null;
+	if (isLoadingUser || isLoadingLocation || isLoadingPrayers) return null;
 
 	return (
 		<AuthProvider defaultUser={user}>
 			<LocationProvider defaultLocation={location}>
-				<CalculationSettingsProvider>
-					<PrayerTimesProvider>
-						<Slot />
-					</PrayerTimesProvider>
-				</CalculationSettingsProvider>
+				<PrayersProvider defaultPrayers={prayers || {}}>
+					<CalculationSettingsProvider>
+						<PrayerTimesProvider>
+							<Slot />
+						</PrayerTimesProvider>
+					</CalculationSettingsProvider>
+				</PrayersProvider>
 			</LocationProvider>
 		</AuthProvider>
 	);

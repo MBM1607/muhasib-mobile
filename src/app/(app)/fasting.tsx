@@ -32,7 +32,7 @@ const Fasting = () => {
 					/>
 					<Card.Content>
 						<Card.Title
-							title={content.prayers.imsak}
+							title={content.prayer.imsak}
 							subtitle={prayerTimes.imsak}
 							titleVariant="headlineSmall"
 							titleStyle={{ fontSize: 16 }}
@@ -40,7 +40,7 @@ const Fasting = () => {
 							subtitleStyle={{ fontSize: 14 }}
 						/>
 						<Card.Title
-							title={content.prayers.fajr}
+							title={content.prayer.fajr}
 							subtitle={prayerTimes.fajr}
 							titleVariant="headlineSmall"
 							titleStyle={{ fontSize: 16 }}
@@ -48,7 +48,7 @@ const Fasting = () => {
 							subtitleStyle={{ fontSize: 14 }}
 						/>
 						<Card.Title
-							title={content.prayers.sunset}
+							title={content.prayer.sunset}
 							subtitle={prayerTimes.sunset}
 							titleVariant="headlineSmall"
 							titleStyle={{ fontSize: 16 }}
@@ -56,7 +56,7 @@ const Fasting = () => {
 							subtitleStyle={{ fontSize: 14 }}
 						/>
 						<Card.Title
-							title={content.prayers.maghrib}
+							title={content.prayer.maghrib}
 							subtitle={prayerTimes.maghrib}
 							titleVariant="headlineSmall"
 							titleStyle={{ fontSize: 16 }}

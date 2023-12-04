@@ -59,12 +59,21 @@ export const appIconMap = {
 	quran: "book-open-variant",
 	fasting: "food-apple-outline",
 	"ai-chat": "robot",
-	// PRayer times icon should be sliders showing different method adjustments
 	"prayer-times-calculation-settings": "abacus",
 	"calendar-settings": "calendar-edit",
 	"fasting-settings": "food-apple-outline",
 	"duas-settings": "hands-pray",
 	"user-settings": "account-settings",
+	Jamaat: "checkbox-marked-circle",
+	Infradi: "checkbox-marked-circle-plus-outline",
+	Qadha: "checkbox-marked-circle-outline",
+	"Not Performed": "checkbox-blank-circle-outline",
+	"0%": "checkbox-blank-circle-outline",
+	"20%": "circle-slice-1",
+	"40%": "circle-slice-3",
+	"60%": "circle-slice-5",
+	"80%": "circle-slice-7",
+	"100%": "circle-slice-8",
 } as const;
 
 type _ =
