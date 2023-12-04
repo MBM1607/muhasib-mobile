@@ -1859,6 +1859,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@calidy/dayjs-calendarsystems@npm:^1.4.0":
+  version: 1.4.0
+  resolution: "@calidy/dayjs-calendarsystems@npm:1.4.0"
+  checksum: b5aee94c07d99268c7019863b4a1197820aa5b2eac9dd5faac863b87b2d42c19f002a5c47549ce4f7f4350c7761ebd4100cc97e8189d524163c8a14e8e24763a
+  languageName: node
+  linkType: hard
+
 "@callstack/react-theme-provider@npm:^3.0.9":
   version: 3.0.9
   resolution: "@callstack/react-theme-provider@npm:3.0.9"
@@ -11922,6 +11929,7 @@ __metadata:
     "@babel/plugin-transform-arrow-functions": "npm:^7.23.3"
     "@babel/plugin-transform-shorthand-properties": "npm:^7.23.3"
     "@babel/plugin-transform-template-literals": "npm:^7.23.3"
+    "@calidy/dayjs-calendarsystems": "npm:^1.4.0"
     "@expo/config": "npm:~8.1.2"
     "@react-native-async-storage/async-storage": "npm:1.18.2"
     "@sentry/react-native": "npm:5.10.0"

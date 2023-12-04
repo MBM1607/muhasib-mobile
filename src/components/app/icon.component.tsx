@@ -58,7 +58,6 @@ export const appIconMap = {
 	qibla: "compass",
 	quran: "book-open-variant",
 	fasting: "food-apple-outline",
-	"ai-chat": "robot",
 	"prayer-times-calculation-settings": "abacus",
 	"calendar-settings": "calendar-edit",
 	"fasting-settings": "food-apple-outline",

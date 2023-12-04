@@ -1,7 +1,7 @@
 import { isDayjs } from "dayjs";
 import { z } from "zod";
 
-import { dayjsUtc } from "./date.helpers";
+import { dayjsUtcExtended } from "./date.helpers";
 
 import { JWT_REGEX, PHONE_REGEX } from "../constants";
 
@@ -25,14 +25,14 @@ export const emailSchema = z.string().email();
 export const phoneSchema = z.string().regex(PHONE_REGEX);
 
 export const dayjsSchema = z.instanceof(
-	dayjsUtc as unknown as typeof dayjsUtc.Dayjs,
+	dayjsUtcExtended as unknown as typeof dayjsUtcExtended.Dayjs,
 );
 
 export type ZodDayjs = typeof dayjsSchema;
 
 export const dateSchema = z.preprocess((value) => {
 	if (isDayjs(value)) return value;
-	const parsed = dayjsUtc.utc(value as never);
+	const parsed = dayjsUtcExtended.utc(value as never);
 	return parsed.isValid() ? parsed : null;
 }, dayjsSchema);
 
@@ -42,7 +42,7 @@ export const timeSchema = z.preprocess(
 	(value) => {
 		const parsed = isDayjs(value)
 			? value
-			: dayjsUtc.utc(value as never, "HH:mm");
+			: dayjsUtcExtended.utc(value as never, "HH:mm");
 		if (!parsed.isValid()) return value;
 		return { hour: parsed.hour(), minute: parsed.minute() };
 	},

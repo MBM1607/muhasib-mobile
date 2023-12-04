@@ -30,13 +30,6 @@ const App = () => {
 					>
 						<TopBar />
 						<PrayerTimesCard />
-						<MenuButton
-							icon={"prayers"}
-							label={content.pages.prayers}
-							onPress={() => {
-								router.push("/prayers");
-							}}
-						/>
 						<View
 							style={{
 								flexDirection: "row",
@@ -45,17 +38,17 @@ const App = () => {
 							}}
 						>
 							<MenuButton
+								icon={"prayers"}
+								label={content.pages.prayers}
+								onPress={() => {
+									router.push("/prayers");
+								}}
+							/>
+							<MenuButton
 								icon={"qibla"}
 								label={content.pages.qibla}
 								onPress={() => {
 									router.push("/qibla");
-								}}
-							/>
-							<MenuButton
-								icon={"quran"}
-								label={content.pages.quran}
-								onPress={() => {
-									router.push("/quran");
 								}}
 							/>
 						</View>
@@ -89,10 +82,10 @@ const App = () => {
 							}}
 						>
 							<MenuButton
-								icon={"ai-chat"}
-								label={content.pages.aiChat}
+								icon={"quran"}
+								label={content.pages.quran}
 								onPress={() => {
-									router.push("/ai-chat");
+									router.push("/quran");
 								}}
 							/>
 							<MenuButton

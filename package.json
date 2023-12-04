@@ -34,6 +34,7 @@
 		"trace": "tsc --generateTrace ./trace && npx @typescript/analyze-trace trace"
 	},
 	"dependencies": {
+		"@calidy/dayjs-calendarsystems": "^1.4.0",
 		"@react-native-async-storage/async-storage": "1.18.2",
 		"@sentry/react-native": "5.10.0",
 		"expo": "^49.0.21",

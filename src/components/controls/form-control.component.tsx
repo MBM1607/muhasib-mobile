@@ -8,7 +8,7 @@ import { Button } from "./button.component";
 import { FormControlWrapper } from "./form-control-wrapper.component";
 
 import { isSmallerScreen } from "../../config";
-import { dayjsUtc } from "../../helpers/date.helpers";
+import { dayjsUtcExtended } from "../../helpers/date.helpers";
 import { useTheme } from "../../hooks/theme.hook";
 import { appIconMap } from "../app/icon.component";
 
@@ -209,10 +209,10 @@ const FormControlComponent = (
 				isDayjs(value)
 					? value.format("YYYY-MM-DD")
 					: typeof value === "string"
-					? value
-					: value
-					? `${value.hours}:${value.minutes}`
-					: ""
+					  ? value
+					  : value
+					    ? `${value.hours}:${value.minutes}`
+					    : ""
 			}
 			right={
 				type === "password" ? (
@@ -278,7 +278,7 @@ const FormControlComponent = (
 						setShowingPicker(false);
 					}}
 					onConfirm={({ date }) => {
-						onChange(date ? dayjsUtc.utc(date) : null);
+						onChange(date ? dayjsUtcExtended.utc(date) : null);
 						setShowingPicker(false);
 					}}
 				/>

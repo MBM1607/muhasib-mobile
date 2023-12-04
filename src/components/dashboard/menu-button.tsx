@@ -9,8 +9,7 @@ type MenuIcon =
 	| "quran"
 	| "fasting"
 	| "dua"
-	| "islamic-calendar"
-	| "ai-chat";
+	| "islamic-calendar";
 
 export type MenuButtonProps = {
 	icon: MenuIcon;

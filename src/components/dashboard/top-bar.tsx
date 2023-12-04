@@ -2,12 +2,14 @@ import { useRouter } from "expo-router";
 import { View } from "react-native";
 import { Surface, Text, TouchableRipple } from "react-native-paper";
 
+import { dayjsExtended } from "../../helpers/date.helpers";
 import { useTheme } from "../../hooks/theme.hook";
 import { IconButton } from "../controls/icon-button.component";
 
 export const TopBar = () => {
 	const router = useRouter();
 	const theme = useTheme();
+	const today = dayjsExtended();
 
 	return (
 		<View
@@ -62,7 +64,7 @@ export const TopBar = () => {
 								color: theme.colors.onPrimaryContainer,
 							}}
 						>
-							18th Jamaada al-Awwal 1442
+							{today.toCalendarSystem("islamic").format("Do MMMM YYYY")}
 						</Text>
 						<Text
 							style={{
@@ -71,7 +73,7 @@ export const TopBar = () => {
 								color: theme.colors.onPrimaryContainer,
 							}}
 						>
-							2nd December 2023
+							{today.toCalendarSystem("gregory").format("Do MMMM YYYY")}
 						</Text>
 					</>
 				</TouchableRipple>

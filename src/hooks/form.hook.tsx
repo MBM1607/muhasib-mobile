@@ -4,7 +4,7 @@ import { z } from "zod";
 
 import { shouldAutoFill } from "../config";
 import { stringifyError } from "../errors";
-import { dayjsUtc } from "../helpers/date.helpers";
+import { dayjsUtcExtended } from "../helpers/date.helpers";
 import { humanizeToken } from "../helpers/humanize-token.helpers";
 import { objectEntries } from "../helpers/object.helpers";
 
@@ -66,7 +66,7 @@ const formDefaults: {
 	string: "test",
 	int: "25",
 	float: "25.255",
-	date: dayjsUtc.utc("2022-10-20T10:20:00.000Z"),
+	date: dayjsUtcExtended.utc("2022-10-20T10:20:00.000Z"),
 	time: { hours: 10, minutes: 20 },
 	email: "testing@test.com",
 	password: "12345",
@@ -78,10 +78,10 @@ const formDefaults: {
 type notRequired<T extends fieldZod> = T extends z.ZodNullable<z.ZodTypeAny>
 	? true
 	: T extends z.ZodBoolean
-	? true
-	: T extends z.ZodString
-	? boolean
-	: false;
+	  ? true
+	  : T extends z.ZodString
+	    ? boolean
+	    : false;
 
 type validSchema = z.ZodObject<Record<string, fieldZod>, "strict">;
 
@@ -181,10 +181,10 @@ export const useForm = <
 						(shouldAutoFill
 							? formDefaults[field.type]
 							: field.type === "boolean"
-							? false
-							: ["date", "time"].includes(field.type)
-							? null
-							: ""),
+							  ? false
+							  : ["date", "time"].includes(field.type)
+							    ? null
+							    : ""),
 				}),
 				{},
 			) as never,

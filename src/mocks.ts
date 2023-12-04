@@ -1,5 +1,5 @@
 import { wait } from "./helpers/async.helpers";
-import { dayjsUtc } from "./helpers/date.helpers";
+import { dayjsUtcExtended } from "./helpers/date.helpers";
 
 import type { DbId, DbMeta, Jwt } from "./helpers/schema.helpers";
 import type { User } from "./schemas/user.schemas";
@@ -13,8 +13,8 @@ export const createMockedData = <T extends DbMeta>(
 ) => {
 	return data.map((row, index) => ({
 		id: (index + 1) as DbId,
-		createdAt: dayjsUtc(),
-		updatedAt: dayjsUtc(),
+		createdAt: dayjsUtcExtended(),
+		updatedAt: dayjsUtcExtended(),
 		...row,
 	})) as T[];
 };
@@ -59,7 +59,7 @@ export const mockedAdd = async <
 ): Promise<Type> => {
 	const list = mockData[key];
 	const newId = Math.max(...list.map((curr) => curr.id), 0) + 1;
-	const now = dayjsUtc();
+	const now = dayjsUtcExtended();
 	const added = {
 		id: newId as DbId,
 		createdAt: now,

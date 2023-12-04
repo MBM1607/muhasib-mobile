@@ -1,9 +1,17 @@
+import calendarSystems from "@calidy/dayjs-calendarsystems";
+import IslamicCalendarSystem from "@calidy/dayjs-calendarsystems/calendarSystems/HijriCalendarSystem";
 import dayjs from "dayjs";
+import advancedFormat from "dayjs/plugin/advancedFormat";
 import utc from "dayjs/plugin/utc";
 
-dayjs.extend(utc);
+dayjs.extend(calendarSystems);
+dayjs.extend(advancedFormat);
+dayjs.registerCalendarSystem("islamic", new IslamicCalendarSystem());
 
-export const dayjsUtc = dayjs;
+export const dayjsExtended = dayjs;
+
+dayjs.extend(utc);
+export const dayjsUtcExtended = dayjs;
 
 export const isDate = (value: unknown): value is string | Date => {
 	if (
@@ -47,7 +55,7 @@ export const dayjsFormatPatterns = {
 export const gregorianToJulian = (date: dayjs.Dayjs): number => {
 	let year = date.year();
 	let month = date.month() + 1; // Convert to 1-based month
-	const day = date.date();
+	const day = date.date() as number; // ! Dayjs typings are wrong after including extended plugin
 
 	if (month <= 2) {
 		year -= 1;
