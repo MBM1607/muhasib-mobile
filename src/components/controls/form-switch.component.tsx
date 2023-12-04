@@ -9,6 +9,7 @@ import { Icon } from "../app/icon.component";
 
 import type { Switch as RefType, StyleProp, ViewStyle } from "react-native";
 import type { SwitchProps } from "react-native-paper";
+import type { IconName } from "../app/icon.component";
 
 type styles = {
 	container?: StyleProp<ViewStyle>;
@@ -17,7 +18,7 @@ type styles = {
 	control?: StyleProp<ViewStyle>;
 };
 
-export type FormSwitchProps = Pick<SwitchProps, "disabled"> & {
+type BaseFormSwitchProps = Pick<SwitchProps, "disabled"> & {
 	/** the current value of the input field */
 	value: boolean;
 
@@ -35,10 +36,19 @@ export type FormSwitchProps = Pick<SwitchProps, "disabled"> & {
 
 	/** the caption to show beneath the input */
 	caption?: string;
-
-	/** should the input have an icon to the left side */
-	hasIcon?: boolean;
 };
+export type FormSwitchProps =
+	| (BaseFormSwitchProps & {
+			/** should the input have an icon to the left side */
+			hasIcon?: false;
+	  })
+	| (BaseFormSwitchProps & {
+			/** should the input have an icon to the left side */
+			hasIcon: true;
+
+			/** the icon to show to the left of the input */
+			icon?: IconName;
+	  });
 
 export const FormSwitch = ({
 	value,
@@ -47,8 +57,8 @@ export const FormSwitch = ({
 	label,
 	error,
 	caption,
-	hasIcon,
 	disabled,
+	...props
 }: FormSwitchProps) => {
 	const theme = useTheme();
 	const switchRef = useRef<RefType>(null);
@@ -84,10 +94,10 @@ export const FormSwitch = ({
 							: theme.colors.surface,
 					}}
 				>
-					{hasIcon ? (
+					{props.hasIcon ? (
 						<Icon
 							style={styles?.icon}
-							name={"check"}
+							name={props.icon || "check"}
 							size={20}
 							color={theme.colors.onPrimaryContainer}
 						/>

@@ -19,12 +19,24 @@ export const calculatePrayerTimes = () => {
 	events.emit("calculatePrayerTimes");
 };
 
-export const usePrayerTimesOrNull = (): PrayerTimes | null => {
+export const usePrayerTimes = (): PrayerTimes => {
 	const prayertimes = useContext(PrayerTimesContext);
 	// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
 	if (prayertimes === undefined)
 		throw new Error("usePrayerTimes must be used within a PrayerTimesProvider");
-	return prayertimes;
+	return prayertimes === null
+		? {
+				fajr: "--:--",
+				imsak: "--:--",
+				sunrise: "--:--",
+				dhuhr: "--:--",
+				asr: "--:--",
+				sunset: "--:--",
+				maghrib: "--:--",
+				isha: "--:--",
+				midnight: "--:--",
+		  }
+		: prayertimes;
 };
 
 export const PrayerTimesProvider = ({ children }: PrayerTimesProviderProps) => {

@@ -70,26 +70,6 @@ const Settings = () => {
 				</Card>
 				<Card
 					onPress={() => {
-						router.push("/settings/fasting");
-					}}
-				>
-					<Card.Title
-						title={content.fastingSettings.card.title}
-						titleStyle={{ textTransform: "capitalize", fontSize: 16 }}
-						titleVariant="headlineSmall"
-						subtitleVariant="bodySmall"
-						subtitle={content.fastingSettings.card.description}
-						left={(props) => (
-							<Icon
-								{...props}
-								name="fasting-settings"
-								color={theme.colors.primary}
-							/>
-						)}
-					/>
-				</Card>
-				<Card
-					onPress={() => {
 						router.push("/settings/duas");
 					}}
 				>

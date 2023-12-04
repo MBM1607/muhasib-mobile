@@ -1,7 +1,7 @@
 import { View } from "react-native";
 import { Text, Tooltip } from "react-native-paper";
 
-import { usePrayerTimesOrNull } from "../../contexts/prayer-times.context";
+import { usePrayerTimes } from "../../contexts/prayer-times.context";
 import { useTheme } from "../../hooks/theme.hook";
 import { IconButton } from "../controls/icon-button.component";
 
@@ -15,7 +15,7 @@ type Prayer = {
 
 export const PrayerTimesBar = () => {
 	const theme = useTheme();
-	const prayerTimes = usePrayerTimesOrNull();
+	const prayerTimes = usePrayerTimes();
 	const prayers: Prayer[] = [
 		{
 			name: "Fajr",

@@ -65,7 +65,6 @@ const english = {
 		duas: "duas",
 		settings: "settings",
 		prayerTimesCalculationSettings: "prayer times calculation settings",
-		fastingSettings: "fasting settings",
 		calendarSettings: "calendar settings",
 		duasSettings: "duas settings",
 		userSettings: "user settings",
@@ -94,12 +93,6 @@ const english = {
 		timeFormat: {
 			title: "Time Format",
 			overlayLabel: "Select Time Format",
-		},
-	},
-	fastingSettings: {
-		card: {
-			title: "Fasting",
-			description: "Shawwal Fasting, Monthly Fasting, Ramadan Fasting",
 		},
 	},
 	calendarSettings: {
@@ -143,6 +136,32 @@ const english = {
 		magneticField: "Magnetic Field",
 		kaaba: "Ka'aba",
 		fromTrueNorth: "from True North",
+	},
+	fasting: {
+		fastingInputLabel: "Are you fasting today?",
+		timeTable: "Fasting Time Table",
+		enableNotification: {
+			title: "Enable Fasting Notifications",
+			caption: "Get notified when it's time to start and break your fast",
+		},
+		suhoorNotification: {
+			title: "Suhoor Time",
+			body: "It's time to eat suhoor!",
+		},
+		iftarNotification: {
+			title: "Iftar Time",
+			body: "It's time to break your fast!",
+		},
+	},
+	prayers: {
+		imsak: "Imsak/Suhoor",
+		fajr: "Fajr",
+		sunrise: "Sunrise",
+		dhuhr: "Dhuhr",
+		asr: "Asr",
+		sunset: "Sunset/Iftar",
+		maghrib: "Maghrib",
+		isha: "Isha",
 	},
 };
 
@@ -200,7 +219,6 @@ const urdu: Content = {
 		duas: "دعائیں",
 		settings: "ترتیبات",
 		prayerTimesCalculationSettings: "نمازیں کی ترتیبات",
-		fastingSettings: "روزوں کی ترتیبات",
 		calendarSettings: "کیلنڈر کی ترتیبات",
 		duasSettings: "دعائیں کی ترتیبات",
 		userSettings: "صارف کی ترتیبات",
@@ -235,12 +253,6 @@ const urdu: Content = {
 		timeFormat: {
 			title: "وقت کی شکل",
 			overlayLabel: "وقت کی شکل منتخب کریں",
-		},
-	},
-	fastingSettings: {
-		card: {
-			title: "روزے",
-			description: "شوال روزہ ، ماہانہ روزہ ، رمضان روزہ",
 		},
 	},
 	calendarSettings: {
@@ -280,6 +292,32 @@ const urdu: Content = {
 	share: {
 		title: "محاسب کو شیئر کریں",
 		message: "محاسب کو دیکھیں ، ایک مسلمان اکاؤنٹیبلٹی ایپ",
+	},
+	fasting: {
+		enableNotification: {
+			title: "روزے کی اطلاعات کو فعال کریں",
+			caption: "اطلاعات کو فعال کریں جب روزے کا وقت ہو",
+		},
+		suhoorNotification: {
+			title: "سحری کا وقت",
+			body: "اب سحری کا وقت ہے!",
+		},
+		iftarNotification: {
+			title: "افطار کا وقت",
+			body: "اب افطار کا وقت ہے!",
+		},
+		fastingInputLabel: "کیا آپ آج روزہ رکھ رہے ہیں؟",
+		timeTable: "روزے کا وقت کا جدول",
+	},
+	prayers: {
+		imsak: "اِمساک / سحری",
+		fajr: "فجر",
+		sunrise: "طلوع آفتاب",
+		dhuhr: "ظہر",
+		asr: "عصر",
+		sunset: "غروب آفتاب / افطار",
+		maghrib: "مغرب",
+		isha: "عشاء",
 	},
 };
 
