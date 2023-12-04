@@ -82,6 +82,7 @@ export const ScreenWrapper = ({
 								style={iconMargin}
 								onPress={() => {
 									router.back();
+									// router.push("/");
 								}}
 							/>
 						)}

@@ -2,66 +2,79 @@ import { createContext, useContext, useEffect, useState } from "react";
 
 import { events } from "../helpers/events.helpers";
 import { createStore } from "../helpers/store.helpers";
-import { notificationSettingsSchema } from "../schemas/notification-settings.schemas";
+import { notificationsSettingsSchema } from "../schemas/notification-settings.schemas";
 
 import type { PropsWithChildren } from "react";
-import type { NotificationSettings } from "../schemas/notification-settings.schemas";
+import type { NotificationsSettings } from "../schemas/notification-settings.schemas";
 
-export const DEFAULT_NOTIFICATION_SETTINGS: NotificationSettings = {
+export const DEFAULT_NOTIFICATION_SETTINGS: NotificationsSettings = {
 	fastingReminders: true,
 	prayerReminders: true,
+	announcements: true,
 };
 
-export const notificationSettingsStore = createStore({
+export const notificationsSettingsStore = createStore({
 	key: "notification-settings",
-	schema: notificationSettingsSchema,
+	schema: notificationsSettingsSchema,
 	secureStore: true,
 });
 
-const NotificationSettingsContext = createContext(
+const NotificationsSettingsContext = createContext(
 	DEFAULT_NOTIFICATION_SETTINGS,
 );
 
-type NotificationSettingsProviderProps = PropsWithChildren<{
-	defaultNotificationSettings: NotificationSettings;
+type NotificationsSettingsProviderProps = PropsWithChildren<{
+	defaultNotificationsSettings: NotificationsSettings;
 }>;
 
-export const NotificationSettingsProvider = ({
+export const NotificationsSettingsProvider = ({
 	children,
-	defaultNotificationSettings,
-}: NotificationSettingsProviderProps) => {
-	const [notificationSettings, setNotificationSettings] = useState(
-		defaultNotificationSettings,
+	defaultNotificationsSettings,
+}: NotificationsSettingsProviderProps) => {
+	const [notificationsSettings, setNotificationsSettings] = useState(
+		defaultNotificationsSettings,
 	);
 
 	useEffect(() => {
 		const toggleFastingReminder = events.listen("toggleFastingReminder", () => {
-			setNotificationSettings((oldNotificationSettings) => {
-				const newNotificationSettings = {
-					...oldNotificationSettings,
-					fastingReminders: !oldNotificationSettings.fastingReminders,
+			setNotificationsSettings((oldNotificationsSettings) => {
+				const newNotificationsSettings = {
+					...oldNotificationsSettings,
+					fastingReminders: !oldNotificationsSettings.fastingReminders,
 				};
 
-				notificationSettingsStore.set(newNotificationSettings);
-				return newNotificationSettings;
+				notificationsSettingsStore.set(newNotificationsSettings);
+				return newNotificationsSettings;
 			});
 		});
 
 		const togglePrayerReminder = events.listen("togglePrayerReminder", () => {
-			setNotificationSettings((oldNotificationSettings) => {
-				const newNotificationSettings = {
-					...oldNotificationSettings,
-					prayerReminders: !oldNotificationSettings.prayerReminders,
+			setNotificationsSettings((oldNotificationsSettings) => {
+				const newNotificationsSettings = {
+					...oldNotificationsSettings,
+					prayerReminders: !oldNotificationsSettings.prayerReminders,
 				};
 
-				notificationSettingsStore.set(newNotificationSettings);
-				return newNotificationSettings;
+				notificationsSettingsStore.set(newNotificationsSettings);
+				return newNotificationsSettings;
+			});
+		});
+
+		const toggleAnnouncements = events.listen("toggleAnnouncements", () => {
+			setNotificationsSettings((oldNotificationsSettings) => {
+				const newNotificationsSettings = {
+					...oldNotificationsSettings,
+					announcements: !oldNotificationsSettings.announcements,
+				};
+
+				notificationsSettingsStore.set(newNotificationsSettings);
+				return newNotificationsSettings;
 			});
 		});
 
 		(async () => {
-			setNotificationSettings(
-				(await notificationSettingsStore.get()) ||
+			setNotificationsSettings(
+				(await notificationsSettingsStore.get()) ||
 					DEFAULT_NOTIFICATION_SETTINGS,
 			);
 		})();
@@ -69,13 +82,14 @@ export const NotificationSettingsProvider = ({
 		return () => {
 			toggleFastingReminder.remove();
 			togglePrayerReminder.remove();
+			toggleAnnouncements.remove();
 		};
 	}, []);
 
 	return (
-		<NotificationSettingsContext.Provider value={notificationSettings}>
+		<NotificationsSettingsContext.Provider value={notificationsSettings}>
 			{children}
-		</NotificationSettingsContext.Provider>
+		</NotificationsSettingsContext.Provider>
 	);
 };
 
@@ -89,14 +103,19 @@ export const togglePrayerReminder = () => {
 	events.emit("togglePrayerReminder");
 };
 
-export const useNotificationSettings = (): NotificationSettings => {
-	const notificationSettings = useContext(NotificationSettingsContext);
+/** Fires the toggleAnnouncements event */
+export const toggleAnnouncements = () => {
+	events.emit("toggleAnnouncements");
+};
+
+export const useNotificationsSettings = (): NotificationsSettings => {
+	const notificationsSettings = useContext(NotificationsSettingsContext);
 	// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-	if (notificationSettings === undefined) {
+	if (notificationsSettings === undefined) {
 		throw new Error(
-			"useNotificationSettings must be used within a NotificationSettingsProvider",
+			"useNotificationsSettings must be used within a NotificationsSettingsProvider",
 		);
 	}
 
-	return notificationSettings;
+	return notificationsSettings;
 };

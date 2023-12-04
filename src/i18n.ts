@@ -66,6 +66,7 @@ const english = {
 		prayerTimesCalculationSettings: "prayer times calculation settings",
 		calendarSettings: "calendar settings",
 		duasSettings: "duas settings",
+		notificationsSettings: "notification settings",
 		userSettings: "user settings",
 		notFound: "not found",
 		login: "login",
@@ -104,6 +105,16 @@ const english = {
 		card: {
 			title: "Duas",
 			description: "Which Duas to Show",
+		},
+	},
+	notificationsSettings: {
+		card: {
+			title: "Notifications",
+			description: "Which Notifications to Show",
+		},
+		enableAnnouncements: {
+			title: "Enable Announcements",
+			caption: "Get notified about new features and updates",
 		},
 	},
 	userSettings: {
@@ -232,6 +243,7 @@ const urdu: Content = {
 		prayerTimesCalculationSettings: "نمازیں کی ترتیبات",
 		calendarSettings: "کیلنڈر کی ترتیبات",
 		duasSettings: "دعائیں کی ترتیبات",
+		notificationsSettings: "اطلاعات کی ترتیبات",
 		userSettings: "صارف کی ترتیبات",
 		notFound: "نامعلوم صفحہ",
 		login: "داخلہ",
@@ -276,6 +288,16 @@ const urdu: Content = {
 		card: {
 			title: "دعائیں",
 			description: "کون سی دعائیں دکھائیں",
+		},
+	},
+	notificationsSettings: {
+		card: {
+			title: "اطلاعات",
+			description: "کون سی اطلاعات دکھائیں",
+		},
+		enableAnnouncements: {
+			title: "اعلانات کو فعال کریں",
+			caption: "نئی خصوصیات اور اپ ڈیٹس کے بارے میں مطلع کریں",
 		},
 	},
 	userSettings: {

@@ -11,7 +11,7 @@ import { ScreenWrapper } from "../../components/layout/screen-wrapper.component"
 import { useI18n } from "../../contexts/i18n.context";
 import {
 	togglePrayerReminder,
-	useNotificationSettings,
+	useNotificationsSettings,
 } from "../../contexts/notification-settings.context";
 import { usePrayers } from "../../contexts/prayers.context";
 import { useTheme } from "../../hooks/theme.hook";
@@ -28,7 +28,7 @@ const Prayers = () => {
 	const { content } = useI18n();
 	const theme = useTheme();
 	const prayers = usePrayers();
-	const notificationSettings = useNotificationSettings();
+	const notificationsSettings = useNotificationsSettings();
 
 	const [datePrayers, setDatePrayers] =
 		useState<PerformablePrayer>(UNFILLED_PRAYER_DATA);
@@ -149,7 +149,7 @@ const Prayers = () => {
 			<FormSwitch
 				label={content.prayers.enableNotification.title}
 				caption={content.prayers.enableNotification.caption}
-				value={notificationSettings.prayerReminders}
+				value={notificationsSettings.prayerReminders}
 				hasIcon={true}
 				icon="notifications"
 				onChange={() => {

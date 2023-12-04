@@ -22,24 +22,6 @@ export const TopBar = () => {
 		>
 			<Surface
 				style={{
-					backgroundColor: theme.colors.primaryContainer,
-					borderRadius: 50,
-				}}
-			>
-				<IconButton
-					icon="settings"
-					style={{
-						backgroundColor: theme.colors.primaryContainer,
-						flex: 1,
-					}}
-					onPress={() => {
-						router.push("/settings");
-					}}
-				/>
-			</Surface>
-
-			<Surface
-				style={{
 					flex: 1,
 					backgroundColor: theme.colors.primaryContainer,
 					borderRadius: 25,
@@ -77,6 +59,24 @@ export const TopBar = () => {
 						</Text>
 					</>
 				</TouchableRipple>
+			</Surface>
+
+			<Surface
+				style={{
+					backgroundColor: theme.colors.primaryContainer,
+					borderRadius: 50,
+				}}
+			>
+				<IconButton
+					icon="settings"
+					style={{
+						backgroundColor: theme.colors.primaryContainer,
+						flex: 1,
+					}}
+					onPress={() => {
+						router.push("/settings");
+					}}
+				/>
 			</Surface>
 		</View>
 	);

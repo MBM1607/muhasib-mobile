@@ -38,6 +38,7 @@ export type EventMap = {
 	toggleFastingRecord: string;
 	toggleFastingReminder: undefined;
 	togglePrayerReminder: undefined;
+	toggleAnnouncements: undefined;
 };
 
 export const events = {

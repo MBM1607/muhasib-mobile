@@ -10,7 +10,7 @@ import {
 import { useI18n } from "../../contexts/i18n.context";
 import {
 	toggleFastingReminder,
-	useNotificationSettings,
+	useNotificationsSettings,
 } from "../../contexts/notification-settings.context";
 import { usePrayerTimes } from "../../contexts/prayer-times.context";
 import { dayjsExtended } from "../../helpers/date.helpers";
@@ -20,7 +20,7 @@ const Fasting = () => {
 	const prayerTimes = usePrayerTimes();
 	const today = dayjsExtended().format("YYYY-MM-DD");
 	const fastingRecord = useFastingRecord();
-	const notificationSettings = useNotificationSettings();
+	const notificationsSettings = useNotificationsSettings();
 
 	return (
 		<ScreenWrapper
@@ -81,7 +81,7 @@ const Fasting = () => {
 			<FormSwitch
 				label={content.fasting.enableNotification.title}
 				caption={content.fasting.enableNotification.caption}
-				value={notificationSettings.fastingReminders}
+				value={notificationsSettings.fastingReminders}
 				hasIcon={true}
 				icon="notifications"
 				onChange={() => {

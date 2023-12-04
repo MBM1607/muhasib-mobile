@@ -1,10 +1,10 @@
 import { useRouter } from "expo-router";
-import { Linking, Share, View } from "react-native";
+import { View } from "react-native";
 import { Card } from "react-native-paper";
 
 import { Icon } from "../../../components/app/icon.component";
 import { ScreenWrapper } from "../../../components/layout/screen-wrapper.component";
-import { STORE_URL } from "../../../constants";
+import { MetaAppOptions } from "../../../components/settings/meta-app-options";
 import { useI18n } from "../../../contexts/i18n.context";
 import { useTheme } from "../../../hooks/theme.hook";
 
@@ -90,6 +90,26 @@ const Settings = () => {
 				</Card>
 				<Card
 					onPress={() => {
+						router.push("/settings/notifications");
+					}}
+				>
+					<Card.Title
+						title={content.notificationsSettings.card.title}
+						titleStyle={{ textTransform: "capitalize", fontSize: 16 }}
+						titleVariant="headlineSmall"
+						subtitleVariant="bodySmall"
+						subtitle={content.notificationsSettings.card.description}
+						left={(props) => (
+							<Icon
+								{...props}
+								name="notification-settings"
+								color={theme.colors.primary}
+							/>
+						)}
+					/>
+				</Card>
+				<Card
+					onPress={() => {
 						router.push("/settings/user");
 					}}
 				>
@@ -109,77 +129,7 @@ const Settings = () => {
 					/>
 				</Card>
 			</View>
-			<View style={{ gap: 8 }}>
-				<Card
-					onPress={() => {
-						Linking.openURL(STORE_URL);
-					}}
-				>
-					<Card.Title
-						title={content.settings.rateCard.title}
-						titleStyle={{ textTransform: "capitalize", fontSize: 16 }}
-						titleVariant="headlineSmall"
-						subtitleVariant="bodySmall"
-						subtitle={content.settings.rateCard.description}
-						left={(props) => (
-							<Icon
-								{...props}
-								name="rate"
-								color={theme.colors.primary}
-							/>
-						)}
-					/>
-				</Card>
-				<Card
-					onPress={() => {
-						Share.share(
-							{
-								title: content.share.title,
-								message: content.share.message,
-								url: STORE_URL,
-							},
-							{
-								dialogTitle: content.share.title,
-							},
-						);
-					}}
-				>
-					<Card.Title
-						title={content.settings.shareCard.title}
-						titleStyle={{ textTransform: "capitalize", fontSize: 16 }}
-						titleVariant="headlineSmall"
-						subtitleVariant="bodySmall"
-						subtitle={content.settings.shareCard.description}
-						left={(props) => (
-							<Icon
-								{...props}
-								name="share"
-								color={theme.colors.primary}
-							/>
-						)}
-					/>
-				</Card>
-				<Card
-					onPress={() => {
-						Linking.openURL("mailto:me@muhammadkhan.dev");
-					}}
-				>
-					<Card.Title
-						title={content.settings.contactCard.title}
-						titleStyle={{ textTransform: "capitalize", fontSize: 16 }}
-						titleVariant="headlineSmall"
-						subtitleVariant="bodySmall"
-						subtitle={content.settings.contactCard.description}
-						left={(props) => (
-							<Icon
-								{...props}
-								name="contact"
-								color={theme.colors.primary}
-							/>
-						)}
-					/>
-				</Card>
-			</View>
+			<MetaAppOptions />
 		</ScreenWrapper>
 	);
 };

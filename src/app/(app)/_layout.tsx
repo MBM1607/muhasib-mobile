@@ -12,8 +12,8 @@ import {
 } from "../../contexts/location.context";
 import {
 	DEFAULT_NOTIFICATION_SETTINGS,
-	NotificationSettingsProvider,
-	notificationSettingsStore,
+	NotificationsSettingsProvider,
+	notificationsSettingsStore,
 } from "../../contexts/notification-settings.context";
 import { PrayerTimesProvider } from "../../contexts/prayer-times.context";
 import { PrayersProvider, prayersStore } from "../../contexts/prayers.context";
@@ -25,8 +25,8 @@ const RootLayout = () => {
 	const [[isLoadingPrayers, prayers]] = useStorage(prayersStore);
 	const [[isLoadingFastingRecord, fastingRecord]] =
 		useStorage(fastingRecordStore);
-	const [[isLoadingNotificationSettings, notificationSettings]] = useStorage(
-		notificationSettingsStore,
+	const [[isLoadingNotificationsSettings, notificationsSettings]] = useStorage(
+		notificationsSettingsStore,
 	);
 
 	if (
@@ -34,7 +34,7 @@ const RootLayout = () => {
 		isLoadingLocation ||
 		isLoadingPrayers ||
 		isLoadingFastingRecord ||
-		isLoadingNotificationSettings
+		isLoadingNotificationsSettings
 	)
 		return null;
 
@@ -43,9 +43,9 @@ const RootLayout = () => {
 			<LocationProvider defaultLocation={location}>
 				<PrayersProvider defaultPrayers={prayers || {}}>
 					<FastingRecordProvider defaultFastingRecord={fastingRecord || {}}>
-						<NotificationSettingsProvider
-							defaultNotificationSettings={
-								notificationSettings || DEFAULT_NOTIFICATION_SETTINGS
+						<NotificationsSettingsProvider
+							defaultNotificationsSettings={
+								notificationsSettings || DEFAULT_NOTIFICATION_SETTINGS
 							}
 						>
 							<CalculationSettingsProvider>
@@ -53,7 +53,7 @@ const RootLayout = () => {
 									<Slot />
 								</PrayerTimesProvider>
 							</CalculationSettingsProvider>
-						</NotificationSettingsProvider>
+						</NotificationsSettingsProvider>
 					</FastingRecordProvider>
 				</PrayersProvider>
 			</LocationProvider>

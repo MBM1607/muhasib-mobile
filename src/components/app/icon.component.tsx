@@ -62,6 +62,7 @@ export const appIconMap = {
 	"calendar-settings": "calendar-edit",
 	"fasting-settings": "food-apple-outline",
 	"duas-settings": "hands-pray",
+	"notification-settings": "bell-ring-outline",
 	"user-settings": "account-settings",
 	Jamaat: "checkbox-marked-circle",
 	Infradi: "checkbox-marked-circle-plus-outline",

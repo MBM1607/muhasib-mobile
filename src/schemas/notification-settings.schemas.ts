@@ -1,8 +1,9 @@
 import { z } from "zod";
 
-export const notificationSettingsSchema = z.strictObject({
+export const notificationsSettingsSchema = z.strictObject({
 	fastingReminders: z.boolean(),
 	prayerReminders: z.boolean(),
+	announcements: z.boolean(),
 });
 
-export type NotificationSettings = z.infer<typeof notificationSettingsSchema>;
+export type NotificationsSettings = z.infer<typeof notificationsSettingsSchema>;
