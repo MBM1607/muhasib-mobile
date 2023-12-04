@@ -9,7 +9,7 @@ import { useI18n } from "../../../contexts/i18n.context";
 import { useTheme } from "../../../hooks/theme.hook";
 
 const Settings = () => {
-	const { content, rtl } = useI18n();
+	const { content } = useI18n();
 	const theme = useTheme();
 	const router = useRouter();
 

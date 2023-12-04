@@ -171,7 +171,7 @@ export const getPrayerTimes = (
 		asrJuristicMethod: "Standard",
 		midnightMode: "Standard",
 		highLatitudeMethod: "NightMiddle",
-		timeFormat: "24h",
+		timeFormat: "12h",
 		imsakAdjustment: {
 			type: "minutes",
 			value: 10,

@@ -79,6 +79,22 @@ const english = {
 			title: "Calculation",
 			description: "Method, Corrections, Adjustments",
 		},
+		calculationMethod: {
+			title: "Calculation Method",
+			overlayLabel: "Select Calculation Method",
+		},
+		asrMethod: {
+			title: "Asr Method",
+			overlayLabel: "Select Asr Method",
+		},
+		highLatitudeMethod: {
+			title: "High Latitude Method",
+			overlayLabel: "Select High Latitude Method",
+		},
+		timeFormat: {
+			title: "Time Format",
+			overlayLabel: "Select Time Format",
+		},
 	},
 	fastingSettings: {
 		card: {
@@ -203,6 +219,22 @@ const urdu: Content = {
 		card: {
 			title: "حساب",
 			description: "طریقہ ، اصلاحات ، ترتیبات",
+		},
+		calculationMethod: {
+			title: "حساب کا طریقہ",
+			overlayLabel: "حساب کا طریقہ منتخب کریں",
+		},
+		asrMethod: {
+			title: "عصر کا طریقہ",
+			overlayLabel: "عصر کا طریقہ منتخب کریں",
+		},
+		highLatitudeMethod: {
+			title: "اعلیٰ طول و عرض کا طریقہ",
+			overlayLabel: "اعلیٰ طول و عرض کا طریقہ منتخب کریں",
+		},
+		timeFormat: {
+			title: "وقت کی شکل",
+			overlayLabel: "وقت کی شکل منتخب کریں",
 		},
 	},
 	fastingSettings: {
