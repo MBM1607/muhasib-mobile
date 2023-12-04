@@ -1,6 +1,9 @@
 /* cSpell: disable */
 
+import { Platform } from "react-native";
 import { z } from "zod";
+
+const isAndroid = Platform.OS === "android";
 
 export const languages = ["english", "urdu"] as const;
 
@@ -70,6 +73,54 @@ const english = {
 		login: "login",
 		register: "register",
 		resetPassword: "reset password",
+	},
+	prayerTimesCalculationSettings: {
+		card: {
+			title: "Calculation",
+			description: "Method, Corrections, Adjustments",
+		},
+	},
+	fastingSettings: {
+		card: {
+			title: "Fasting",
+			description: "Shawwal Fasting, Monthly Fasting, Ramadan Fasting",
+		},
+	},
+	calendarSettings: {
+		card: {
+			title: "Calendar",
+			description: "Hijri Date Adjustment",
+		},
+	},
+	duasSettings: {
+		card: {
+			title: "Duas",
+			description: "Which Duas to Show",
+		},
+	},
+	userSettings: {
+		card: {
+			title: "User",
+			description: "Login, Logout, Register",
+		},
+	},
+	settings: {
+		rateCard: {
+			title: "Rate",
+			description: `Rate Muhasib on the ${isAndroid ? "Play" : "App"} Store`,
+		},
+		shareCard: {
+			title: "Share",
+			description: "Share Muhasib with your friends",
+		},
+		contactCard: {
+			title: "Contact",
+			description: "Contact the developer",
+		},
+	},
+	share: {
+		title: "Share Muhasib",
+		message: "Check out Muhasib, a Muslim Accountabilty App",
 	},
 	qibla: {
 		trueNorth: "True North",
@@ -147,6 +198,56 @@ const urdu: Content = {
 		magneticField: "مقناطیسی میدان",
 		kaaba: "کعبہ",
 		fromTrueNorth: "سچا شمال سے",
+	},
+	prayerTimesCalculationSettings: {
+		card: {
+			title: "حساب",
+			description: "طریقہ ، اصلاحات ، ترتیبات",
+		},
+	},
+	fastingSettings: {
+		card: {
+			title: "روزے",
+			description: "شوال روزہ ، ماہانہ روزہ ، رمضان روزہ",
+		},
+	},
+	calendarSettings: {
+		card: {
+			title: "کیلنڈر",
+			description: "ہجری تاریخ کی ترمیم",
+		},
+	},
+	duasSettings: {
+		card: {
+			title: "دعائیں",
+			description: "کون سی دعائیں دکھائیں",
+		},
+	},
+	userSettings: {
+		card: {
+			title: "صارف",
+			description: "داخل ہوں ، خارج ہوں ، اندراج",
+		},
+	},
+	settings: {
+		rateCard: {
+			title: "درجہ بندی",
+			description: `محاسب کو ${
+				isAndroid ? "پلے" : "ایپ"
+			} سٹور پر درجہ بندی کریں`,
+		},
+		shareCard: {
+			title: "شیئر",
+			description: "محاسب کو اپنے دوستوں کے ساتھ شیئر کریں",
+		},
+		contactCard: {
+			title: "رابطہ",
+			description: "ڈیویلپر سے رابطہ کریں",
+		},
+	},
+	share: {
+		title: "محاسب کو شیئر کریں",
+		message: "محاسب کو دیکھیں ، ایک مسلمان اکاؤنٹیبلٹی ایپ",
 	},
 };
 

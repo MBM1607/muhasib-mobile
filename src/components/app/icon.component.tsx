@@ -9,6 +9,9 @@ import type {
 type map = typeof Component extends Type<infer T, string> ? T : never;
 
 export const appIconMap = {
+	rate: "star",
+	share: "share-variant",
+	contact: "email-outline",
 	logout: "power",
 	"user-account": "account-circle-outline",
 	"light-mode": "white-balance-sunny",
@@ -56,6 +59,12 @@ export const appIconMap = {
 	quran: "book-open-variant",
 	fasting: "food-apple-outline",
 	"ai-chat": "robot",
+	// PRayer times icon should be sliders showing different method adjustments
+	"prayer-times-calculation-settings": "abacus",
+	"calendar-settings": "calendar-edit",
+	"fasting-settings": "food-apple-outline",
+	"duas-settings": "hands-pray",
+	"user-settings": "account-settings",
 } as const;
 
 type _ =
