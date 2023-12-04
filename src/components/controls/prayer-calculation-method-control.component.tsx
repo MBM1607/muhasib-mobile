@@ -1,13 +1,16 @@
 import { useState } from "react";
 import { Card, Menu } from "react-native-paper";
 
+import {
+	setCalculationMethod,
+	useCalculationSettings,
+} from "../../contexts/calculation-settings.context";
 import { useI18n } from "../../contexts/i18n.context";
 import { useTheme } from "../../hooks/theme.hook";
 import { CALCULATION_METHOD_NAMES } from "../../schemas/prayer-times.schemas";
 import { appIconMap } from "../app/icon.component";
 
 import type { StyleProp, ViewStyle } from "react-native";
-import type { CalculationMethodName } from "../../schemas/prayer-times.schemas";
 
 export type PrayerCalculationMethodControlProps = {
 	buttonStyle?: StyleProp<ViewStyle>;
@@ -18,10 +21,8 @@ export const PrayerCalculationMethodControl = ({
 }: PrayerCalculationMethodControlProps) => {
 	const { content } = useI18n();
 	const theme = useTheme();
+	const calculationSettings = useCalculationSettings();
 
-	const [selectedMethod, setSelectedMethod] = useState<CalculationMethodName>(
-		"Muslim World League",
-	);
 	const [visible, setVisible] = useState(false);
 
 	// TODO - Find a way to fix the issue of menu text overflowing, at the moment
@@ -54,7 +55,7 @@ export const PrayerCalculationMethodControl = ({
 						titleStyle={{ textTransform: "capitalize", fontSize: 16 }}
 						titleVariant="headlineSmall"
 						subtitleVariant="bodySmall"
-						subtitle={selectedMethod}
+						subtitle={calculationSettings.calculationMethod}
 						title={
 							content.prayerTimesCalculationSettings.calculationMethod.title
 						}
@@ -71,17 +72,21 @@ export const PrayerCalculationMethodControl = ({
 					title={method}
 					titleStyle={{ textTransform: "capitalize" }}
 					leadingIcon={
-						appIconMap[method === selectedMethod ? "checked" : "unchecked"]
+						appIconMap[
+							method === calculationSettings.calculationMethod
+								? "checked"
+								: "unchecked"
+						]
 					}
 					style={{
 						backgroundColor:
-							method === selectedMethod
+							method === calculationSettings.calculationMethod
 								? theme.getColor("primary", "container")
 								: undefined,
 						borderRadius: 6,
 					}}
 					onPress={() => {
-						setSelectedMethod(method);
+						setCalculationMethod(method);
 						setVisible(false);
 					}}
 				/>

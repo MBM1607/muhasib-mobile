@@ -4,6 +4,12 @@ import type { SetStateAction } from "react";
 import type { AlertModalProps } from "../components/feedback/alert-modal.component";
 import type { Language } from "../i18n";
 import type { Location } from "../schemas/location.schemas";
+import type {
+	AsrJuristicMethodName,
+	CalculationMethodName,
+	HighLatitudeMethod,
+	TimeFormat,
+} from "../schemas/prayer-times.schemas";
 import type { LoggedInUser } from "../schemas/user.schemas";
 
 export type EventMap = {
@@ -16,6 +22,10 @@ export type EventMap = {
 	setIsLoading: SetStateAction<boolean> | Promise<unknown>;
 	updateLanguage: SetStateAction<Language>;
 	calculatePrayerTimes: undefined;
+	setCalculationMethod: CalculationMethodName;
+	setAsrMethod: AsrJuristicMethodName;
+	setHighLatitudeMethod: HighLatitudeMethod;
+	setTimeFormat: TimeFormat;
 };
 
 export const events = {

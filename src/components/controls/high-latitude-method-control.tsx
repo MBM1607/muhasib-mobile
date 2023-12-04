@@ -1,13 +1,16 @@
 import { useState } from "react";
 import { Card, Menu } from "react-native-paper";
 
+import {
+	setHighLatitudeMethod,
+	useCalculationSettings,
+} from "../../contexts/calculation-settings.context";
 import { useI18n } from "../../contexts/i18n.context";
 import { useTheme } from "../../hooks/theme.hook";
 import { HIGH_LATITUDE_METHOD_NAMES } from "../../schemas/prayer-times.schemas";
 import { appIconMap } from "../app/icon.component";
 
 import type { StyleProp, ViewStyle } from "react-native";
-import type { HighLatitudeMethod } from "../../schemas/prayer-times.schemas";
 
 export type HighLatitudeMethodControlProps = {
 	buttonStyle?: StyleProp<ViewStyle>;
@@ -18,9 +21,8 @@ export const HighLatitudeMethodControl = ({
 }: HighLatitudeMethodControlProps) => {
 	const { content } = useI18n();
 	const theme = useTheme();
+	const calculationSettings = useCalculationSettings();
 
-	const [selectedMethod, setSelectedMethod] =
-		useState<HighLatitudeMethod>("AngleBased");
 	const [visible, setVisible] = useState(false);
 
 	return (
@@ -49,7 +51,7 @@ export const HighLatitudeMethodControl = ({
 						titleStyle={{ textTransform: "capitalize", fontSize: 16 }}
 						titleVariant="headlineSmall"
 						subtitleVariant="bodySmall"
-						subtitle={selectedMethod}
+						subtitle={calculationSettings.highLatitudeMethod}
 						title={
 							content.prayerTimesCalculationSettings.highLatitudeMethod.title
 						}
@@ -65,17 +67,21 @@ export const HighLatitudeMethodControl = ({
 					key={method}
 					title={method}
 					leadingIcon={
-						appIconMap[method === selectedMethod ? "checked" : "unchecked"]
+						appIconMap[
+							method === calculationSettings.highLatitudeMethod
+								? "checked"
+								: "unchecked"
+						]
 					}
 					style={{
 						backgroundColor:
-							method === selectedMethod
+							method === calculationSettings.highLatitudeMethod
 								? theme.getColor("primary", "container")
 								: undefined,
 						borderRadius: 6,
 					}}
 					onPress={() => {
-						setSelectedMethod(method);
+						setHighLatitudeMethod(method);
 						setVisible(false);
 					}}
 				/>

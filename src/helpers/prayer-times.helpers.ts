@@ -46,10 +46,10 @@ import type { Dayjs } from "dayjs";
 import type { Coords } from "../schemas/location.schemas";
 import type {
 	AsrJuristicMethodName,
+	CalculationSettings,
 	HighLatitudeMethodSansNone,
 	PrayerTimeName,
 	PrayerTimes,
-	PrayerTimesOptions,
 	PrayerTimesRaw,
 	TimeFormat,
 } from "../schemas/prayer-times.schemas";
@@ -130,7 +130,7 @@ export const getFormattedTime = (
 	const fixedTime = fixHour(time + 0.5 / 60); // add 0.5 minutes to round
 	const hours = Math.floor(fixedTime);
 	const minutes = Math.floor((fixedTime - hours) * 60);
-	const suffix = timeFormat === "24h" ? "" : hours >= 12 ? "PM" : "AM";
+	const suffix = timeFormat === "24h" ? "" : hours >= 12 ? " PM" : " AM";
 	const formattedHours =
 		timeFormat === "24h" ? hours : ((hours + 12 - 1) % 12) + 1;
 
@@ -166,21 +166,7 @@ export const getFormattedTimes = (
 export const getPrayerTimes = (
 	date: Dayjs,
 	coords: Coords,
-	options: PrayerTimesOptions = {
-		calculationMethod: "Muslim World League",
-		asrJuristicMethod: "Standard",
-		midnightMode: "Standard",
-		highLatitudeMethod: "NightMiddle",
-		timeFormat: "12h",
-		imsakAdjustment: {
-			type: "minutes",
-			value: 10,
-		},
-		dhuhrAdjustment: {
-			type: "minutes",
-			value: 0,
-		},
-	},
+	options: CalculationSettings,
 ): PrayerTimes => {
 	const calculationParams = CALCULATION_METHODS[options.calculationMethod];
 	const julianDate = gregorianToJulian(date);

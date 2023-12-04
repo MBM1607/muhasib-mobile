@@ -1,13 +1,16 @@
 import { useState } from "react";
 import { Card, Menu } from "react-native-paper";
 
+import {
+	setTimeFormat,
+	useCalculationSettings,
+} from "../../contexts/calculation-settings.context";
 import { useI18n } from "../../contexts/i18n.context";
 import { useTheme } from "../../hooks/theme.hook";
 import { TIME_FORMATS } from "../../schemas/prayer-times.schemas";
 import { appIconMap } from "../app/icon.component";
 
 import type { StyleProp, ViewStyle } from "react-native";
-import type { TimeFormat } from "../../schemas/prayer-times.schemas";
 
 export type TimeFormatControlProps = {
 	buttonStyle?: StyleProp<ViewStyle>;
@@ -16,8 +19,8 @@ export type TimeFormatControlProps = {
 export const TimeFormatControl = ({ buttonStyle }: TimeFormatControlProps) => {
 	const { content } = useI18n();
 	const theme = useTheme();
+	const calculationSettings = useCalculationSettings();
 
-	const [selectedFormat, setSelectedFormat] = useState<TimeFormat>("12h");
 	const [visible, setVisible] = useState(false);
 
 	return (
@@ -46,7 +49,7 @@ export const TimeFormatControl = ({ buttonStyle }: TimeFormatControlProps) => {
 						titleStyle={{ textTransform: "capitalize", fontSize: 16 }}
 						titleVariant="headlineSmall"
 						subtitleVariant="bodySmall"
-						subtitle={selectedFormat}
+						subtitle={calculationSettings.timeFormat}
 						title={content.prayerTimesCalculationSettings.timeFormat.title}
 					/>
 				</Card>
@@ -61,17 +64,21 @@ export const TimeFormatControl = ({ buttonStyle }: TimeFormatControlProps) => {
 					title={method}
 					titleStyle={{ textTransform: "capitalize" }}
 					leadingIcon={
-						appIconMap[method === selectedFormat ? "checked" : "unchecked"]
+						appIconMap[
+							method === calculationSettings.timeFormat
+								? "checked"
+								: "unchecked"
+						]
 					}
 					style={{
 						backgroundColor:
-							method === selectedFormat
+							method === calculationSettings.timeFormat
 								? theme.getColor("primary", "container")
 								: undefined,
 						borderRadius: 6,
 					}}
 					onPress={() => {
-						setSelectedFormat(method);
+						setTimeFormat(method);
 						setVisible(false);
 					}}
 				/>

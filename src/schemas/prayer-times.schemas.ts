@@ -243,7 +243,7 @@ export type HighLatitudeMethodSansNone = Exclude<HighLatitudeMethod, "None">;
 export type PrayerTimes = Record<PrayerTimeName, string>;
 export type PrayerTimesRaw = Record<PrayerTimeName, number>;
 
-export type PrayerTimesOptions = {
+export type CalculationSettings = {
 	calculationMethod: CalculationMethodName;
 	asrJuristicMethod: AsrJuristicMethodName;
 	midnightMode: MidnightModeName;

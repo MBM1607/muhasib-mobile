@@ -1,6 +1,7 @@
 import { Slot } from "expo-router";
 
 import { AuthProvider, authStore } from "../../contexts/auth.context";
+import { CalculationSettingsProvider } from "../../contexts/calculation-settings.context";
 import {
 	LocationProvider,
 	locationStore,
@@ -17,9 +18,11 @@ const RootLayout = () => {
 	return (
 		<AuthProvider defaultUser={user}>
 			<LocationProvider defaultLocation={location}>
-				<PrayerTimesProvider>
-					<Slot />
-				</PrayerTimesProvider>
+				<CalculationSettingsProvider>
+					<PrayerTimesProvider>
+						<Slot />
+					</PrayerTimesProvider>
+				</CalculationSettingsProvider>
 			</LocationProvider>
 		</AuthProvider>
 	);

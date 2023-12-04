@@ -1,6 +1,7 @@
 import dayjs from "dayjs";
 import { createContext, useContext, useEffect, useState } from "react";
 
+import { useCalculationSettings } from "./calculation-settings.context";
 import { useLocationOrNull } from "./location.context";
 
 import { events } from "../helpers/events.helpers";
@@ -28,6 +29,7 @@ export const usePrayerTimesOrNull = (): PrayerTimes | null => {
 
 export const PrayerTimesProvider = ({ children }: PrayerTimesProviderProps) => {
 	const location = useLocationOrNull();
+	const calculationSettings = useCalculationSettings();
 
 	const [prayertimes, setPrayerTimes] = useState<PrayerTimes | null>(null);
 
@@ -38,7 +40,11 @@ export const PrayerTimesProvider = ({ children }: PrayerTimesProviderProps) => {
 				if (!location) return;
 
 				const today = dayjs();
-				const prayerTimes = getPrayerTimes(today, location.coords);
+				const prayerTimes = getPrayerTimes(
+					today,
+					location.coords,
+					calculationSettings,
+				);
 				setPrayerTimes(prayerTimes);
 			},
 		);
@@ -49,7 +55,7 @@ export const PrayerTimesProvider = ({ children }: PrayerTimesProviderProps) => {
 		return () => {
 			calculatePrayerTimesListener.remove();
 		};
-	}, [location]);
+	}, [location, calculationSettings]);
 
 	return (
 		<PrayerTimesContext.Provider value={prayertimes}>
