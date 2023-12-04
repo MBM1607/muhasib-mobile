@@ -26,8 +26,8 @@ export const usePrayerTimes = (): PrayerTimes => {
 		throw new Error("usePrayerTimes must be used within a PrayerTimesProvider");
 	return prayertimes === null
 		? {
-				fajr: "--:--",
 				imsak: "--:--",
+				fajr: "--:--",
 				sunrise: "--:--",
 				dhuhr: "--:--",
 				asr: "--:--",
