@@ -169,6 +169,12 @@ const english = {
 		Infradi: "Infradi",
 		Jamaat: "Jamaat",
 	},
+	prayers: {
+		enableNotification: {
+			title: "Enable Prayer Notifications",
+			caption: "Get notified when it's time to pray",
+		},
+	},
 };
 
 export type Content = typeof english;
@@ -330,6 +336,12 @@ const urdu: Content = {
 		Qadha: "قضا",
 		Infradi: "انفرادی",
 		Jamaat: "جماعت",
+	},
+	prayers: {
+		enableNotification: {
+			title: "نماز کی اطلاعات کو فعال کریں",
+			caption: "اطلاعات کو فعال کریں جب نماز کا وقت ہو",
+		},
 	},
 };
 

@@ -5,9 +5,14 @@ import { Text } from "react-native-paper";
 
 import { Icon } from "../../components/app/icon.component";
 import { PrayerMethod } from "../../components/app/prayer-method.component";
+import { FormSwitch } from "../../components/controls/form-switch.component";
 import { IconButton } from "../../components/controls/icon-button.component";
 import { ScreenWrapper } from "../../components/layout/screen-wrapper.component";
 import { useI18n } from "../../contexts/i18n.context";
+import {
+	togglePrayerReminder,
+	useNotificationSettings,
+} from "../../contexts/notification-settings.context";
 import { usePrayers } from "../../contexts/prayers.context";
 import { useTheme } from "../../hooks/theme.hook";
 import {
@@ -23,10 +28,13 @@ const Prayers = () => {
 	const { content } = useI18n();
 	const theme = useTheme();
 	const prayers = usePrayers();
+	const notificationSettings = useNotificationSettings();
+
 	const [datePrayers, setDatePrayers] =
 		useState<PerformablePrayer>(UNFILLED_PRAYER_DATA);
 	const [performedPercentage, setPerformedPercentage] =
 		useState<PerformedPercentage>("0%");
+
 	const today = dayjs();
 	const [date, setDate] = useState(today);
 
@@ -138,6 +146,16 @@ const Prayers = () => {
 					/>
 				))}
 			</View>
+			<FormSwitch
+				label={content.prayers.enableNotification.title}
+				caption={content.prayers.enableNotification.caption}
+				value={notificationSettings.prayerReminders}
+				hasIcon={true}
+				icon="notifications"
+				onChange={() => {
+					togglePrayerReminder();
+				}}
+			/>
 		</ScreenWrapper>
 	);
 };
