@@ -3,7 +3,7 @@ import { Text } from "react-native-paper";
 import { ScreenWrapper } from "../../components/layout/screen-wrapper.component";
 import { useI18n } from "../../contexts/i18n.context";
 
-const Menu = () => {
+const Settings = () => {
 	const { content } = useI18n();
 
 	return (
@@ -17,4 +17,4 @@ const Menu = () => {
 	);
 };
 
-export default Menu;
+export default Settings;

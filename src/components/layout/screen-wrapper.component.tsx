@@ -106,7 +106,7 @@ export const ScreenWrapper = ({
 							icon="settings"
 							style={iconMargin}
 							onPress={() => {
-								router.push("/menu");
+								router.push("/settings");
 							}}
 						/>
 					)}

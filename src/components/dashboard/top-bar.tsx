@@ -31,7 +31,7 @@ export const TopBar = () => {
 						flex: 1,
 					}}
 					onPress={() => {
-						router.push("/menu");
+						router.push("/settings");
 					}}
 				/>
 			</Surface>
