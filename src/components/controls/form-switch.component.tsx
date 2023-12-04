@@ -1,4 +1,3 @@
-import { useRef } from "react";
 import { View } from "react-native";
 import { Switch, Text, TouchableRipple } from "react-native-paper";
 
@@ -7,7 +6,7 @@ import { FormControlWrapper } from "./form-control-wrapper.component";
 import { useTheme } from "../../hooks/theme.hook";
 import { Icon } from "../app/icon.component";
 
-import type { Switch as RefType, StyleProp, ViewStyle } from "react-native";
+import type { StyleProp, ViewStyle } from "react-native";
 import type { SwitchProps } from "react-native-paper";
 import type { IconName } from "../app/icon.component";
 
@@ -61,7 +60,6 @@ export const FormSwitch = ({
 	...props
 }: FormSwitchProps) => {
 	const theme = useTheme();
-	const switchRef = useRef<RefType>(null);
 
 	const color = value ? theme.colors.primary : theme.colors.inverseSurface;
 
@@ -113,7 +111,6 @@ export const FormSwitch = ({
 						{label}
 					</Text>
 					<Switch
-						ref={switchRef}
 						value={value}
 						disabled={disabled}
 						style={{
