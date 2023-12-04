@@ -1,47 +1,23 @@
 import { View } from "react-native";
 import { Text, Tooltip } from "react-native-paper";
 
+import { useI18n } from "../../contexts/i18n.context";
 import { usePrayerTimes } from "../../contexts/prayer-times.context";
 import { useTheme } from "../../hooks/theme.hook";
 import { IconButton } from "../controls/icon-button.component";
 
-type PrayerName = "Fajr" | "Sunrise" | "Dhuhr" | "Asr" | "Maghrib" | "Isha";
-type PrayerIcon = "fajr" | "sunrise" | "dhuhr" | "asr" | "maghrib" | "isha";
-
-type Prayer = {
-	name: PrayerName;
-	icon: PrayerIcon;
-};
-
 export const PrayerTimesBar = () => {
+	const { content } = useI18n();
 	const theme = useTheme();
 	const prayerTimes = usePrayerTimes();
-	const prayers: Prayer[] = [
-		{
-			name: "Fajr",
-			icon: "fajr",
-		},
-		{
-			name: "Sunrise",
-			icon: "sunrise",
-		},
-		{
-			name: "Dhuhr",
-			icon: "dhuhr",
-		},
-		{
-			name: "Asr",
-			icon: "asr",
-		},
-		{
-			name: "Maghrib",
-			icon: "maghrib",
-		},
-		{
-			name: "Isha",
-			icon: "isha",
-		},
-	];
+	const prayers = [
+		"fajr",
+		"sunrise",
+		"dhuhr",
+		"asr",
+		"maghrib",
+		"isha",
+	] as const;
 
 	return (
 		<View
@@ -52,8 +28,8 @@ export const PrayerTimesBar = () => {
 		>
 			{prayers.map((prayer) => (
 				<Tooltip
-					key={prayer.name}
-					title={prayer.name}
+					key={prayer}
+					title={content.prayer[prayer]}
 					enterTouchDelay={0}
 					leaveTouchDelay={1500}
 				>
@@ -66,7 +42,7 @@ export const PrayerTimesBar = () => {
 						}}
 					>
 						<IconButton
-							icon={prayer.icon}
+							icon={prayer}
 							size={16}
 							style={{
 								backgroundColor: theme.colors.onPrimary,
@@ -79,7 +55,7 @@ export const PrayerTimesBar = () => {
 								color: theme.colors.onPrimaryContainer,
 							}}
 						>
-							{prayerTimes?.[prayer.icon] || "--:--"}
+							{prayerTimes[prayer] || "--:--"}
 						</Text>
 					</View>
 				</Tooltip>

@@ -162,6 +162,7 @@ const english = {
 		sunset: "Sunset/Iftar",
 		maghrib: "Maghrib",
 		isha: "Isha",
+		midnight: "Midnight",
 	},
 	prayerPerformMethod: {
 		"Not Performed": "Not Performed",
@@ -324,6 +325,7 @@ const urdu: Content = {
 		sunset: "غروب آفتاب / افطار",
 		maghrib: "مغرب",
 		isha: "عشاء",
+		midnight: "نصف شب",
 	},
 	prayerPerformMethod: {
 		"Not Performed": "نہیں پڑھی",

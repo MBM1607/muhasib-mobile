@@ -5,6 +5,7 @@ import { Surface, Text } from "react-native-paper";
 
 import { PrayerTimesBar } from "./prayer-times-bar";
 
+import { useI18n } from "../../contexts/i18n.context";
 import { useLocationOrNull } from "../../contexts/location.context";
 import { usePrayerTimes } from "../../contexts/prayer-times.context";
 import { useTheme } from "../../hooks/theme.hook";
@@ -13,6 +14,7 @@ import { Button } from "../controls/button.component";
 import type { PrayerTimeName } from "../../schemas/prayer-times.schemas";
 
 export const PrayerTimesCard = () => {
+	const { content } = useI18n();
 	const router = useRouter();
 	const theme = useTheme();
 	const location = useLocationOrNull();
@@ -83,7 +85,7 @@ export const PrayerTimesCard = () => {
 					textTransform: "capitalize",
 				}}
 			>
-				{nextPrayer || "No Upcoming Prayer"}
+				{nextPrayer ? content.prayer[nextPrayer] : ""}
 			</Text>
 			<Text
 				style={{
