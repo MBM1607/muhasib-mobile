@@ -74,6 +74,8 @@ export const appIconMap = {
 	"60%": "circle-slice-5",
 	"80%": "circle-slice-7",
 	"100%": "circle-slice-8",
+	favorite: "heart-outline",
+	favored: "heart",
 } as const;
 
 type _ =

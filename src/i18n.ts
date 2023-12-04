@@ -190,6 +190,26 @@ const english = {
 			caption: "Get notified when it's time to pray",
 		},
 	},
+	duas: {
+		uponWakingUp: "Upon Waking Up",
+		shareMessage: "Provided by Muhasib",
+	},
+	0: "0",
+	1: "1",
+	2: "2",
+	3: "3",
+	4: "4",
+	5: "5",
+	6: "6",
+	7: "7",
+	8: "8",
+	9: "9",
+	10: "10",
+	11: "11",
+	12: "12",
+	13: "13",
+	14: "14",
+	15: "15",
 };
 
 export type Content = typeof english;
@@ -373,6 +393,26 @@ const urdu: Content = {
 			caption: "اطلاعات کو فعال کریں جب نماز کا وقت ہو",
 		},
 	},
+	duas: {
+		uponWakingUp: "جاگنے کے بعد",
+		shareMessage: "محاسب کی طرف سے فراہم کیا گیا",
+	},
+	0: "۰",
+	1: "۱",
+	2: "۲",
+	3: "۳",
+	4: "۴",
+	5: "۵",
+	6: "۶",
+	7: "۷",
+	8: "۸",
+	9: "۹",
+	10: "۱۰",
+	11: "۱۱",
+	12: "۱۲",
+	13: "۱۳",
+	14: "۱۴",
+	15: "۱۵",
 };
 
 export const content: Record<Language, Content> = { english, urdu };
