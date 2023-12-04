@@ -35,22 +35,22 @@ export const PrayersProvider = ({
 	useEffect(() => {
 		const performPrayerListener = events.listen(
 			"performPrayer",
-			async ({ date, prayer, prayerPerformMethod }) => {
-				const datePrayers = {
-					// Add all prayers to today's prayers if they don't exist
-					...UNFILLED_PRAYER_DATA,
-					...prayers[date],
-					[prayer]: prayerPerformMethod,
-				};
+			({ date, prayer, prayerPerformMethod }) => {
+				setPrayers((oldPrayers) => {
+					const datePrayers = {
+						// Add all prayers to today's prayers if they don't exist
+						...UNFILLED_PRAYER_DATA,
+						...oldPrayers[date],
+						[prayer]: prayerPerformMethod,
+					};
 
-				const newPrayers = {
-					...prayers,
-					[date]: datePrayers,
-				};
-
-				const added = await prayersStore.set(newPrayers);
-				if (!added) return;
-				setPrayers(newPrayers);
+					const newPrayers = {
+						...oldPrayers,
+						[date]: datePrayers,
+					};
+					prayersStore.set(newPrayers);
+					return newPrayers;
+				});
 			},
 		);
 
@@ -61,7 +61,7 @@ export const PrayersProvider = ({
 		return () => {
 			performPrayerListener.remove();
 		};
-	}, [prayers]);
+	}, []);
 
 	return (
 		<PrayersContext.Provider value={prayers}>

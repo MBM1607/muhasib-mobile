@@ -1,16 +1,26 @@
-import { useState } from "react";
 import { View } from "react-native";
 import { Card } from "react-native-paper";
 
 import { FormSwitch } from "../../components/controls/form-switch.component";
 import { ScreenWrapper } from "../../components/layout/screen-wrapper.component";
+import {
+	toggleFastingRecord,
+	useFastingRecord,
+} from "../../contexts/fasting-record.context";
 import { useI18n } from "../../contexts/i18n.context";
+import {
+	toggleFastingReminder,
+	useNotificationSettings,
+} from "../../contexts/notification-settings.context";
 import { usePrayerTimes } from "../../contexts/prayer-times.context";
+import { dayjsExtended } from "../../helpers/date.helpers";
 
 const Fasting = () => {
 	const { content } = useI18n();
 	const prayerTimes = usePrayerTimes();
-	const [value, setValue] = useState<boolean>(false);
+	const today = dayjsExtended().format("YYYY-MM-DD");
+	const fastingRecord = useFastingRecord();
+	const notificationSettings = useNotificationSettings();
 
 	return (
 		<ScreenWrapper
@@ -22,8 +32,10 @@ const Fasting = () => {
 			<View>
 				<FormSwitch
 					label={content.fasting.fastingInputLabel}
-					value={value}
-					onChange={setValue}
+					value={fastingRecord[today] ?? false}
+					onChange={() => {
+						toggleFastingRecord(today);
+					}}
 				/>
 				<Card>
 					<Card.Title
@@ -69,10 +81,12 @@ const Fasting = () => {
 			<FormSwitch
 				label={content.fasting.enableNotification.title}
 				caption={content.fasting.enableNotification.caption}
-				value={value}
+				value={notificationSettings.fastingReminders}
 				hasIcon={true}
 				icon="notifications"
-				onChange={setValue}
+				onChange={() => {
+					toggleFastingReminder();
+				}}
 			/>
 		</ScreenWrapper>
 	);

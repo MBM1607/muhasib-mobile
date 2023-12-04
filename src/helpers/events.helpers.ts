@@ -35,6 +35,9 @@ export type EventMap = {
 		prayer: PerformablePrayerName;
 		prayerPerformMethod: PrayerPerformMethod;
 	};
+	toggleFastingRecord: string;
+	toggleFastingReminder: undefined;
+	togglePrayerReminder: undefined;
 };
 
 export const events = {
