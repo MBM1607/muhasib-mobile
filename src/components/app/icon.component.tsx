@@ -56,7 +56,6 @@ export const appIconMap = {
 	"islamic-calendar": "calendar-text",
 	prayers: "hands-pray",
 	qibla: "compass",
-	quran: "book-open-variant",
 	fasting: "food-apple-outline",
 	"prayer-times-calculation-settings": "abacus",
 	"calendar-settings": "calendar-edit",

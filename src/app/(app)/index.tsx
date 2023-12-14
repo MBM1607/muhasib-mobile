@@ -44,13 +44,6 @@ const App = () => {
 									router.push("/prayers");
 								}}
 							/>
-							<MenuButton
-								icon={"qibla"}
-								label={content.pages.qibla}
-								onPress={() => {
-									router.push("/qibla");
-								}}
-							/>
 						</View>
 						<View
 							style={{
@@ -77,15 +70,15 @@ const App = () => {
 						<View
 							style={{
 								flexDirection: "row",
-								justifyContent: "space-between",
+								justifyContent: "center",
 								gap: 20,
 							}}
 						>
 							<MenuButton
-								icon={"quran"}
-								label={content.pages.quran}
+								icon={"qibla"}
+								label={content.pages.qibla}
 								onPress={() => {
-									router.push("/quran");
+									router.push("/qibla");
 								}}
 							/>
 							<MenuButton
