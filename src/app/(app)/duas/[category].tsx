@@ -4,33 +4,28 @@ import { Surface, Text } from "react-native-paper";
 
 import { IconButton } from "../../../components/controls/icon-button.component";
 import { ScreenWrapper } from "../../../components/layout/screen-wrapper.component";
-import { useI18n } from "../../../contexts/i18n.context";
 import {
-	DUA_CATEGORIES,
-	DUA_CATEGORY_NAMES,
-} from "../../../helpers/duas.helpers";
-import { useTheme } from "../../../hooks/theme.hook";
-
-import type { DuaCategoryName } from "../../../helpers/duas.helpers";
+	useCategories,
+	useDuasByCategory,
+} from "../../../contexts/duas.context";
+import { useI18n } from "../../../contexts/i18n.context";
+import { humanizeToken } from "../../../helpers/humanize-token.helpers";
 
 const DuasCategoryPage = () => {
 	const router = useRouter();
 	const { category } = useLocalSearchParams();
 	const { content, rtl, language } = useI18n();
-	const theme = useTheme();
+	const categories = useCategories();
+	const duas = useDuasByCategory(category as string);
 
-	if (!category || !DUA_CATEGORY_NAMES.includes(category as DuaCategoryName)) {
+	if (!category || !categories.includes(category as string)) {
 		router.push("/404");
 		return null;
 	}
 
-	const duas = DUA_CATEGORIES[category as DuaCategoryName];
-
 	return (
 		<ScreenWrapper
-			title={`${content.pages.duas} / ${
-				content.duas[category as DuaCategoryName]
-			}`}
+			title={`${content.pages.duas} / ${humanizeToken(category as string)}`}
 			style={{
 				gap: 16,
 				padding: 16,
@@ -80,10 +75,6 @@ const DuasCategoryPage = () => {
 									message: `${dua.arabic}\n\n${dua[language]}\n\n${dua.reference}\n\n${content.duas.shareMessage}`,
 								});
 							}}
-						/>
-						<IconButton
-							icon="favorite"
-							onPress={() => {}}
 						/>
 					</View>
 				</Surface>

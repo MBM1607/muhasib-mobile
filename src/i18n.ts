@@ -190,7 +190,6 @@ const english = {
 		},
 	},
 	duas: {
-		uponWakingUp: "Upon Waking Up",
 		shareMessage: "Provided by Muhasib",
 	},
 	0: "0",
@@ -392,7 +391,6 @@ const urdu: Content = {
 		},
 	},
 	duas: {
-		uponWakingUp: "جاگنے کے بعد",
 		shareMessage: "محاسب کی طرف سے فراہم کیا گیا",
 	},
 	0: "۰",

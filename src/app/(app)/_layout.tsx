@@ -7,6 +7,7 @@ import {
 	DEFAULT_CALENDAR_SETTINGS,
 	calendarSettingsStore,
 } from "../../contexts/calendar-settings.context";
+import { DuasProvider } from "../../contexts/duas.context";
 import {
 	FastingRecordProvider,
 	fastingRecordStore,
@@ -64,7 +65,9 @@ const RootLayout = () => {
 							>
 								<CalculationSettingsProvider>
 									<PrayerTimesProvider>
-										<Slot />
+										<DuasProvider>
+											<Slot />
+										</DuasProvider>
 									</PrayerTimesProvider>
 								</CalculationSettingsProvider>
 							</CalendarSettingsProvider>
