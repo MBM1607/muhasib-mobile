@@ -31,7 +31,8 @@
 		"env:pull:production": "dotenv-vault pull production .env.production",
 		"env:open": "dotenv-vault open",
 		"diag": "tsc --extendedDiagnostics",
-		"trace": "tsc --generateTrace ./trace && npx @typescript/analyze-trace trace"
+		"trace": "tsc --generateTrace ./trace && npx @typescript/analyze-trace trace",
+		"build:apk": "eas build --profile preview --platform android"
 	},
 	"dependencies": {
 		"@calidy/dayjs-calendarsystems": "^1.4.0",
