@@ -283,7 +283,7 @@ export const getPrayerTimes = (
 			times.sunset,
 			calculationParams.maghrib.value,
 			nightTime,
-			"cw",
+			"ccw", // ! TODO: This is a workaround, because maghrib is not working with "cw"
 		);
 	}
 
@@ -304,5 +304,6 @@ export const getPrayerTimes = (
 			? times.sunset + getTimeDifference(times.sunset, times.sunrise) / 2
 			: times.sunset + getTimeDifference(times.sunset, times.fajr) / 2;
 
+	console.log("times", times);
 	return getFormattedTimes(times, options.timeFormat);
 };
