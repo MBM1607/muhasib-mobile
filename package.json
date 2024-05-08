@@ -1,6 +1,9 @@
 {
 	"name": "muhasib-mobile",
 	"version": "1.0.0",
+	"repository": {
+		"url": "https://github.com/mbm1607/muhasib-mobile"
+	},
 	"author": {
 		"name": "Muhammad Khan",
 		"email": "me@muhammadkhan.dev",
@@ -16,10 +19,9 @@
 		"update-deps": "yarn upgrade-interactive && expo install --fix && yarn dlx expo-doctor",
 		"test": "jest --watch --coverage=false --changedSince=origin/main",
 		"test:all": "jest",
-		"lint": "eslint . --fix --report-unused-disable-directives && pnpm format && pnpm spellcheck",
+		"lint": "eslint . --fix --report-unused-disable-directives && yarn format && yarn spellcheck",
 		"format": "prettier --write --log-level silent .",
 		"spellcheck": "cspell . --quiet",
-		"generate-icons": "tsx ./scripts/generate-icons.ts",
 		"env:new": "dotenv-vault new",
 		"env:login": "dotenv-vault login",
 		"env:push": "yarn env:push:development && yarn env:push:production",
