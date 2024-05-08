@@ -1,8 +1,8 @@
 import { getNetworkStateAsync } from "expo-network";
 
-import { backendPath, disableAuth, isFetchMocked } from "..;";
+import { backendPath, disableAuth, isFetchMocked } from "../config.ts";
 import { authStore, logout } from "../contexts/auth.context.tsx";
-import { AuthError, ConnectionError, stringifyError } from "../errors";
+import { AuthError, ConnectionError, stringifyError } from "../errors.ts";
 
 import type { z } from "zod";
 import type { Utils } from "../types/utils.types";

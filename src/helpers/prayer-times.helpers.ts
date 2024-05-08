@@ -169,7 +169,8 @@ export const getPrayerTimes = (
 	options: CalculationSettings,
 ): PrayerTimes => {
 	const calculationParams = CALCULATION_METHODS[options.calculationMethod];
-	const julianDate = gregorianToJulian(date);
+	const julianDate = gregorianToJulian(date, coords.longitude / (15 * 24));
+
 	// Default times
 	const times: PrayerTimesRaw = {
 		imsak: 5,
@@ -283,18 +284,21 @@ export const getPrayerTimes = (
 			times.sunset,
 			calculationParams.maghrib.value,
 			nightTime,
-			"ccw", // ! TODO: This is a workaround, because maghrib is not working with "cw"
+			"cw",
 		);
 	}
 
 	// Adjust Imsak
-	times.imsak += options.imsakAdjustment.value / 60;
+	if (options.imsakAdjustment.type === "minutes")
+		times.imsak = times.fajr - options.imsakAdjustment.value / 60;
 	// Adjust maghrib if it's in minutes
-	if (calculationParams.maghrib.type === "minutes")
-		times.maghrib += calculationParams.maghrib.value / 60;
+	if (calculationParams.maghrib.type === "minutes") {
+		times.maghrib = times.sunset + calculationParams.maghrib.value / 60;
+	}
 	//Adjust isha if it's in minutes
-	if (calculationParams.isha.type === "minutes")
-		times.isha += calculationParams.isha.value / 60;
+	if (calculationParams.isha.type === "minutes") {
+		times.isha = times.maghrib + calculationParams.isha.value / 60;
+	}
 	// Adjust dhuhr
 	times.dhuhr += options.dhuhrAdjustment.value / 60;
 

@@ -54,7 +54,7 @@ export const CalculationSettingsProvider = ({
 			(method: AsrJuristicMethodName) => {
 				setCalculationSettings((settings) => ({
 					...settings,
-					asrMethod: method,
+					asrJuristicMethod: method,
 				}));
 			},
 		);

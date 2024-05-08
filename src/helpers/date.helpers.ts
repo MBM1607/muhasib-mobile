@@ -52,10 +52,14 @@ export const dayjsFormatPatterns = {
 
 // Convert Gregorian date to Julian day
 // Ref: Astronomical Algorithms by Jean Meeus
-export const gregorianToJulian = (date: dayjs.Dayjs): number => {
+export const gregorianToJulian = (
+	date: dayjs.Dayjs,
+	dayOffset: number,
+): number => {
 	let year = date.year();
 	let month = date.month() + 1; // Convert to 1-based month
-	const day = date.date() as number; // ! Dayjs typings are wrong after including extended plugin
+	// ! Dayjs date return type is wrong with extended plugin
+	const day = (date.date() as number) - dayOffset;
 
 	if (month <= 2) {
 		year -= 1;

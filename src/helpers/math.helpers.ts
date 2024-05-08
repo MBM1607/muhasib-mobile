@@ -38,8 +38,8 @@ export const getSunPosition = (julianDate: number) => {
 	const ra = arctan2(cos(e) * sin(l), cos(l)) / 15;
 
 	return {
-		declination: q / 15 - fixHour(ra),
-		equation: arcsin(sin(e) * sin(l)),
+		declination: arcsin(sin(e) * sin(l)),
+		equation: q / 15 - fixHour(ra),
 	};
 };
 
