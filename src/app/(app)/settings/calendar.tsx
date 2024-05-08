@@ -1,7 +1,7 @@
-import { HijriDateControl } from "../../../components/controls/hijri-date-control";
-import { ScreenWrapper } from "../../../components/layout/screen-wrapper.component";
-import { MetaAppOptions } from "../../../components/settings/meta-app-options";
-import { useI18n } from "../../../contexts/i18n.context";
+import { HijriDateControl } from "../../../components/controls/hijri-date-control.tsx";
+import { ScreenWrapper } from "../../../components/layout/screen-wrapper.component.tsx";
+import { MetaAppOptions } from "../../../components/settings/meta-app-options.tsx";
+import { useI18n } from "../../../contexts/i18n.context.tsx";
 
 const CalendarSettings = () => {
 	const { content } = useI18n();

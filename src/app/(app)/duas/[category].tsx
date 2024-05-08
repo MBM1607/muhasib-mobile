@@ -2,14 +2,14 @@ import { useLocalSearchParams, useRouter } from "expo-router";
 import { Share, View } from "react-native";
 import { Surface, Text } from "react-native-paper";
 
-import { IconButton } from "../../../components/controls/icon-button.component";
-import { ScreenWrapper } from "../../../components/layout/screen-wrapper.component";
+import { IconButton } from "../../../components/controls/icon-button.component.tsx";
+import { ScreenWrapper } from "../../../components/layout/screen-wrapper.component.tsx";
 import {
 	useCategories,
 	useDuasByCategory,
-} from "../../../contexts/duas.context";
-import { useI18n } from "../../../contexts/i18n.context";
-import { humanizeToken } from "../../../helpers/humanize-token.helpers";
+} from "../../../contexts/duas.context.tsx";
+import { useI18n } from "../../../contexts/i18n.context.tsx";
+import { humanizeToken } from "../../../helpers/humanize-token.helpers.ts";
 
 const DuasCategoryPage = () => {
 	const router = useRouter();

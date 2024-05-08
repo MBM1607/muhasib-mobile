@@ -2,9 +2,9 @@ import { Linking, Share, View } from "react-native";
 import { Card } from "react-native-paper";
 
 import { STORE_URL } from "../../constants";
-import { useI18n } from "../../contexts/i18n.context";
-import { useTheme } from "../../hooks/theme.hook";
-import { Icon } from "../app/icon.component";
+import { useI18n } from "../../contexts/i18n.context.tsx";
+import { useTheme } from "../../hooks/theme.hook.tsx";
+import { Icon } from "../app/icon.component.tsx";
 
 export const MetaAppOptions = () => {
 	const { content } = useI18n();

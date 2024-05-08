@@ -1,7 +1,7 @@
 import { View } from "react-native";
 import { Text } from "react-native-paper";
 
-import { useTheme } from "../../hooks/theme.hook";
+import { useTheme } from "../../hooks/theme.hook.tsx";
 
 import type { App } from "../../types/app.types";
 
@@ -43,8 +43,8 @@ export const Stepper = <T extends readonly string[]>({
 					step === currentStep
 						? "primary"
 						: steps.indexOf(currentStep) > index
-						? "success"
-						: "error",
+							? "success"
+							: "error",
 				);
 				return (
 					<View

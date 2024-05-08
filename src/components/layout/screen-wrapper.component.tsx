@@ -4,11 +4,11 @@ import { SafeAreaView, View } from "react-native";
 import { Surface, Text } from "react-native-paper";
 import Animated, { SlideInLeft, SlideOutRight } from "react-native-reanimated";
 
-import { toggleMode, useMode } from "../../contexts/mode.context";
-import { useTheme } from "../../hooks/theme.hook";
-import { LanguageControl } from "../app/language-control.component";
-import { UserControl } from "../app/user-control.component";
-import { IconButton } from "../controls/icon-button.component";
+import { toggleMode, useMode } from "../../contexts/mode.context.tsx";
+import { useTheme } from "../../hooks/theme.hook.tsx";
+import { LanguageControl } from "../app/language-control.component.tsx";
+import { UserControl } from "../app/user-control.component.tsx";
+import { IconButton } from "../controls/icon-button.component.tsx";
 
 import type { ReactNode } from "react";
 import type { StyleProp, ViewStyle } from "react-native";

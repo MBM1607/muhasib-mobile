@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 
-import { events } from "../helpers/events.helpers";
+import { events } from "../helpers/events.helpers.ts";
 
 import type { PropsWithChildren } from "react";
 import type {
@@ -9,7 +9,7 @@ import type {
 	CalculationSettings,
 	HighLatitudeMethod,
 	TimeFormat,
-} from "../schemas/prayer-times.schemas";
+} from "../schemas/prayer-times.schemas.ts";
 
 const DEFAULT_CALCULATION_SETTINGS: CalculationSettings = {
 	calculationMethod: "Muslim World League",

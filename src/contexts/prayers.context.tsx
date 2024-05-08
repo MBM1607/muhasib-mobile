@@ -1,18 +1,18 @@
 import { createContext, useContext, useEffect, useState } from "react";
 
-import { events } from "../helpers/events.helpers";
-import { createStore } from "../helpers/store.helpers";
+import { events } from "../helpers/events.helpers.ts";
+import { createStore } from "../helpers/store.helpers.ts";
 import {
 	UNFILLED_PRAYER_DATA,
 	prayersSchema,
-} from "../schemas/prayers.schemas";
+} from "../schemas/prayers.schemas.ts";
 
 import type { PropsWithChildren } from "react";
 import type {
 	PerformablePrayerName,
 	PrayerPerformMethod,
 	Prayers,
-} from "../schemas/prayers.schemas";
+} from "../schemas/prayers.schemas.ts";
 
 export const prayersStore = createStore({
 	key: "prayers",

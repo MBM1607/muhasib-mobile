@@ -7,7 +7,7 @@ import Animated, { SlideInLeft, SlideOutRight } from "react-native-reanimated";
 import { MenuButton } from "../../components/dashboard/menu-button";
 import { PrayerTimesCard } from "../../components/dashboard/prayer-times-card";
 import { TopBar } from "../../components/dashboard/top-bar";
-import { useI18n } from "../../contexts/i18n.context";
+import { useI18n } from "../../contexts/i18n.context.tsx";
 
 const App = () => {
 	const router = useRouter();

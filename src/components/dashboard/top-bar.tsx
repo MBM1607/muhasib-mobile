@@ -2,10 +2,10 @@ import { useRouter } from "expo-router";
 import { View } from "react-native";
 import { Surface, Text, TouchableRipple } from "react-native-paper";
 
-import { useCalendarSettings } from "../../contexts/calendar-settings.context";
-import { dayjsExtended } from "../../helpers/date.helpers";
-import { useTheme } from "../../hooks/theme.hook";
-import { IconButton } from "../controls/icon-button.component";
+import { useCalendarSettings } from "../../contexts/calendar-settings.context.tsx";
+import { dayjsExtended } from "../../helpers/date.helpers.ts";
+import { useTheme } from "../../hooks/theme.hook.tsx";
+import { IconButton } from "../controls/icon-button.component.tsx";
 
 export const TopBar = () => {
 	const router = useRouter();

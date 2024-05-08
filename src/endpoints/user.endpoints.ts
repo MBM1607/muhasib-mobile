@@ -5,8 +5,8 @@ import {
 	getRequest,
 	postRequest,
 	putRequest,
-} from "../helpers/api.helpers";
-import { omit } from "../helpers/object.helpers";
+} from "../helpers/api.helpers.ts";
+import { omit } from "../helpers/object.helpers.ts";
 import {
 	mockToken,
 	mockedAdd,
@@ -18,10 +18,14 @@ import {
 	loggedInUserSchema,
 	userSansPasswordSchema,
 	userSchema,
-} from "../schemas/user.schemas";
+} from "../schemas/user.schemas.ts";
 
-import type { DbId } from "../helpers/schema.helpers";
-import type { LoggedInUser, User, UserSansMeta } from "../schemas/user.schemas";
+import type { DbId } from "../helpers/schema.helpers.ts";
+import type {
+	LoggedInUser,
+	User,
+	UserSansMeta,
+} from "../schemas/user.schemas.ts";
 
 export const userEndpoints = {
 	login: async (body: {
@@ -36,10 +40,10 @@ export const userEndpoints = {
 		return userSansPasswordSchema.parse(response);
 	},
 	get: async (): Promise<Omit<User, "password">[]> => {
-		return getRequest("user", { schema: z.array(userSchema) });
+		return await getRequest("user", { schema: z.array(userSchema) });
 	},
 	getById: async (id: DbId): Promise<Omit<User, "password">> => {
-		return getRequest(`user/${id}`, { schema: userSchema });
+		return await getRequest(`user/${id}`, { schema: userSchema });
 	},
 	update: async (
 		id: DbId,

@@ -1,15 +1,15 @@
 import { View } from "react-native";
 
-import { FormSwitch } from "../../../components/controls/form-switch.component";
-import { ScreenWrapper } from "../../../components/layout/screen-wrapper.component";
+import { FormSwitch } from "../../../components/controls/form-switch.component.tsx";
+import { ScreenWrapper } from "../../../components/layout/screen-wrapper.component.tsx";
 import { MetaAppOptions } from "../../../components/settings/meta-app-options";
-import { useI18n } from "../../../contexts/i18n.context";
+import { useI18n } from "../../../contexts/i18n.context.tsx";
 import {
 	toggleAnnouncements,
 	toggleFastingReminder,
 	togglePrayerReminder,
 	useNotificationsSettings,
-} from "../../../contexts/notification-settings.context";
+} from "../../../contexts/notification-settings.context.tsx";
 
 const NotificationsSettings = () => {
 	const { content } = useI18n();

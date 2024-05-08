@@ -1,17 +1,17 @@
 import { useState } from "react";
 import { Menu, Surface, Text, TouchableRipple } from "react-native-paper";
 
-import { Icon, appIconMap } from "./icon.component";
+import { Icon, appIconMap } from "./icon.component.tsx";
 
-import { useI18n } from "../../contexts/i18n.context";
-import { performPrayer } from "../../contexts/prayers.context";
-import { useTheme } from "../../hooks/theme.hook";
-import { PRAYER_PERFORM_METHODS } from "../../schemas/prayers.schemas";
+import { useI18n } from "../../contexts/i18n.context.tsx";
+import { performPrayer } from "../../contexts/prayers.context.tsx";
+import { useTheme } from "../../hooks/theme.hook.tsx";
+import { PRAYER_PERFORM_METHODS } from "../../schemas/prayers.schemas.ts";
 
 import type {
 	PerformablePrayerName,
 	PrayerPerformMethod,
-} from "../../schemas/prayers.schemas";
+} from "../../schemas/prayers.schemas.ts";
 
 export type PrayerMethodProps = {
 	date: string;
@@ -73,10 +73,10 @@ export const PrayerMethod = ({
 									prayerPerformMethod === "Not Performed"
 										? theme.colors.error
 										: prayerPerformMethod === "Qadha"
-										  ? theme.colors.warning
-										  : prayerPerformMethod === "Infradi"
-										    ? theme.colors.tertiary
-										    : theme.colors.success
+											? theme.colors.warning
+											: prayerPerformMethod === "Infradi"
+												? theme.colors.tertiary
+												: theme.colors.success
 								}
 							/>
 							<Text

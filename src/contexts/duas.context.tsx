@@ -1,10 +1,10 @@
 import { createContext, useContext, useEffect, useState } from "react";
 
-import { getRequest } from "../helpers/api.helpers";
-import { duasSchema } from "../schemas/duas.schemas";
+import { getRequest } from "../helpers/api.helpers.ts";
+import { duasSchema } from "../schemas/duas.schemas.ts";
 
 import type { PropsWithChildren } from "react";
-import type { Duas } from "../schemas/duas.schemas";
+import type { Duas } from "../schemas/duas.schemas.ts";
 
 const DuasContext = createContext<Duas>([]);
 

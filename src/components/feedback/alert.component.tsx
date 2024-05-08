@@ -2,9 +2,9 @@ import { View } from "react-native";
 import { Text } from "react-native-paper";
 import Animated, { SlideInLeft, SlideOutRight } from "react-native-reanimated";
 
-import { useTheme } from "../../hooks/theme.hook";
-import { Icon } from "../app/icon.component";
-import { IconButton } from "../controls/icon-button.component";
+import { useTheme } from "../../hooks/theme.hook.tsx";
+import { Icon } from "../app/icon.component.tsx";
+import { IconButton } from "../controls/icon-button.component.tsx";
 
 import type { ThemeColor } from "../../theme";
 import type { App } from "../../types/app.types";

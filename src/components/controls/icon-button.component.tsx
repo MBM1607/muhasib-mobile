@@ -1,9 +1,9 @@
 import { IconButton as Component } from "react-native-paper";
 
-import { appIconMap } from "../app/icon.component";
+import { appIconMap } from "../app/icon.component.tsx";
 
 import type { IconButtonProps as Props } from "react-native-paper";
-import type { IconName } from "../app/icon.component";
+import type { IconName } from "../app/icon.component.tsx";
 
 export type IconButtonProps = Omit<Props, "icon"> & {
 	icon: IconName;

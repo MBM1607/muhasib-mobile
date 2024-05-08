@@ -1,12 +1,12 @@
 import { useRouter } from "expo-router";
 import { Surface, Text, TouchableRipple } from "react-native-paper";
 
-import { Icon } from "../../../components/app/icon.component";
-import { ScreenWrapper } from "../../../components/layout/screen-wrapper.component";
-import { useCategories } from "../../../contexts/duas.context";
-import { useI18n } from "../../../contexts/i18n.context";
-import { humanizeToken } from "../../../helpers/humanize-token.helpers";
-import { useTheme } from "../../../hooks/theme.hook";
+import { Icon } from "../../../components/app/icon.component.tsx";
+import { ScreenWrapper } from "../../../components/layout/screen-wrapper.component.tsx";
+import { useCategories } from "../../../contexts/duas.context.tsx";
+import { useI18n } from "../../../contexts/i18n.context.tsx";
+import { humanizeToken } from "../../../helpers/humanize-token.helpers.ts";
+import { useTheme } from "../../../hooks/theme.hook.tsx";
 
 const Duas = () => {
 	const router = useRouter();

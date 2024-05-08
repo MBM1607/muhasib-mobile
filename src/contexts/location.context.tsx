@@ -1,12 +1,12 @@
 import { useRouter, useSegments } from "expo-router";
 import { createContext, useContext, useEffect, useState } from "react";
 
-import { events } from "../helpers/events.helpers";
-import { createStore } from "../helpers/store.helpers";
-import { locationSchema } from "../schemas/location.schemas";
+import { events } from "../helpers/events.helpers.ts";
+import { createStore } from "../helpers/store.helpers.ts";
+import { locationSchema } from "../schemas/location.schemas.ts";
 
 import type { PropsWithChildren } from "react";
-import type { Location } from "../schemas/location.schemas";
+import type { Location } from "../schemas/location.schemas.ts";
 
 export const locationStore = createStore({
 	key: "location",

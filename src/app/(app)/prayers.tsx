@@ -3,25 +3,25 @@ import { useEffect, useState } from "react";
 import { View } from "react-native";
 import { Surface, Text } from "react-native-paper";
 
-import { Icon } from "../../components/app/icon.component";
-import { PrayerMethod } from "../../components/app/prayer-method.component";
-import { FormSwitch } from "../../components/controls/form-switch.component";
-import { IconButton } from "../../components/controls/icon-button.component";
-import { ScreenWrapper } from "../../components/layout/screen-wrapper.component";
-import { useCalendarSettings } from "../../contexts/calendar-settings.context";
-import { useI18n } from "../../contexts/i18n.context";
+import { Icon } from "../../components/app/icon.component.tsx";
+import { PrayerMethod } from "../../components/app/prayer-method.component.tsx";
+import { FormSwitch } from "../../components/controls/form-switch.component.tsx";
+import { IconButton } from "../../components/controls/icon-button.component.tsx";
+import { ScreenWrapper } from "../../components/layout/screen-wrapper.component.tsx";
+import { useCalendarSettings } from "../../contexts/calendar-settings.context.tsx";
+import { useI18n } from "../../contexts/i18n.context.tsx";
 import {
 	togglePrayerReminder,
 	useNotificationsSettings,
-} from "../../contexts/notification-settings.context";
-import { usePrayers } from "../../contexts/prayers.context";
-import { useTheme } from "../../hooks/theme.hook";
+} from "../../contexts/notification-settings.context.tsx";
+import { usePrayers } from "../../contexts/prayers.context.tsx";
+import { useTheme } from "../../hooks/theme.hook.tsx";
 import {
 	PERFORMABLE_PRAYERS,
 	UNFILLED_PRAYER_DATA,
-} from "../../schemas/prayers.schemas";
+} from "../../schemas/prayers.schemas.ts";
 
-import type { PerformablePrayer } from "../../schemas/prayers.schemas";
+import type { PerformablePrayer } from "../../schemas/prayers.schemas.ts";
 
 type PerformedPercentage = "0%" | "20%" | "40%" | "60%" | "80%" | "100%";
 
@@ -125,7 +125,7 @@ const Prayers = () => {
 							? undefined
 							: {
 									borderColor: theme.colors.primary,
-							  }
+								}
 					}
 					onPress={() => {
 						setDate(date.add(1, "day"));
@@ -146,14 +146,14 @@ const Prayers = () => {
 						performedPercentage === "100%"
 							? theme.colors.success
 							: performedPercentage === "80%"
-							  ? theme.colors.tertiary
-							  : performedPercentage === "60%"
-							    ? theme.colors.tertiary
-							    : performedPercentage === "40%"
-							      ? theme.colors.warning
-							      : performedPercentage === "20%"
-							        ? theme.colors.warning
-							        : theme.colors.error
+								? theme.colors.tertiary
+								: performedPercentage === "60%"
+									? theme.colors.tertiary
+									: performedPercentage === "40%"
+										? theme.colors.warning
+										: performedPercentage === "20%"
+											? theme.colors.warning
+											: theme.colors.error
 					}
 				/>
 			</View>

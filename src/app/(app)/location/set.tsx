@@ -2,14 +2,14 @@ import * as Location from "expo-location";
 import { useState } from "react";
 import { Icon, Text } from "react-native-paper";
 
-import { Button } from "../../../components/controls/button.component";
-import { ScreenWrapper } from "../../../components/layout/screen-wrapper.component";
-import { addAlert } from "../../../contexts/alert.context";
-import { useI18n } from "../../../contexts/i18n.context";
-import { setLocation } from "../../../contexts/location.context";
+import { Button } from "../../../components/controls/button.component.tsx";
+import { ScreenWrapper } from "../../../components/layout/screen-wrapper.component.tsx";
+import { addAlert } from "../../../contexts/alert.context.tsx";
+import { useI18n } from "../../../contexts/i18n.context.tsx";
+import { setLocation } from "../../../contexts/location.context.tsx";
 import { stringifyError } from "../../../errors";
-import { useTheme } from "../../../hooks/theme.hook";
-import { geoDataSchema } from "../../../schemas/location.schemas";
+import { useTheme } from "../../../hooks/theme.hook.tsx";
+import { geoDataSchema } from "../../../schemas/location.schemas.ts";
 
 const SetLocation = () => {
 	const { content } = useI18n();

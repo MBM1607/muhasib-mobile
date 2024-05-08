@@ -4,10 +4,10 @@ import { Card, Menu } from "react-native-paper";
 import {
 	setHijriDateAdjustment,
 	useCalendarSettings,
-} from "../../contexts/calendar-settings.context";
-import { useI18n } from "../../contexts/i18n.context";
-import { useTheme } from "../../hooks/theme.hook";
-import { appIconMap } from "../app/icon.component";
+} from "../../contexts/calendar-settings.context.tsx";
+import { useI18n } from "../../contexts/i18n.context.tsx";
+import { useTheme } from "../../hooks/theme.hook.tsx";
+import { appIconMap } from "../app/icon.component.tsx";
 
 import type { StyleProp, ViewStyle } from "react-native";
 
@@ -48,8 +48,12 @@ export const HijriDateControl = ({ buttonStyle }: HijriDateControlProps) => {
 						titleStyle={{ textTransform: "capitalize", fontSize: 16 }}
 						titleVariant="headlineSmall"
 						subtitleVariant="bodySmall"
-						subtitle={hijriDateAdjustment.toString()}
 						title={content.calendarSettings.hijriAdjustment.title}
+						subtitle={
+							hijriDateAdjustment > 0
+								? `+${hijriDateAdjustment}`
+								: hijriDateAdjustment.toString()
+						}
 					/>
 				</Card>
 			}
@@ -60,7 +64,7 @@ export const HijriDateControl = ({ buttonStyle }: HijriDateControlProps) => {
 			{[-2, -1, 0, 1, 2].map((adjustment) => (
 				<Menu.Item
 					key={adjustment}
-					title={adjustment}
+					title={adjustment > 0 ? `+${adjustment}` : adjustment.toString()}
 					titleStyle={{ textTransform: "capitalize" }}
 					leadingIcon={
 						appIconMap[

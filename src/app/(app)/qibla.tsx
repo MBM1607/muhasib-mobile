@@ -4,13 +4,13 @@ import { useEffect, useState } from "react";
 import { Dimensions, Image, View } from "react-native";
 import { Surface, Text } from "react-native-paper";
 
-import { Icon } from "../../components/app/icon.component";
-import { Button } from "../../components/controls/button.component";
-import { ScreenWrapper } from "../../components/layout/screen-wrapper.component";
-import { useI18n } from "../../contexts/i18n.context";
-import { useLocation } from "../../contexts/location.context";
-import { getCompassAngleFromMagnetometerData } from "../../helpers/qibla.helpers";
-import { useTheme } from "../../hooks/theme.hook";
+import { Icon } from "../../components/app/icon.component.tsx";
+import { Button } from "../../components/controls/button.component.tsx";
+import { ScreenWrapper } from "../../components/layout/screen-wrapper.component.tsx";
+import { useI18n } from "../../contexts/i18n.context.tsx";
+import { useLocation } from "../../contexts/location.context.tsx";
+import { getCompassAngleFromMagnetometerData } from "../../helpers/qibla.helpers.ts";
+import { useTheme } from "../../hooks/theme.hook.tsx";
 
 const Qibla = () => {
 	const router = useRouter();

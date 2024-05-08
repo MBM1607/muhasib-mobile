@@ -28,7 +28,7 @@ this project by me (Muhammad Khan). The copyright block is included as a courtes
   - TODO See if manual offsets are needed and add them back in if so
 */
 
-import { gregorianToJulian } from "./date.helpers";
+import { gregorianToJulian } from "./date.helpers.ts";
 import {
 	arccot,
 	fixHour,
@@ -38,12 +38,12 @@ import {
 	getSunPosition,
 	getTimeDifference,
 	tan,
-} from "./math.helpers";
+} from "./math.helpers.ts";
 
-import { CALCULATION_METHODS } from "../schemas/prayer-times.schemas";
+import { CALCULATION_METHODS } from "../schemas/prayer-times.schemas.ts";
 
 import type { Dayjs } from "dayjs";
-import type { Coords } from "../schemas/location.schemas";
+import type { Coords } from "../schemas/location.schemas.ts";
 import type {
 	AsrJuristicMethodName,
 	CalculationSettings,
@@ -52,7 +52,7 @@ import type {
 	PrayerTimes,
 	PrayerTimesRaw,
 	TimeFormat,
-} from "../schemas/prayer-times.schemas";
+} from "../schemas/prayer-times.schemas.ts";
 
 // Convert Hours to Day Portions
 const hoursToDayPortions = (hours: number): number => {
@@ -96,8 +96,8 @@ const getNightPortion = (
 		highLatitudeMethod === "NightMiddle"
 			? 1 / 2
 			: highLatitudeMethod === "OneSeventh"
-			  ? 1 / 7
-			  : (1 / 60) * angle;
+				? 1 / 7
+				: (1 / 60) * angle;
 
 	return portion * nightTime;
 };

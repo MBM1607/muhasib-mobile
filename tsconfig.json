@@ -8,7 +8,6 @@
 		"noFallthroughCasesInSwitch": true,
 		"noImplicitAny": true,
 		"noImplicitOverride": true,
-		"noImplicitReturns": true,
 		"noImplicitThis": true,
 		"noUncheckedIndexedAccess": true,
 		"strictFunctionTypes": true,
@@ -20,8 +19,9 @@
 		"noUnusedParameters": false,
 
 		// modules
-		"module": "ESNext",
+		"module": "Preserve",
 		"moduleResolution": "Bundler",
+		"allowImportingTsExtensions": true,
 		"resolveJsonModule": true,
 
 		// emit
@@ -51,13 +51,15 @@
 		// completeness
 		"skipLibCheck": true
 	},
-	"exclude": ["node_modules", "cache", "coverage"],
 	"include": [
 		"**/*.ts",
 		"**/*.tsx",
 		"**/*.cjs",
+		"**/*.mjs",
 		"./.*.cjs",
 		".expo/types/**/*.ts",
-		"expo-env.d.ts"
-	]
+		"expo-env.d.ts",
+		"metro.config.js"
+	],
+	"exclude": ["node_modules", "cache", "coverage"]
 }

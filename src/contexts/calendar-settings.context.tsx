@@ -1,11 +1,11 @@
 import { createContext, useContext, useEffect, useState } from "react";
 
-import { events } from "../helpers/events.helpers";
-import { createStore } from "../helpers/store.helpers";
-import { calendarSettingsSchema } from "../schemas/calendar-settings.schemas";
+import { events } from "../helpers/events.helpers.ts";
+import { createStore } from "../helpers/store.helpers.ts";
+import { calendarSettingsSchema } from "../schemas/calendar-settings.schemas.ts";
 
 import type { PropsWithChildren } from "react";
-import type { CalendarSettings } from "../schemas/calendar-settings.schemas";
+import type { CalendarSettings } from "../schemas/calendar-settings.schemas.ts";
 
 export const DEFAULT_CALENDAR_SETTINGS: CalendarSettings = {
 	hijriDateAdjustment: 0,

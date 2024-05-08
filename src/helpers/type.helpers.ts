@@ -1,11 +1,11 @@
-import { createBulkResponseSchema } from "./schema.helpers";
+import { createBulkResponseSchema } from "./schema.helpers.ts";
 
 import { stringifyError } from "../errors";
 
 import type { z } from "zod";
 import type { Utils } from "../types/utils.types";
-import type { BulkResponse } from "./api.helpers";
-import type { DefaultBulkResponseObj } from "./schema.helpers";
+import type { BulkResponse } from "./api.helpers.ts";
+import type { DefaultBulkResponseObj } from "./schema.helpers.ts";
 
 export const readableTypeOf = (value: unknown) => {
 	if (typeof value !== "object") return typeof value;

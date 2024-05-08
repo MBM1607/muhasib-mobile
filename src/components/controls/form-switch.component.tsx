@@ -1,14 +1,14 @@
 import { View } from "react-native";
 import { Switch, Text, TouchableRipple } from "react-native-paper";
 
-import { FormControlWrapper } from "./form-control-wrapper.component";
+import { FormControlWrapper } from "./form-control-wrapper.component.tsx";
 
-import { useTheme } from "../../hooks/theme.hook";
-import { Icon } from "../app/icon.component";
+import { useTheme } from "../../hooks/theme.hook.tsx";
+import { Icon } from "../app/icon.component.tsx";
 
 import type { StyleProp, ViewStyle } from "react-native";
 import type { SwitchProps } from "react-native-paper";
-import type { IconName } from "../app/icon.component";
+import type { IconName } from "../app/icon.component.tsx";
 
 type styles = {
 	container?: StyleProp<ViewStyle>;

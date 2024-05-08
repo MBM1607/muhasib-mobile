@@ -1,5 +1,3 @@
-/* eslint-disable vitest/no-conditional-in-test */
-/* eslint-disable vitest/no-conditional-tests */
 import { z } from "zod";
 
 import {
@@ -8,7 +6,7 @@ import {
 	isArray,
 	isObject,
 	readableTypeOf,
-} from "./type.helpers";
+} from "./type.helpers.ts";
 
 import type { Utils } from "../types/utils.types";
 

@@ -2,11 +2,11 @@ import { useRouter } from "expo-router";
 import { View } from "react-native";
 import { Card } from "react-native-paper";
 
-import { Icon } from "../../../components/app/icon.component";
-import { ScreenWrapper } from "../../../components/layout/screen-wrapper.component";
+import { Icon } from "../../../components/app/icon.component.tsx";
+import { ScreenWrapper } from "../../../components/layout/screen-wrapper.component.tsx";
 import { MetaAppOptions } from "../../../components/settings/meta-app-options";
-import { useI18n } from "../../../contexts/i18n.context";
-import { useTheme } from "../../../hooks/theme.hook";
+import { useI18n } from "../../../contexts/i18n.context.tsx";
+import { useTheme } from "../../../hooks/theme.hook.tsx";
 
 const Settings = () => {
 	const { content } = useI18n();

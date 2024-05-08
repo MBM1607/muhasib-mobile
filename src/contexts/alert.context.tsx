@@ -1,11 +1,11 @@
 import { createContext, useEffect, useState } from "react";
 
-import { AlertModal } from "../components/feedback/alert-modal.component";
-import { events } from "../helpers/events.helpers";
+import { AlertModal } from "../components/feedback/alert-modal.component.tsx";
+import { events } from "../helpers/events.helpers.ts";
 
 import type { PropsWithChildren } from "react";
-import type { AlertModalProps } from "../components/feedback/alert-modal.component";
-import type { EventMap } from "../helpers/events.helpers";
+import type { AlertModalProps } from "../components/feedback/alert-modal.component.tsx";
+import type { EventMap } from "../helpers/events.helpers.ts";
 
 const AlertContext = createContext(null);
 
@@ -18,8 +18,8 @@ export const AlertProvider = ({ children }: PropsWithChildren) => {
 				typeof data === "string"
 					? { text: data }
 					: data instanceof Error
-					? { text: data.message }
-					: data,
+						? { text: data.message }
+						: data,
 			);
 		});
 

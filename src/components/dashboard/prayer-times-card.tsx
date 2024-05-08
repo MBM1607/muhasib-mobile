@@ -5,13 +5,13 @@ import { Surface, Text } from "react-native-paper";
 
 import { PrayerTimesBar } from "./prayer-times-bar";
 
-import { useI18n } from "../../contexts/i18n.context";
-import { useLocationOrNull } from "../../contexts/location.context";
-import { usePrayerTimes } from "../../contexts/prayer-times.context";
-import { useTheme } from "../../hooks/theme.hook";
-import { Button } from "../controls/button.component";
+import { useI18n } from "../../contexts/i18n.context.tsx";
+import { useLocationOrNull } from "../../contexts/location.context.tsx";
+import { usePrayerTimes } from "../../contexts/prayer-times.context.tsx";
+import { useTheme } from "../../hooks/theme.hook.tsx";
+import { Button } from "../controls/button.component.tsx";
 
-import type { PrayerTimeName } from "../../schemas/prayer-times.schemas";
+import type { PrayerTimeName } from "../../schemas/prayer-times.schemas.ts";
 
 export const PrayerTimesCard = () => {
 	const { content } = useI18n();

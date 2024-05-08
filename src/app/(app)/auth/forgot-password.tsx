@@ -3,15 +3,15 @@ import { useRef, useState } from "react";
 import { View } from "react-native";
 import { Text } from "react-native-paper";
 
-import { Icon } from "../../../components/app/icon.component";
-import { Button } from "../../../components/controls/button.component";
-import { FormControl } from "../../../components/controls/form-control.component";
-import { Alert } from "../../../components/feedback/alert.component";
-import { ScreenWrapper } from "../../../components/layout/screen-wrapper.component";
-import { isSmallerScreen } from "../../../config";
-import { useI18n } from "../../../contexts/i18n.context";
-import { wait } from "../../../helpers/async.helpers";
-import { useTheme } from "../../../hooks/theme.hook";
+import { Icon } from "../../../components/app/icon.component.tsx";
+import { Button } from "../../../components/controls/button.component.tsx";
+import { FormControl } from "../../../components/controls/form-control.component.tsx";
+import { Alert } from "../../../components/feedback/alert.component.tsx";
+import { ScreenWrapper } from "../../../components/layout/screen-wrapper.component.tsx";
+import { isSmallerScreen } from "../../../config.ts";
+import { useI18n } from "../../../contexts/i18n.context.tsx";
+import { wait } from "../../../helpers/async.helpers.ts";
+import { useTheme } from "../../../hooks/theme.hook.tsx";
 
 import type { TextInput } from "react-native";
 import type { Utils } from "../../../types/utils.types";
@@ -189,7 +189,7 @@ export const ForgotPassword = () => {
 										...state,
 										status: "sending-code-failed",
 										error: "Failed To Send Email!",
-								  },
+									},
 						);
 					},
 				}}
@@ -216,8 +216,8 @@ export const ForgotPassword = () => {
 							!codeEnabled && !emailStage
 								? "success"
 								: status !== "verifying-code-failed"
-								  ? "error"
-								  : "normal"
+									? "error"
+									: "normal"
 						],
 					color: status === "verifying-code-failed" ? "error" : "primary",
 					loading: status === "verifying-code",
@@ -234,15 +234,15 @@ export const ForgotPassword = () => {
 										password: "",
 										confirmPassword: "",
 										error: undefined,
-								  }
+									}
 								: {
 										...state,
 										status: "verifying-code-failed",
 										error: "Invalid Code!",
-								  },
+									},
 						);
 					},
-					disabled: !codeEnabled || !code?.trim(),
+					disabled: !codeEnabled || !code.trim(),
 				}}
 				onChange={(value) => {
 					if (!codeEnabled) return;
@@ -306,7 +306,7 @@ export const ForgotPassword = () => {
 				loading={status === "resetting"}
 				label={content.action.resetPassword}
 				disabled={
-					!passwordEnabled || !password?.trim() || password !== confirmPassword
+					!passwordEnabled || !password.trim() || password !== confirmPassword
 				}
 				onPress={async () => {
 					if (!passwordEnabled) return;
@@ -320,7 +320,7 @@ export const ForgotPassword = () => {
 									...state,
 									status: "resetting-failed",
 									error: "Failed To Reset Password!",
-							  },
+								},
 					);
 					if (success) {
 						setTimeout(() => {

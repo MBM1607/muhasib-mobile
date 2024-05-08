@@ -1,29 +1,32 @@
 import { Slot } from "expo-router";
 
-import { AuthProvider, authStore } from "../../contexts/auth.context";
-import { CalculationSettingsProvider } from "../../contexts/calculation-settings.context";
+import { AuthProvider, authStore } from "../../contexts/auth.context.tsx";
+import { CalculationSettingsProvider } from "../../contexts/calculation-settings.context.tsx";
 import {
 	CalendarSettingsProvider,
 	DEFAULT_CALENDAR_SETTINGS,
 	calendarSettingsStore,
-} from "../../contexts/calendar-settings.context";
-import { DuasProvider } from "../../contexts/duas.context";
+} from "../../contexts/calendar-settings.context.tsx";
+import { DuasProvider } from "../../contexts/duas.context.tsx";
 import {
 	FastingRecordProvider,
 	fastingRecordStore,
-} from "../../contexts/fasting-record.context";
+} from "../../contexts/fasting-record.context.tsx";
 import {
 	LocationProvider,
 	locationStore,
-} from "../../contexts/location.context";
+} from "../../contexts/location.context.tsx";
 import {
 	DEFAULT_NOTIFICATION_SETTINGS,
 	NotificationsSettingsProvider,
 	notificationsSettingsStore,
-} from "../../contexts/notification-settings.context";
-import { PrayerTimesProvider } from "../../contexts/prayer-times.context";
-import { PrayersProvider, prayersStore } from "../../contexts/prayers.context";
-import { useStorage } from "../../hooks/storage.hook";
+} from "../../contexts/notification-settings.context.tsx";
+import { PrayerTimesProvider } from "../../contexts/prayer-times.context.tsx";
+import {
+	PrayersProvider,
+	prayersStore,
+} from "../../contexts/prayers.context.tsx";
+import { useStorage } from "../../hooks/storage.hook.tsx";
 
 const RootLayout = () => {
 	const [[isLoadingUser, user]] = useStorage(authStore);

@@ -1,14 +1,14 @@
 import dayjs from "dayjs";
 import { createContext, useContext, useEffect, useState } from "react";
 
-import { useCalculationSettings } from "./calculation-settings.context";
-import { useLocationOrNull } from "./location.context";
+import { useCalculationSettings } from "./calculation-settings.context.tsx";
+import { useLocationOrNull } from "./location.context.tsx";
 
-import { events } from "../helpers/events.helpers";
-import { getPrayerTimes } from "../helpers/prayer-times.helpers";
+import { events } from "../helpers/events.helpers.ts";
+import { getPrayerTimes } from "../helpers/prayer-times.helpers.ts";
 
 import type { PropsWithChildren } from "react";
-import type { PrayerTimes } from "../schemas/prayer-times.schemas";
+import type { PrayerTimes } from "../schemas/prayer-times.schemas.ts";
 
 const PrayerTimesContext = createContext<null | PrayerTimes>(null);
 
@@ -35,7 +35,7 @@ export const usePrayerTimes = (): PrayerTimes => {
 				maghrib: "--:--",
 				isha: "--:--",
 				midnight: "--:--",
-		  }
+			}
 		: prayertimes;
 };
 

@@ -1,6 +1,6 @@
-import { arctan2, cos, sin, tan } from "./math.helpers";
+import { arctan2, cos, sin, tan } from "./math.helpers.ts";
 
-import type { Coords } from "../schemas/location.schemas";
+import type { Coords } from "../schemas/location.schemas.ts";
 
 const QIBLA_COORDS = {
 	latitude: 21.4225,

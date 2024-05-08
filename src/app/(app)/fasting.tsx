@@ -1,19 +1,19 @@
 import { View } from "react-native";
 import { Card } from "react-native-paper";
 
-import { FormSwitch } from "../../components/controls/form-switch.component";
-import { ScreenWrapper } from "../../components/layout/screen-wrapper.component";
+import { FormSwitch } from "../../components/controls/form-switch.component.tsx";
+import { ScreenWrapper } from "../../components/layout/screen-wrapper.component.tsx";
 import {
 	toggleFastingRecord,
 	useFastingRecord,
-} from "../../contexts/fasting-record.context";
-import { useI18n } from "../../contexts/i18n.context";
+} from "../../contexts/fasting-record.context.tsx";
+import { useI18n } from "../../contexts/i18n.context.tsx";
 import {
 	toggleFastingReminder,
 	useNotificationsSettings,
-} from "../../contexts/notification-settings.context";
-import { usePrayerTimes } from "../../contexts/prayer-times.context";
-import { dayjsExtended } from "../../helpers/date.helpers";
+} from "../../contexts/notification-settings.context.tsx";
+import { usePrayerTimes } from "../../contexts/prayer-times.context.tsx";
+import { dayjsExtended } from "../../helpers/date.helpers.ts";
 
 const Fasting = () => {
 	const { content } = useI18n();

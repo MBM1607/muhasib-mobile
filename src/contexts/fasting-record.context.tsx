@@ -1,11 +1,11 @@
 import { createContext, useContext, useEffect, useState } from "react";
 
-import { events } from "../helpers/events.helpers";
-import { createStore } from "../helpers/store.helpers";
-import { fastingRecordSchema } from "../schemas/fasting.schemas";
+import { events } from "../helpers/events.helpers.ts";
+import { createStore } from "../helpers/store.helpers.ts";
+import { fastingRecordSchema } from "../schemas/fasting.schemas.ts";
 
 import type { PropsWithChildren } from "react";
-import type { FastingRecord } from "../schemas/fasting.schemas";
+import type { FastingRecord } from "../schemas/fasting.schemas.ts";
 
 export const fastingRecordStore = createStore({
 	key: "fasting",

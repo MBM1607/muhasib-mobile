@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 
-import { events } from "../helpers/events.helpers";
-import { createStore } from "../helpers/store.helpers";
+import { events } from "../helpers/events.helpers.ts";
+import { createStore } from "../helpers/store.helpers.ts";
 import { content, defaultLanguage, languageSchema } from "../i18n";
 
 import type { PropsWithChildren, SetStateAction } from "react";

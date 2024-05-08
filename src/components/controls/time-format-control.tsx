@@ -4,11 +4,11 @@ import { Card, Menu } from "react-native-paper";
 import {
 	setTimeFormat,
 	useCalculationSettings,
-} from "../../contexts/calculation-settings.context";
-import { useI18n } from "../../contexts/i18n.context";
-import { useTheme } from "../../hooks/theme.hook";
-import { TIME_FORMATS } from "../../schemas/prayer-times.schemas";
-import { appIconMap } from "../app/icon.component";
+} from "../../contexts/calculation-settings.context.tsx";
+import { useI18n } from "../../contexts/i18n.context.tsx";
+import { useTheme } from "../../hooks/theme.hook.tsx";
+import { TIME_FORMATS } from "../../schemas/prayer-times.schemas.ts";
+import { appIconMap } from "../app/icon.component.tsx";
 
 import type { StyleProp, ViewStyle } from "react-native";
 

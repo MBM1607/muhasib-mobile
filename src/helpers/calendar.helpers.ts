@@ -1,6 +1,6 @@
 /** List of Muslim Holidays as DayJS dates */
 
-import { dayjsExtended } from "./date.helpers";
+import { dayjsExtended } from "./date.helpers.ts";
 
 import type { Dayjs } from "dayjs";
 

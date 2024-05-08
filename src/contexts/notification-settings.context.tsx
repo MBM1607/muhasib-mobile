@@ -1,11 +1,11 @@
 import { createContext, useContext, useEffect, useState } from "react";
 
-import { events } from "../helpers/events.helpers";
-import { createStore } from "../helpers/store.helpers";
-import { notificationsSettingsSchema } from "../schemas/notification-settings.schemas";
+import { events } from "../helpers/events.helpers.ts";
+import { createStore } from "../helpers/store.helpers.ts";
+import { notificationsSettingsSchema } from "../schemas/notification-settings.schemas.ts";
 
 import type { PropsWithChildren } from "react";
-import type { NotificationsSettings } from "../schemas/notification-settings.schemas";
+import type { NotificationsSettings } from "../schemas/notification-settings.schemas.ts";
 
 export const DEFAULT_NOTIFICATION_SETTINGS: NotificationsSettings = {
 	fastingReminders: true,

@@ -1,10 +1,10 @@
 import { View } from "react-native";
 import { Text, Tooltip } from "react-native-paper";
 
-import { useI18n } from "../../contexts/i18n.context";
-import { usePrayerTimes } from "../../contexts/prayer-times.context";
-import { useTheme } from "../../hooks/theme.hook";
-import { IconButton } from "../controls/icon-button.component";
+import { useI18n } from "../../contexts/i18n.context.tsx";
+import { usePrayerTimes } from "../../contexts/prayer-times.context.tsx";
+import { useTheme } from "../../hooks/theme.hook.tsx";
+import { IconButton } from "../controls/icon-button.component.tsx";
 
 export const PrayerTimesBar = () => {
 	const { content } = useI18n();

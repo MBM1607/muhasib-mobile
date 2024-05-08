@@ -2,17 +2,17 @@ import { useReducer, useRef } from "react";
 import { Keyboard } from "react-native";
 import { z } from "zod";
 
-import { shouldAutoFill } from "../config";
-import { stringifyError } from "../errors";
-import { dayjsUtcExtended } from "../helpers/date.helpers";
-import { humanizeToken } from "../helpers/humanize-token.helpers";
-import { objectEntries } from "../helpers/object.helpers";
+import { shouldAutoFill } from "../config.ts";
+import { stringifyError } from "../errors.ts";
+import { dayjsUtcExtended } from "../helpers/date.helpers.ts";
+import { humanizeToken } from "../helpers/humanize-token.helpers.ts";
+import { objectEntries } from "../helpers/object.helpers.ts";
 
 import type { RefObject } from "react";
 import type { TextInput } from "react-native";
-import type { ButtonProps } from "../components/controls/button.component";
-import type { AlertProps } from "../components/feedback/alert.component";
-import type { ZodDate, ZodTime } from "../helpers/schema.helpers";
+import type { ButtonProps } from "../components/controls/button.component.tsx";
+import type { AlertProps } from "../components/feedback/alert.component.tsx";
+import type { ZodDate, ZodTime } from "../helpers/schema.helpers.ts";
 import type { Utils } from "../types/utils.types";
 
 type fieldMap = {
@@ -75,13 +75,14 @@ const formDefaults: {
 	boolean: false,
 };
 
-type notRequired<T extends fieldZod> = T extends z.ZodNullable<z.ZodTypeAny>
-	? true
-	: T extends z.ZodBoolean
-	  ? true
-	  : T extends z.ZodString
-	    ? boolean
-	    : false;
+type notRequired<T extends fieldZod> =
+	T extends z.ZodNullable<z.ZodTypeAny>
+		? true
+		: T extends z.ZodBoolean
+			? true
+			: T extends z.ZodString
+				? boolean
+				: false;
 
 type validSchema = z.ZodObject<Record<string, fieldZod>, "strict">;
 
@@ -181,10 +182,10 @@ export const useForm = <
 						(shouldAutoFill
 							? formDefaults[field.type]
 							: field.type === "boolean"
-							  ? false
-							  : ["date", "time"].includes(field.type)
-							    ? null
-							    : ""),
+								? false
+								: ["date", "time"].includes(field.type)
+									? null
+									: ""),
 				}),
 				{},
 			) as never,
@@ -269,7 +270,7 @@ export const useForm = <
 				ref: !["boolean", "date", "time"].includes(field.type)
 					? (element: TextInput | null) => {
 							textRefs.current[key as keyof typeof textRefs.current] = element;
-					  }
+						}
 					: undefined,
 				next: field.next
 					? () =>
@@ -303,7 +304,7 @@ export const useForm = <
 					onClose: () => {
 						dispatch({ type: "updateStatus", value: { type: "idle" } });
 					},
-			  } satisfies AlertProps)
+				} satisfies AlertProps)
 			: null;
 
 	const buttonProps = {

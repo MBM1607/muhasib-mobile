@@ -1,12 +1,12 @@
 import { isDayjs } from "dayjs";
 import { z } from "zod";
 
-import { dayjsUtcExtended } from "./date.helpers";
+import { dayjsUtcExtended } from "./date.helpers.ts";
 
 import { JWT_REGEX, PHONE_REGEX } from "../constants";
 
 import type { Utils } from "../types/utils.types";
-import type { BulkResponse } from "./api.helpers";
+import type { BulkResponse } from "./api.helpers.ts";
 
 export const dbIdSchema = z.number().int().positive().finite().brand("DbId");
 

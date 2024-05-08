@@ -3,23 +3,23 @@ import { View } from "react-native";
 import { Calendar } from "react-native-calendars";
 import { Surface, Text } from "react-native-paper";
 
-import { PrayerMethod } from "../../components/app/prayer-method.component";
-import { FormSwitch } from "../../components/controls/form-switch.component";
-import { ScreenWrapper } from "../../components/layout/screen-wrapper.component";
-import { useCalendarSettings } from "../../contexts/calendar-settings.context";
+import { PrayerMethod } from "../../components/app/prayer-method.component.tsx";
+import { FormSwitch } from "../../components/controls/form-switch.component.tsx";
+import { ScreenWrapper } from "../../components/layout/screen-wrapper.component.tsx";
+import { useCalendarSettings } from "../../contexts/calendar-settings.context.tsx";
 import {
 	toggleFastingRecord,
 	useFastingRecord,
-} from "../../contexts/fasting-record.context";
-import { useI18n } from "../../contexts/i18n.context";
-import { usePrayers } from "../../contexts/prayers.context";
-import { getMuslimHolidays } from "../../helpers/calendar.helpers";
-import { dayjsExtended } from "../../helpers/date.helpers";
-import { useTheme } from "../../hooks/theme.hook";
+} from "../../contexts/fasting-record.context.tsx";
+import { useI18n } from "../../contexts/i18n.context.tsx";
+import { usePrayers } from "../../contexts/prayers.context.tsx";
+import { getMuslimHolidays } from "../../helpers/calendar.helpers.ts";
+import { dayjsExtended } from "../../helpers/date.helpers.ts";
+import { useTheme } from "../../hooks/theme.hook.tsx";
 import {
 	PERFORMABLE_PRAYERS,
 	UNFILLED_PRAYER_DATA,
-} from "../../schemas/prayers.schemas";
+} from "../../schemas/prayers.schemas.ts";
 
 import type { MarkedDates } from "react-native-calendars/src/types";
 

@@ -1,8 +1,8 @@
 import { Text } from "react-native-paper";
 
-import { ScreenWrapper } from "../../../components/layout/screen-wrapper.component";
+import { ScreenWrapper } from "../../../components/layout/screen-wrapper.component.tsx";
 import { MetaAppOptions } from "../../../components/settings/meta-app-options";
-import { useI18n } from "../../../contexts/i18n.context";
+import { useI18n } from "../../../contexts/i18n.context.tsx";
 
 const UserSettings = () => {
 	const { content } = useI18n();

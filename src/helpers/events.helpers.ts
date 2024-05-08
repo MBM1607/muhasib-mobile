@@ -1,20 +1,20 @@
 import { DeviceEventEmitter } from "react-native";
 
 import type { SetStateAction } from "react";
-import type { AlertModalProps } from "../components/feedback/alert-modal.component";
+import type { AlertModalProps } from "../components/feedback/alert-modal.component.tsx";
 import type { Language } from "../i18n";
-import type { Location } from "../schemas/location.schemas";
+import type { Location } from "../schemas/location.schemas.ts";
 import type {
 	AsrJuristicMethodName,
 	CalculationMethodName,
 	HighLatitudeMethod,
 	TimeFormat,
-} from "../schemas/prayer-times.schemas";
+} from "../schemas/prayer-times.schemas.ts";
 import type {
 	PerformablePrayerName,
 	PrayerPerformMethod,
-} from "../schemas/prayers.schemas";
-import type { LoggedInUser } from "../schemas/user.schemas";
+} from "../schemas/prayers.schemas.ts";
+import type { LoggedInUser } from "../schemas/user.schemas.ts";
 
 export type EventMap = {
 	login: LoggedInUser;

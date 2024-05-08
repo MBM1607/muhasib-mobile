@@ -3,7 +3,7 @@ import {
 	lowerAlphabet,
 	upperAlphabet,
 	wordSeparators,
-} from "./string-literals.helpers";
+} from "./string-literals.helpers.ts";
 
 export const humanizeCases = ["lower", "sentence", "title", "upper"] as const;
 
@@ -47,12 +47,12 @@ export const humanizeToken = (
 				casing === "lower"
 					? currentWord.toLowerCase()
 					: casing === "upper"
-					? currentWord.toUpperCase()
-					: currentWord.toUpperCase() === currentWord
-					? currentWord
-					: casing === "title" || !result
-					? `${first.toUpperCase()}${currentWord.slice(1).toLowerCase()}`
-					: currentWord.toLowerCase();
+						? currentWord.toUpperCase()
+						: currentWord.toUpperCase() === currentWord
+							? currentWord
+							: casing === "title" || !result
+								? `${first.toUpperCase()}${currentWord.slice(1).toLowerCase()}`
+								: currentWord.toLowerCase();
 			result += `${result.length ? " " : ""}${formatted}`;
 		}
 		currentWord = "";

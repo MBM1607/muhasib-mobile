@@ -1,7 +1,7 @@
 import { Surface, Text, TouchableRipple } from "react-native-paper";
 
-import { useTheme } from "../../hooks/theme.hook";
-import { IconButton } from "../controls/icon-button.component";
+import { useTheme } from "../../hooks/theme.hook.tsx";
+import { IconButton } from "../controls/icon-button.component.tsx";
 
 type MenuIcon = "prayers" | "qibla" | "fasting" | "dua" | "islamic-calendar";
 

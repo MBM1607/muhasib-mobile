@@ -4,13 +4,13 @@ import { View } from "react-native";
 import { TextInput } from "react-native-paper";
 import { DatePickerModal, TimePickerModal } from "react-native-paper-dates";
 
-import { Button } from "./button.component";
-import { FormControlWrapper } from "./form-control-wrapper.component";
+import { Button } from "./button.component.tsx";
+import { FormControlWrapper } from "./form-control-wrapper.component.tsx";
 
-import { isSmallerScreen } from "../../config";
-import { dayjsUtcExtended } from "../../helpers/date.helpers";
-import { useTheme } from "../../hooks/theme.hook";
-import { appIconMap } from "../app/icon.component";
+import { isSmallerScreen } from "../../config.ts";
+import { dayjsUtcExtended } from "../../helpers/date.helpers.ts";
+import { useTheme } from "../../hooks/theme.hook.tsx";
+import { appIconMap } from "../app/icon.component.tsx";
 
 import type { Dayjs } from "dayjs";
 import type { ForwardedRef, RefObject } from "react";
@@ -23,9 +23,9 @@ import type {
 import type { TextInputProps } from "react-native-paper";
 import type { TextInputLabelProp } from "react-native-paper/lib/typescript/components/TextInput/types";
 import type { z } from "zod";
-import type { ZodTime } from "../../helpers/schema.helpers";
-import type { IconName } from "../app/icon.component";
-import type { ButtonProps } from "./button.component";
+import type { ZodTime } from "../../helpers/schema.helpers.ts";
+import type { IconName } from "../app/icon.component.tsx";
+import type { ButtonProps } from "./button.component.tsx";
 
 export const formControlType = [
 	"email",
@@ -209,10 +209,10 @@ const FormControlComponent = (
 				isDayjs(value)
 					? value.format("YYYY-MM-DD")
 					: typeof value === "string"
-					  ? value
-					  : value
-					    ? `${value.hours}:${value.minutes}`
-					    : ""
+						? value
+						: value
+							? `${value.hours}:${value.minutes}`
+							: ""
 			}
 			right={
 				type === "password" ? (
