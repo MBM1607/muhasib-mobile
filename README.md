@@ -29,7 +29,7 @@ Build A Preview Version: `pnpm build:preview`
 
 Build A Development Version (APK): `pnpm build:development`
 
-Build An Independent APK: `pnpm expo build:android -t apk`
+Build An Independent APK: `eas build -p android --profile preview`
 
 Publish: `pnpm expo publish`
 
