@@ -1,21 +1,25 @@
 import Constants from "expo-constants";
 import { Dimensions } from "react-native";
-import * as Sentry from "sentry-expo";
+// import * as Sentry from "sentry-expo";
 
 import type { App } from "./types/app.types";
 
-const { env, backendPath, sentry } = Constants.expoConfig?.extra as App.env;
+const {
+	env,
+	backendPath,
+	// sentry
+} = Constants.expoConfig?.extra as App.env;
 
 export { backendPath, env };
 
-if (env === "production") {
-	Sentry.init({
-		dsn: sentry.dsn,
-		enableInExpoDevelopment: true,
-		debug: false,
-		tracesSampleRate: 1.0,
-	});
-}
+// if (env === "production") {
+// 	Sentry.init({
+// 		dsn: sentry.dsn,
+// 		enableInExpoDevelopment: true,
+// 		debug: false,
+// 		tracesSampleRate: 1.0,
+// 	});
+// }
 
 const isFetchMockedConfig: Record<typeof env, boolean> = {
 	development: false,

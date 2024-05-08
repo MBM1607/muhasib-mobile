@@ -23,7 +23,7 @@
 		},
 		"owner": "muhasib",
 		"plugins": [
-			"sentry-expo",
+			// "sentry-expo",
 			"expo-router",
 			[
 				"expo-location",

@@ -6,10 +6,10 @@ const parseEnvironment = () => {
 	const envSchema = z.object({
 		NODE_ENV: z.enum(["development", "production", "test"]),
 		BACKEND_API_PATH: z.string().url(),
-		SENTRY_ORG: z.string(),
-		SENTRY_PROJECT: z.string(),
-		SENTRY_AUTH_TOKEN: z.string(),
-		SENTRY_DSN: z.string(),
+		// SENTRY_ORG: z.string(),
+		// SENTRY_PROJECT: z.string(),
+		// SENTRY_AUTH_TOKEN: z.string(),
+		// SENTRY_DSN: z.string(),
 	});
 	const parsed = envSchema.safeParse(process.env);
 
@@ -26,11 +26,11 @@ const parseEnvironment = () => {
 	const data = parsed.success ? parsed.data : ({} as z.infer<typeof envSchema>);
 	return {
 		env: data.NODE_ENV,
-		sentry: {
-			dsn: data.SENTRY_DSN,
-			organization: data.SENTRY_ORG,
-			project: data.SENTRY_PROJECT,
-		},
+		// sentry: {
+		// 	dsn: data.SENTRY_DSN,
+		// 	organization: data.SENTRY_ORG,
+		// 	project: data.SENTRY_PROJECT,
+		// },
 		backendPath: data.BACKEND_API_PATH,
 	};
 };
@@ -101,7 +101,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
 		},
 	},
 	plugins: [
-		"sentry-expo",
+		// "sentry-expo",
 		"expo-router",
 		[
 			"expo-location",
@@ -119,16 +119,16 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
 			},
 		],
 	],
-	hooks: {
-		postPublish: [
-			{
-				file: "sentry-expo/upload-sourcemaps",
-				config: {
-					setCommits: true,
-					organization: extra.sentry.organization,
-					project: extra.sentry.project,
-				},
-			},
-		],
-	},
+	// hooks: {
+	// 	postPublish: [
+	// 		{
+	// 			file: "sentry-expo/upload-sourcemaps",
+	// 			config: {
+	// 				setCommits: true,
+	// 				organization: extra.sentry.organization,
+	// 				project: extra.sentry.project,
+	// 			},
+	// 		},
+	// 	],
+	// },
 });
