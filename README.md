@@ -10,32 +10,30 @@ Cross-platform (iOS + Android) prayer times + tracking application built with Re
 - `Typescript`
 - `React Native Paper` for theming and components
 - `Sentry` for logging and error reporting
-- `yarn` for package management
+- `pnpm` for package management
 - `dotenv-vault` to share environment variables
 
 ---
 
 ## Scripts
 
-Start: `yarn start`
+Start: `pnpm start`
 
-Start (Android): `yarn android`
+Start (Android): `pnpm android`
 
-Start (iOS): `yarn ios`
+Start (iOS): `v ios`
 
-Build: `yarn build`
+Build: `pnpm build`
 
-Build A Preview Version: `yarn build:preview`
+Build A Preview Version: `pnpm build:preview`
 
-Build A Development Version (APK): `yarn build:development`
+Build A Development Version (APK): `pnpm build:development`
 
-Build An Independent APK: `yarn expo build:android -t apk`
+Build An Independent APK: `pnpm expo build:android -t apk`
 
-Publish: `yarn expo publish`
+Publish: `pnpm expo publish`
 
-Convert svg icons to components: `yarn generate-icons`
-
-Lint the code: `yarn lint`
+Lint the code: `pnpm lint`
 
 ---
 
@@ -43,12 +41,12 @@ Lint the code: `yarn lint`
 
 Environment variables are securely shared with `dotenv-vault`.
 
-Create new vault: `yarn env:new`
+Create new vault: `pnpm env:new`
 
-Login to the vault: `yarn env:login`
+Login to the vault: `pnpm env:login`
 
-Open vault: `yarn env:open`
+Open vault: `pnpm env:open`
 
-Pull environment from vault: `yarn env:pull`
+Pull environment from vault: `pnpm env:pull`
 
-Push environment to vault: `yarn env:push`
+Push environment to vault: `pnpm env:push`
