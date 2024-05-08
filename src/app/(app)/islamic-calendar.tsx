@@ -13,7 +13,10 @@ import {
 } from "../../contexts/fasting-record.context.tsx";
 import { useI18n } from "../../contexts/i18n.context.tsx";
 import { usePrayers } from "../../contexts/prayers.context.tsx";
-import { getMuslimHolidays } from "../../helpers/calendar.helpers.ts";
+import {
+	getMuslimHolidays,
+	skipPrayerMarker,
+} from "../../helpers/calendar.helpers.ts";
 import { dayjsExtended } from "../../helpers/date.helpers.ts";
 import { useTheme } from "../../hooks/theme.hook.tsx";
 import {
@@ -22,6 +25,7 @@ import {
 } from "../../schemas/prayers.schemas.ts";
 
 import type { MarkedDates } from "react-native-calendars/src/types";
+import type { PerformablePrayer } from "../../schemas/prayers.schemas.ts";
 
 const IslamicCalendar = () => {
 	const { content } = useI18n();
@@ -41,15 +45,11 @@ const IslamicCalendar = () => {
 	const [muslimHolidays, setMuslimHolidays] = useState(
 		getMuslimHolidays(selectedInHijri.year()),
 	);
-	const [datePrayers, setDatePrayers] = useState(
-		prayers[selectedFormatted] || UNFILLED_PRAYER_DATA,
-	);
 
 	const setDate = (date: string) => {
 		const newDayJs = dayjsExtended(date);
 		setSelected(newDayJs);
 		setSelectedFormatted(date);
-		setDatePrayers(prayers[date] || UNFILLED_PRAYER_DATA);
 		const newHijri = newDayJs
 			.toCalendarSystem("islamic")
 			.add(hijriDateAdjustment, "day");
@@ -64,7 +64,9 @@ const IslamicCalendar = () => {
 			color: theme.colors.warning,
 		};
 		muslimHolidays.forEach((date) => {
-			const dateInGregorian = date.gregorianDate.format("YYYY-MM-DD");
+			const dateInGregorian = date.gregorianDate
+				.add(hijriDateAdjustment, "days")
+				.format("YYYY-MM-DD");
 
 			if (markedDates[dateInGregorian]) {
 				markedDates[dateInGregorian]?.dots?.push(muslimHolidayStyle);
@@ -79,6 +81,8 @@ const IslamicCalendar = () => {
 			color: theme.colors.success,
 		};
 		Object.keys(fastingRecord).forEach((date) => {
+			if (!fastingRecord[date]) return;
+
 			if (markedDates[date]) {
 				markedDates[date]?.dots?.push(fastingStyle);
 			} else {
@@ -92,6 +96,8 @@ const IslamicCalendar = () => {
 			color: theme.colors.primary,
 		};
 		Object.keys(prayers).forEach((date) => {
+			if (skipPrayerMarker(prayers[date] as PerformablePrayer)) return;
+
 			if (markedDates[date]) {
 				markedDates[date]?.dots?.push(prayerStyle);
 			} else {
@@ -191,7 +197,9 @@ const IslamicCalendar = () => {
 						key={prayer}
 						date={selectedFormatted}
 						prayer={prayer}
-						prayerPerformMethod={datePrayers[prayer]}
+						prayerPerformMethod={
+							(prayers[selectedFormatted] || UNFILLED_PRAYER_DATA)[prayer]
+						}
 					/>
 				))}
 			</View>

@@ -3,6 +3,7 @@
 import { dayjsExtended } from "./date.helpers.ts";
 
 import type { Dayjs } from "dayjs";
+import type { PerformablePrayer } from "../schemas/prayers.schemas.ts";
 
 export const MUSLIM_HOLIDAYS = {
 	"Start of Ramadan": {
@@ -61,4 +62,8 @@ export const getMuslimHolidays = (hijriYear: number) => {
 	);
 
 	return holidays;
+};
+
+export const skipPrayerMarker = (prayers: PerformablePrayer) => {
+	return Object.values(prayers).every((prayer) => prayer === "Not Performed");
 };
