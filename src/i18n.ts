@@ -3,6 +3,8 @@
 import { Platform } from "react-native";
 import { z } from "zod";
 
+import type { PerformablePrayerName } from "./schemas/prayers.schemas";
+
 const isAndroid = Platform.OS === "android";
 
 export const languages = ["english", "urdu"] as const;
@@ -139,6 +141,10 @@ const english = {
 			title: "Contact",
 			description: "Contact the developer",
 		},
+	},
+	notifications: {
+		prayerStart: (prayerName: PerformablePrayerName) =>
+			`It's time for ${english.prayer[prayerName]}!`,
 	},
 	share: {
 		title: "Share Muhasib",
@@ -346,6 +352,10 @@ const urdu: Content = {
 			title: "رابطہ",
 			description: "ڈیویلپر سے رابطہ کریں",
 		},
+	},
+	notifications: {
+		prayerStart: (prayerName: PerformablePrayerName) =>
+			`اب ${urdu.prayer[prayerName]} کا وقت ہے!`,
 	},
 	share: {
 		title: "محاسب کو شیئر کریں",

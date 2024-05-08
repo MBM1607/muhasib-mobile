@@ -110,6 +110,14 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
 					"Allow $(PRODUCT_NAME) to use your location.",
 			},
 		],
+		[
+			"expo-notifications",
+			{
+				icon: "./assets/notification-icon.png",
+				color: "#26784e",
+				sounds: ["./assets/azan.mp3"],
+			},
+		],
 	],
 	hooks: {
 		postPublish: [

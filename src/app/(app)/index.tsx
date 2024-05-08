@@ -1,13 +1,23 @@
 import Constants from "expo-constants";
+import * as Notifications from "expo-notifications";
 import { useRouter } from "expo-router";
 import { SafeAreaView, View } from "react-native";
 import { Surface } from "react-native-paper";
 import Animated, { SlideInLeft, SlideOutRight } from "react-native-reanimated";
 
-import { MenuButton } from "../../components/dashboard/menu-button";
-import { PrayerTimesCard } from "../../components/dashboard/prayer-times-card";
-import { TopBar } from "../../components/dashboard/top-bar";
+import { MenuButton } from "../../components/dashboard/menu-button.tsx";
+import { PrayerTimesCard } from "../../components/dashboard/prayer-times-card.tsx";
+import { TopBar } from "../../components/dashboard/top-bar.tsx";
 import { useI18n } from "../../contexts/i18n.context.tsx";
+
+Notifications.setNotificationHandler({
+	// eslint-disable-next-line @typescript-eslint/require-await
+	handleNotification: async () => ({
+		shouldShowAlert: true,
+		shouldPlaySound: true,
+		shouldSetBadge: true,
+	}),
+});
 
 const App = () => {
 	const router = useRouter();

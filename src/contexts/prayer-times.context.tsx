@@ -2,10 +2,16 @@ import dayjs from "dayjs";
 import { createContext, useContext, useEffect, useState } from "react";
 
 import { useCalculationSettings } from "./calculation-settings.context.tsx";
+import { useI18n } from "./i18n.context.tsx";
 import { useLocationOrNull } from "./location.context.tsx";
 
 import { events } from "../helpers/events.helpers.ts";
+import {
+	cancelAllNotifications,
+	schedulePrayerStartTimeNotification,
+} from "../helpers/notification.helpers.ts";
 import { getPrayerTimes } from "../helpers/prayer-times.helpers.ts";
+import { PERFORMABLE_PRAYERS } from "../schemas/prayers.schemas.ts";
 
 import type { PropsWithChildren } from "react";
 import type { PrayerTimes } from "../schemas/prayer-times.schemas.ts";
@@ -13,11 +19,6 @@ import type { PrayerTimes } from "../schemas/prayer-times.schemas.ts";
 const PrayerTimesContext = createContext<null | PrayerTimes>(null);
 
 type PrayerTimesProviderProps = PropsWithChildren;
-
-/** fires the calculatePrayerTimes event **/
-export const calculatePrayerTimes = () => {
-	events.emit("calculatePrayerTimes");
-};
 
 export const usePrayerTimes = (): PrayerTimes => {
 	const prayertimes = useContext(PrayerTimesContext);
@@ -42,6 +43,7 @@ export const usePrayerTimes = (): PrayerTimes => {
 export const PrayerTimesProvider = ({ children }: PrayerTimesProviderProps) => {
 	const location = useLocationOrNull();
 	const calculationSettings = useCalculationSettings();
+	const { content } = useI18n();
 
 	const [prayertimes, setPrayerTimes] = useState<PrayerTimes | null>(null);
 
@@ -58,6 +60,13 @@ export const PrayerTimesProvider = ({ children }: PrayerTimesProviderProps) => {
 					calculationSettings,
 				);
 				setPrayerTimes(prayerTimes);
+
+				cancelAllNotifications();
+				PERFORMABLE_PRAYERS.forEach((prayer) => {
+					const notificationTitle = content.notifications.prayerStart(prayer);
+					const startTime = prayerTimes[prayer];
+					schedulePrayerStartTimeNotification(notificationTitle, startTime);
+				});
 			},
 		);
 
@@ -74,4 +83,9 @@ export const PrayerTimesProvider = ({ children }: PrayerTimesProviderProps) => {
 			{children}
 		</PrayerTimesContext.Provider>
 	);
+};
+
+/** fires the calculatePrayerTimes event **/
+export const calculatePrayerTimes = () => {
+	events.emit("calculatePrayerTimes");
 };
