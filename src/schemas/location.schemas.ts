@@ -42,6 +42,7 @@ export const geoDataSchema = z.strictObject({
 	streetNumber: z.string().nullable(),
 	postalCode: z.string().nullable(),
 	name: z.string().nullable(),
+	formattedAddress: z.string(),
 });
 
 export const locationSchema = z.strictObject({
