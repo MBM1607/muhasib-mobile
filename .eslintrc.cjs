@@ -117,6 +117,7 @@ const config = {
 		yoda: "warn",
 
 		"import/consistent-type-specifier-style": ["warn", "prefer-top-level"],
+		"import/no-named-as-default": "off",
 		"import/first": "warn",
 		"import/newline-after-import": "warn",
 		"import/no-commonjs": "warn",

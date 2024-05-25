@@ -6,6 +6,8 @@ const parseEnvironment = () => {
 	const envSchema = z.object({
 		NODE_ENV: z.enum(["development", "production", "test"]),
 		BACKEND_API_PATH: z.string().url(),
+		OPEN_AI_API_KEY: z.string(),
+		OPEN_AI_ASSISTANT_ID: z.string(),
 		// SENTRY_ORG: z.string(),
 		// SENTRY_PROJECT: z.string(),
 		// SENTRY_AUTH_TOKEN: z.string(),
@@ -32,6 +34,10 @@ const parseEnvironment = () => {
 		// 	project: data.SENTRY_PROJECT,
 		// },
 		backendPath: data.BACKEND_API_PATH,
+		openAi: {
+			apiKey: data.OPEN_AI_API_KEY,
+			assistantId: data.OPEN_AI_ASSISTANT_ID,
+		},
 	};
 };
 

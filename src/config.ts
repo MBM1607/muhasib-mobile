@@ -7,10 +7,11 @@ import type { App } from "./types/app.types";
 const {
 	env,
 	backendPath,
+	openAi,
 	// sentry
 } = Constants.expoConfig?.extra as App.env;
 
-export { backendPath, env };
+export { backendPath, env, openAi };
 
 // if (env === "production") {
 // 	Sentry.init({

@@ -42,6 +42,7 @@ export type EventMap = {
 	toggleAnnouncements: undefined;
 	setHijriDateAdjustment: number;
 	addAssistantMessage: Message;
+	aiResponseReceived: undefined;
 };
 
 export const events = {

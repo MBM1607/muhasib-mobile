@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { View } from "react-native";
 import { Avatar, Surface, Text } from "react-native-paper";
 import Animated, { SlideInLeft, SlideOutRight } from "react-native-reanimated";
@@ -9,24 +10,30 @@ import {
 	useAssistantMessages,
 } from "../../../contexts/assistant.context.tsx";
 import { useI18n } from "../../../contexts/i18n.context.tsx";
+import { events } from "../../../helpers/events.helpers.ts";
 import { useForm } from "../../../hooks/form.hook.tsx";
-import { useTheme } from "../../../hooks/theme.hook.tsx";
 import { messageSchema } from "../../../schemas/message.schemas.ts";
 
 const Assistant = () => {
-	const theme = useTheme();
 	const { content } = useI18n();
 
 	const messages = useAssistantMessages();
+	const [waitingForResponse, setWaitingForResponse] = useState(false);
 
 	const { props, state } = useForm({
 		schema: messageSchema.pick({ message: true }),
 		details: {
 			message: { type: "string" },
 		},
+		// eslint-disable-next-line @typescript-eslint/require-await
 		onSubmit: async (values) => {
 			addAssistantMessage(values.message);
 			state.values.message = "";
+			setWaitingForResponse(true);
+
+			events.listen("aiResponseReceived", () => {
+				setWaitingForResponse(false);
+			});
 
 			return "Sent! Waiting for response...";
 		},
@@ -74,6 +81,30 @@ const Assistant = () => {
 						</Surface>
 					</View>
 				))}
+				{waitingForResponse && (
+					<View
+						style={{
+							flexDirection: "row-reverse",
+							alignItems: "center",
+							gap: 6,
+						}}
+					>
+						<Avatar.Icon
+							icon="robot"
+							size={32}
+						/>
+						<Surface
+							mode="elevated"
+							style={{
+								borderRadius: 6,
+								padding: 8,
+								flex: 1,
+							}}
+						>
+							<Text variant="bodyLarge">Sent! Waiting for response...</Text>
+						</Surface>
+					</View>
+				)}
 			</Animated.ScrollView>
 			<View
 				style={{
@@ -83,7 +114,11 @@ const Assistant = () => {
 			>
 				<FormControl
 					{...props.field.message}
-					button={{ ...props.button, icon: "message-submit" }}
+					button={{
+						...props.button,
+						icon: "message-submit",
+						loading: waitingForResponse,
+					}}
 					styles={{
 						container: {
 							flex: 1,
