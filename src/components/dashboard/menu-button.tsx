@@ -3,7 +3,14 @@ import { Surface, Text, TouchableRipple } from "react-native-paper";
 import { useTheme } from "../../hooks/theme.hook.tsx";
 import { IconButton } from "../controls/icon-button.component.tsx";
 
-type MenuIcon = "prayers" | "qibla" | "fasting" | "dua" | "islamic-calendar";
+type MenuIcon =
+	| "prayers"
+	| "qibla"
+	| "fasting"
+	| "dua"
+	| "islamic-calendar"
+	| "muhasib-ai"
+	| "quran";
 
 export type MenuButtonProps = {
 	icon: MenuIcon;

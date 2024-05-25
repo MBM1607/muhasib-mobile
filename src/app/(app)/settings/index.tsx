@@ -4,7 +4,7 @@ import { Card } from "react-native-paper";
 
 import { Icon } from "../../../components/app/icon.component.tsx";
 import { ScreenWrapper } from "../../../components/layout/screen-wrapper.component.tsx";
-import { MetaAppOptions } from "../../../components/settings/meta-app-options";
+import { MetaAppOptions } from "../../../components/settings/meta-app-options.tsx";
 import { useI18n } from "../../../contexts/i18n.context.tsx";
 import { useTheme } from "../../../hooks/theme.hook.tsx";
 

@@ -58,6 +58,28 @@ const App = () => {
 						<View
 							style={{
 								flexDirection: "row",
+								justifyContent: "center",
+								gap: 20,
+							}}
+						>
+							<MenuButton
+								icon={"qibla"}
+								label={content.pages.qibla}
+								onPress={() => {
+									router.push("/qibla");
+								}}
+							/>
+							<MenuButton
+								icon={"muhasib-ai"}
+								label={content.pages.muhasibAi}
+								onPress={() => {
+									router.push("/muhasib-ai");
+								}}
+							/>
+						</View>
+						<View
+							style={{
+								flexDirection: "row",
 								justifyContent: "space-between",
 								gap: 20,
 							}}
@@ -85,10 +107,10 @@ const App = () => {
 							}}
 						>
 							<MenuButton
-								icon={"qibla"}
-								label={content.pages.qibla}
+								icon={"quran"}
+								label={content.pages.quran}
 								onPress={() => {
-									router.push("/qibla");
+									router.push("/quran");
 								}}
 							/>
 							<MenuButton
