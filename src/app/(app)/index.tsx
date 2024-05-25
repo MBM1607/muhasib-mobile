@@ -73,7 +73,7 @@ const App = () => {
 								icon={"muhasib-ai"}
 								label={content.pages.muhasibAi}
 								onPress={() => {
-									router.push("/muhasib-ai");
+									router.push("/assistant");
 								}}
 							/>
 						</View>

@@ -13,12 +13,12 @@ export const DuasProvider = ({ children }: PropsWithChildren) => {
 
 	useEffect(() => {
 		(async () => {
-			const duas = await getRequest<typeof duasSchema>("duas", {
+			const newDuas = await getRequest<typeof duasSchema>("duas", {
 				isPublic: true,
 				schema: duasSchema,
 			});
 
-			setDuas(duas);
+			setDuas(newDuas);
 		})();
 	}, []);
 

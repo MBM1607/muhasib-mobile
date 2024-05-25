@@ -4,6 +4,7 @@ import type { SetStateAction } from "react";
 import type { AlertModalProps } from "../components/feedback/alert-modal.component.tsx";
 import type { Language } from "../i18n";
 import type { Location } from "../schemas/location.schemas.ts";
+import type { Message } from "../schemas/message.schemas.ts";
 import type {
 	AsrJuristicMethodName,
 	CalculationMethodName,
@@ -40,6 +41,7 @@ export type EventMap = {
 	togglePrayerReminder: undefined;
 	toggleAnnouncements: undefined;
 	setHijriDateAdjustment: number;
+	addAssistantMessage: Message;
 };
 
 export const events = {

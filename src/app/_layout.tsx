@@ -7,6 +7,7 @@ import { PaperProvider } from "react-native-paper";
 
 import { env } from "../config.ts";
 import { AlertProvider, addAlert } from "../contexts/alert.context.tsx";
+import { AssistantProvider } from "../contexts/assistant.context.tsx";
 import { I18nProvider } from "../contexts/i18n.context.tsx";
 import { LoadingProvider } from "../contexts/loading.context.tsx";
 import { ModeProvider, useMode } from "../contexts/mode.context.tsx";
@@ -37,19 +38,21 @@ const Providers = () => {
 	return (
 		<I18nProvider>
 			<PaperProvider theme={mode.scheme === "dark" ? darkTheme : lightTheme}>
-				<AlertProvider>
-					<LoadingProvider>
-						<StatusBar
-							style="auto"
-							backgroundColor={
-								mode.scheme === "dark"
-									? darkTheme.colors.primary
-									: lightTheme.colors.primary
-							}
-						/>
-						<Slot />
-					</LoadingProvider>
-				</AlertProvider>
+				<AssistantProvider>
+					<AlertProvider>
+						<LoadingProvider>
+							<StatusBar
+								style="auto"
+								backgroundColor={
+									mode.scheme === "dark"
+										? darkTheme.colors.primary
+										: lightTheme.colors.primary
+								}
+							/>
+							<Slot />
+						</LoadingProvider>
+					</AlertProvider>
+				</AssistantProvider>
 			</PaperProvider>
 		</I18nProvider>
 	);
