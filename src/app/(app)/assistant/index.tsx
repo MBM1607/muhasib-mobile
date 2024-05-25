@@ -12,9 +12,11 @@ import {
 import { useI18n } from "../../../contexts/i18n.context.tsx";
 import { events } from "../../../helpers/events.helpers.ts";
 import { useForm } from "../../../hooks/form.hook.tsx";
+import { useTheme } from "../../../hooks/theme.hook.tsx";
 import { messageSchema } from "../../../schemas/message.schemas.ts";
 
 const Assistant = () => {
+	const theme = useTheme();
 	const { content } = useI18n();
 
 	const messages = useAssistantMessages();
@@ -68,6 +70,12 @@ const Assistant = () => {
 						<Avatar.Icon
 							icon={message.type === "question" ? "account" : "robot"}
 							size={32}
+							style={{
+								backgroundColor:
+									message.type === "question"
+										? theme.colors.primary
+										: theme.colors.info,
+							}}
 						/>
 						<Surface
 							mode="elevated"
@@ -92,6 +100,9 @@ const Assistant = () => {
 						<Avatar.Icon
 							icon="robot"
 							size={32}
+							style={{
+								backgroundColor: theme.colors.info,
+							}}
 						/>
 						<Surface
 							mode="elevated"
