@@ -50,8 +50,7 @@ export const useI18n = () => {
 
 	return {
 		language,
-		direction: language === "urdu" ? "rtl" : "ltr",
-		rtl: language === "urdu",
+		direction: "ltr",
 		content: content[language],
 	} as const;
 };
