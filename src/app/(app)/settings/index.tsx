@@ -17,14 +17,13 @@ const Settings = () => {
 		<ScreenWrapper
 			title={content.pages.settings}
 			style={{
-				justifyContent: "space-between",
+				justifyContent: "space-evenly",
 				gap: 48,
 				paddingHorizontal: 8,
 			}}
 			userControl
 			languageControl
 			modeControl
-			scroll
 			back
 		>
 			<View style={{ gap: 8 }}>
@@ -63,26 +62,6 @@ const Settings = () => {
 							<Icon
 								{...props}
 								name="calendar-settings"
-								color={theme.colors.primary}
-							/>
-						)}
-					/>
-				</Card>
-				<Card
-					onPress={() => {
-						router.push("/settings/duas");
-					}}
-				>
-					<Card.Title
-						title={content.duasSettings.card.title}
-						titleStyle={{ textTransform: "capitalize", fontSize: 16 }}
-						titleVariant="headlineSmall"
-						subtitleVariant="bodySmall"
-						subtitle={content.duasSettings.card.description}
-						left={(props) => (
-							<Icon
-								{...props}
-								name="duas-settings"
 								color={theme.colors.primary}
 							/>
 						)}

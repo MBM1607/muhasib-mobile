@@ -68,7 +68,6 @@ const english = {
 		settings: "settings",
 		prayerTimesCalculationSettings: "prayer times calculation settings",
 		calendarSettings: "calendar settings",
-		duasSettings: "duas settings",
 		notificationsSettings: "notification settings",
 		userSettings: "user settings",
 		notFound: "not found",
@@ -106,12 +105,6 @@ const english = {
 		hijriAdjustment: {
 			title: "Hijri Date Adjustment",
 			overlayLabel: "Select Hijri Date Adjustment",
-		},
-	},
-	duasSettings: {
-		card: {
-			title: "Duas",
-			description: "Which Duas to Show",
 		},
 	},
 	notificationsSettings: {
