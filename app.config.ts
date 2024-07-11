@@ -1,73 +1,50 @@
-import { z } from "zod";
+import pkg from "./package.json";
 
 import type { ConfigContext, ExpoConfig } from "@expo/config";
 
-const parseEnvironment = () => {
-	const envSchema = z.object({
-		NODE_ENV: z.enum(["development", "production", "test"]),
-		BACKEND_API_PATH: z.string().url(),
-		OPEN_AI_API_KEY: z.string(),
-		OPEN_AI_ASSISTANT_ID: z.string(),
-		// SENTRY_ORG: z.string(),
-		// SENTRY_PROJECT: z.string(),
-		// SENTRY_AUTH_TOKEN: z.string(),
-		// SENTRY_DSN: z.string(),
-	});
-	const parsed = envSchema.safeParse(process.env);
+const IS_PROD = process.env.IS_PROD === "true";
+const NODE_ENV = process.env.NODE_ENV ?? "development";
 
-	if (!parsed.success && process.env.NODE_ENV) {
-		const env = process.env.NODE_ENV;
-		console.error(
-			"🔥 Invalid environment variables:",
-			parsed.error.flatten().fieldErrors,
-			`\n🔥 Fix the issues in .env.${env} file.`,
-			`\n💡 Tip: If you recently updated the .env.${env} file and the error still persists, try restarting the server with the -cc flag to clear the cache.`,
-		);
-		throw new Error("Invalid environment, Check terminal for more details ");
-	}
-	const data = parsed.success ? parsed.data : ({} as z.infer<typeof envSchema>);
-	return {
-		env: data.NODE_ENV,
-		// sentry: {
-		// 	dsn: data.SENTRY_DSN,
-		// 	organization: data.SENTRY_ORG,
-		// 	project: data.SENTRY_PROJECT,
-		// },
-		backendPath: data.BACKEND_API_PATH,
-		openAi: {
-			apiKey: data.OPEN_AI_API_KEY,
-			assistantId: data.OPEN_AI_ASSISTANT_ID,
-		},
-	};
-};
-
-const extra = parseEnvironment();
-export type Environment = typeof extra;
+const extra = { IS_PROD, NODE_ENV };
+export type Extra = typeof extra;
 
 const details = {
-	id: "muhasib",
+	id: pkg.name,
 	org: "muhasib",
+	expoUsername: "mbm1607",
 	name: "Muhasib",
-	description: "Prayer Times + Tracking App",
-	github: "https://github.com/mbm1607/muhasib-mobile",
-	version: "0.0.1",
+	description: pkg.description,
+	github: pkg.repository.url,
+	version: pkg.version,
 	easProjectId: "7ab8f232-40f2-4e38-bdc2-fa882fdf65fe",
 	primaryColor: "#26784e",
 } as const;
 
-const semverToInt = (version: `${number}.${number}.${number}`): number => {
-	const [major, minor, patch] = version.split(".").map(Number);
-	return (major ?? 0) * 10000000 + (minor ?? 0) * 100000 + (patch ?? 0);
+const semverToInt = (version: string): number => {
+	const [major = NaN, minor = NaN, patch = NaN] = version
+		.split(".")
+		.map(Number);
+	if (isNaN(major) || isNaN(minor) || isNaN(patch))
+		throw new Error("Invalid version!");
+	return major * 10000000 + minor * 100000 + patch;
 };
+
+const appId = `app.${details.id}${!extra.IS_PROD ? ".dev" : ""}`.replace(
+	/-/gu,
+	".",
+);
 
 export default ({ config }: ConfigContext): ExpoConfig => ({
 	...config,
 	owner: details.org,
 	scheme: details.id,
-	name: details.name,
+	name: details.name + (!extra.IS_PROD ? " (Dev)" : ""),
 	slug: details.id,
 	description: details.description,
 	version: details.version,
+	runtimeVersion: {
+		policy: "appVersion",
+	},
 	orientation: "portrait",
 	icon: "./assets/icon.png",
 	userInterfaceStyle: "automatic",
@@ -89,25 +66,26 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
 		backgroundColor: details.primaryColor,
 	},
 	updates: {
-		enabled: true,
-		fallbackToCacheTimeout: 0,
+		enabled: IS_PROD,
 	},
 	assetBundlePatterns: ["**/*"],
-	ios: {
-		bundleIdentifier: `app.${details.id}`,
-		buildNumber: details.version,
-		supportsTablet: true,
-	},
 	android: {
-		package: `app.${details.id}`,
+		package: appId,
 		versionCode: semverToInt(details.version),
 		adaptiveIcon: {
 			foregroundImage: "./assets/adaptive-icon.png",
 			backgroundColor: "#ffffff",
 		},
 	},
+	ios: {
+		bundleIdentifier: appId,
+		buildNumber: details.version,
+		supportsTablet: true,
+	},
 	plugins: [
-		// "sentry-expo",
+		["expo-dev-launcher", { launchModeExperimental: "most-recent" }],
+		["expo-build-properties", { android: { usesCleartextTraffic: true } }],
+		["expo-updates", { username: details.expoUsername }],
 		"expo-router",
 		[
 			"expo-location",
@@ -125,16 +103,4 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
 			},
 		],
 	],
-	// hooks: {
-	// 	postPublish: [
-	// 		{
-	// 			file: "sentry-expo/upload-sourcemaps",
-	// 			config: {
-	// 				setCommits: true,
-	// 				organization: extra.sentry.organization,
-	// 				project: extra.sentry.project,
-	// 			},
-	// 		},
-	// 	],
-	// },
 });

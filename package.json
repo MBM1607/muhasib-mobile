@@ -1,5 +1,6 @@
 {
-	"name": "muhasib-mobile",
+	"name": "muhasib",
+	"description": "Prayer Times + Tracking App",
 	"version": "1.0.0",
 	"repository": {
 		"url": "https://github.com/mbm1607/muhasib-mobile"
