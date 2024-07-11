@@ -42,7 +42,6 @@
 	"dependencies": {
 		"@calidy/dayjs-calendarsystems": "^1.11.3",
 		"@react-native-async-storage/async-storage": "1.21.0",
-		"@sentry/react-native": "~5.20.0",
 		"expo": "~50.0.19",
 		"expo-application": "~5.8.4",
 		"expo-build-properties": "~0.11.1",
@@ -72,7 +71,6 @@
 		"react-native-safe-area-context": "4.8.2",
 		"react-native-screens": "~3.29.0",
 		"react-native-svg": "14.1.0",
-		"sentry-expo": "~7.2.0",
 		"zod": "^3.23.6"
 	},
 	"devDependencies": {
