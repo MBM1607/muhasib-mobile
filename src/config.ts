@@ -1,19 +1,34 @@
+import { default as Constants } from "expo-constants";
 import { Dimensions } from "react-native";
 import { z } from "zod";
-// import * as Sentry from "sentry-expo";
+
+import type { App } from "./types/app.types.ts";
+
+const extra = Constants.expoConfig?.extra as App.extra;
+
+const envModes = ["development", "test", "production"] as const;
+
+export type EnvMode = (typeof envModes)[number];
+
+const envSchema = z.object({
+	NODE_ENV: z.enum(["development", "production", "test"]),
+	EXPO_PUBLIC_BACKEND_API_PATH: z.string().url(),
+	EXPO_PUBLIC_OPEN_AI_API_KEY: z.string(),
+	EXPO_PUBLIC_OPEN_AI_ASSISTANT_ID: z.string(),
+});
 
 const parseEnvironment = () => {
-	const envSchema = z.object({
-		NODE_ENV: z.enum(["development", "production", "test"]),
-		BACKEND_API_PATH: z.string().url(),
-		OPEN_AI_API_KEY: z.string(),
-		OPEN_AI_ASSISTANT_ID: z.string(),
-		// SENTRY_ORG: z.string(),
-		// SENTRY_PROJECT: z.string(),
-		// SENTRY_AUTH_TOKEN: z.string(),
-		// SENTRY_DSN: z.string(),
+	/**
+	 * The environment variables must be manually accessed via the dot nation to be inlined
+	 * @link {https://docs.expo.dev/guides/environment-variables/#how-to-read-from-environment-variables}
+	 * */
+	const parsed = envSchema.safeParse({
+		EXPO_PUBLIC_BACKEND_API_PATH: process.env.EXPO_PUBLIC_BACKEND_API_PATH,
+		EXPO_PUBLIC_OPEN_AI_API_KEY: process.env.EXPO_PUBLIC_OPEN_AI_API_KEY,
+		EXPO_PUBLIC_OPEN_AI_ASSISTANT_ID:
+			process.env.EXPO_PUBLIC_OPEN_AI_ASSISTANT_ID,
+		...extra,
 	});
-	const parsed = envSchema.safeParse(process.env);
 
 	if (!parsed.success && process.env.NODE_ENV) {
 		const env = process.env.NODE_ENV;
@@ -28,36 +43,17 @@ const parseEnvironment = () => {
 	const data = parsed.success ? parsed.data : ({} as z.infer<typeof envSchema>);
 	return {
 		env: data.NODE_ENV,
-		// sentry: {
-		// 	dsn: data.SENTRY_DSN,
-		// 	organization: data.SENTRY_ORG,
-		// 	project: data.SENTRY_PROJECT,
-		// },
-		backendPath: data.BACKEND_API_PATH,
+		backendPath: data.EXPO_PUBLIC_BACKEND_API_PATH,
 		openAi: {
-			apiKey: data.OPEN_AI_API_KEY,
-			assistantId: data.OPEN_AI_ASSISTANT_ID,
+			apiKey: data.EXPO_PUBLIC_OPEN_AI_API_KEY,
+			assistantId: data.EXPO_PUBLIC_OPEN_AI_ASSISTANT_ID,
 		},
 	};
 };
 
-const {
-	env,
-	backendPath,
-	openAi,
-	// sentry
-} = parseEnvironment();
+const { env, backendPath, openAi } = parseEnvironment();
 
 export { backendPath, env, openAi };
-
-// if (env === "production") {
-// 	Sentry.init({
-// 		dsn: sentry.dsn,
-// 		enableInExpoDevelopment: true,
-// 		debug: false,
-// 		tracesSampleRate: 1.0,
-// 	});
-// }
 
 const isFetchMockedConfig: Record<typeof env, boolean> = {
 	development: false,
