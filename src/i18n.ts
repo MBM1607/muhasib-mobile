@@ -31,6 +31,7 @@ const english = {
 		},
 	},
 	action: {
+		goToHome: "Go to Home",
 		login: "login",
 		logout: "logout",
 		register: "register",

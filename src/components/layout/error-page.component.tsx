@@ -82,6 +82,14 @@ export const ErrorPage = ({
 					router.back();
 				}}
 			/>
+			<Button
+				label={buttonLabel ?? content.action.goToHome}
+				icon="home"
+				style={{ width: 150, marginTop: 16 }}
+				onPress={() => {
+					router.replace("/");
+				}}
+			/>
 		</ScreenWrapper>
 	);
 };
