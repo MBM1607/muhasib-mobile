@@ -9,7 +9,11 @@ import { Button } from "../../components/controls/button.component.tsx";
 import { ScreenWrapper } from "../../components/layout/screen-wrapper.component.tsx";
 import { useI18n } from "../../contexts/i18n.context.tsx";
 import { useLocation } from "../../contexts/location.context.tsx";
-import { getCompassAngleFromMagnetometerData } from "../../helpers/qibla.helpers.ts";
+import {
+	getCompassAngleFromMagnetometerData,
+	getCompassDirectionFromAngle,
+	getQiblaDirection,
+} from "../../helpers/qibla.helpers.ts";
 import { useTheme } from "../../hooks/theme.hook.tsx";
 
 const Qibla = () => {
@@ -19,17 +23,23 @@ const Qibla = () => {
 	const { content } = useI18n();
 
 	const [compassAngle, setCompassAngle] = useState(0);
+	const [qiblaAngle, setQiblaAngle] = useState(0);
 
 	useEffect(() => {
-		if (!location) return;
-
 		const subscription = Magnetometer.addListener((data) => {
-			setCompassAngle(getCompassAngleFromMagnetometerData(data));
+			const angle = getCompassAngleFromMagnetometerData(data);
+			setCompassAngle(angle);
 		});
 
 		return () => {
 			subscription.remove();
 		};
+	}, []);
+
+	useEffect(() => {
+		if (!location) return;
+
+		setQiblaAngle(360 - Math.abs(getQiblaDirection(location.coords)));
 	}, [location]);
 
 	const screenWidth = Dimensions.get("screen").width;
@@ -45,54 +55,39 @@ const Qibla = () => {
 				style={[
 					theme.styles.view.row,
 					{
-						justifyContent: "space-between",
+						justifyContent: "center",
 						width: "100%",
-						paddingVertical: 8,
-						paddingHorizontal: 16,
-						borderRadius: 16,
+						paddingVertical: 4,
+						paddingHorizontal: 8,
+						borderRadius: 8,
 					},
 				]}
 			>
 				<View>
 					<Text
-						variant="bodySmall"
-						style={[theme.styles.text.center, { fontSize: 14 }]}
+						variant="headlineSmall"
+						style={[
+							theme.styles.text.center,
+							{ fontSize: 14, fontWeight: "bold", lineHeight: 21 },
+						]}
 					>
 						{content.qibla.trueNorth}
 					</Text>
 					<Text
 						variant="headlineSmall"
-						style={[theme.styles.text.center, { fontSize: 16 }]}
+						style={[
+							theme.styles.text.center,
+							{
+								fontSize: 16,
+								color:
+									compassAngle % 360 !== 0
+										? theme.colors.error
+										: theme.colors.primary,
+								lineHeight: 21,
+							},
+						]}
 					>
-						218° (SW)
-					</Text>
-				</View>
-				<View>
-					<Text
-						variant="bodySmall"
-						style={[theme.styles.text.center, { fontSize: 14 }]}
-					>
-						{content.qibla.kaaba}
-					</Text>
-					<Text
-						variant="headlineSmall"
-						style={[theme.styles.text.center, { fontSize: 16 }]}
-					>
-						318°
-					</Text>
-				</View>
-				<View>
-					<Text
-						variant="bodySmall"
-						style={[theme.styles.text.center, { fontSize: 14 }]}
-					>
-						{content.qibla.magneticField}
-					</Text>
-					<Text
-						variant="headlineSmall"
-						style={[theme.styles.text.center, { fontSize: 16 }]}
-					>
-						36 μT
+						{compassAngle}°
 					</Text>
 				</View>
 			</Surface>
@@ -102,6 +97,11 @@ const Qibla = () => {
 					flex: 1,
 					justifyContent: "center",
 					alignItems: "center",
+					transform: [
+						{
+							rotate: `${compassAngle}deg`,
+						},
+					],
 				}}
 			>
 				<Image
@@ -110,11 +110,6 @@ const Qibla = () => {
 					style={{
 						height: screenWidth * 0.9125,
 						width: screenWidth * 0.9125,
-						transform: [
-							{
-								rotate: `${compassAngle}deg`,
-							},
-						],
 					}}
 				/>
 				<Image
@@ -124,6 +119,11 @@ const Qibla = () => {
 						height: screenWidth * 0.9125,
 						width: screenWidth * 0.9125,
 						position: "absolute",
+						transform: [
+							{
+								rotate: `${qiblaAngle}deg`,
+							},
+						],
 					}}
 				/>
 			</View>
@@ -157,7 +157,7 @@ const Qibla = () => {
 					variant="headlineSmall"
 					style={[theme.styles.text.center, { fontSize: 14 }]}
 				>
-					260° (W) {content.qibla.fromTrueNorth}
+					{`${qiblaAngle}° (${getCompassDirectionFromAngle(qiblaAngle)}) ${content.qibla.fromTrueNorth}`}
 				</Text>
 			</Surface>
 		</ScreenWrapper>
