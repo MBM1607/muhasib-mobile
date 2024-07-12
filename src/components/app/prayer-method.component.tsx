@@ -24,7 +24,7 @@ export const PrayerMethod = ({
 	prayer,
 	prayerPerformMethod,
 }: PrayerMethodProps) => {
-	const { content, rtl } = useI18n();
+	const { content } = useI18n();
 	const theme = useTheme();
 	const [visible, setVisible] = useState<boolean>(false);
 
@@ -48,7 +48,7 @@ export const PrayerMethod = ({
 							gap: 8,
 							padding: 8,
 							paddingHorizontal: 16,
-							flexDirection: rtl ? "row-reverse" : "row",
+							flexDirection: "row",
 							alignItems: "center",
 							justifyContent: "space-between",
 						}}

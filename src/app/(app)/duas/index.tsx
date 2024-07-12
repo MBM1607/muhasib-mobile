@@ -10,7 +10,7 @@ import { useTheme } from "../../../hooks/theme.hook.tsx";
 
 const Duas = () => {
 	const router = useRouter();
-	const { content, rtl } = useI18n();
+	const { content } = useI18n();
 	const theme = useTheme();
 	const categories = useCategories();
 
@@ -53,7 +53,7 @@ const Duas = () => {
 								{humanizeToken(category)}
 							</Text>
 							<Icon
-								name={rtl ? "arrow-back" : "arrow-next"}
+								name={"arrow-next"}
 								size={28}
 								color={theme.colors.primary}
 							/>

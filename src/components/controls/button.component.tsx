@@ -28,7 +28,7 @@ export const Button = ({
 	icon: iconName,
 	...restProps
 }: ButtonProps) => {
-	const { getColor, rtl } = useTheme();
+	const { getColor } = useTheme();
 
 	const icon: Props["icon"] | undefined = iconName
 		? appIconMap[iconName]
@@ -41,7 +41,7 @@ export const Button = ({
 			disabled={disabled || restProps.loading}
 			labelStyle={{ textTransform: "capitalize" }}
 			icon={icon}
-			contentStyle={{ flexDirection: rtl ? "row-reverse" : "row" }}
+			contentStyle={{ flexDirection: "row" }}
 			style={[
 				{ borderRadius: 25, borderColor: getColor(color, "normal") },
 				style,

@@ -8,7 +8,7 @@ import type { AppTheme, ThemeColor } from "../theme";
 
 export const useTheme = () => {
 	const theme = usePaperTheme<AppTheme>();
-	const { direction, rtl } = useI18n();
+	const { direction } = useI18n();
 
 	return {
 		...theme,
@@ -39,7 +39,6 @@ export const useTheme = () => {
 			warning: "warning",
 		},
 		direction,
-		rtl,
 		styles: {
 			button: {
 				fullWidth: {
@@ -53,14 +52,14 @@ export const useTheme = () => {
 					alignItems: "center",
 				},
 				row: {
-					flexDirection: rtl ? "row-reverse" : "row",
+					flexDirection: "row",
 					flexWrap: "nowrap",
 					alignItems: "center",
 				},
 			} satisfies Record<string, StyleProp<ViewStyle>>,
 			text: {
 				heading: {
-					textAlign: rtl ? "right" : "left",
+					textAlign: "left",
 					color: theme.colors.primary,
 					marginBottom: "auto",
 					textTransform: "capitalize",

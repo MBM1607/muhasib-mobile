@@ -14,7 +14,7 @@ import { humanizeToken } from "../../../helpers/humanize-token.helpers.ts";
 const DuasCategoryPage = () => {
 	const router = useRouter();
 	const { category } = useLocalSearchParams();
-	const { content, rtl, language } = useI18n();
+	const { content, language } = useI18n();
 	const categories = useCategories();
 	const duas = useDuasByCategory(category as string);
 
@@ -63,7 +63,7 @@ const DuasCategoryPage = () => {
 					</Text>
 					<View
 						style={{
-							flexDirection: rtl ? "row-reverse" : "row",
+							flexDirection: "row",
 							justifyContent: "flex-end",
 							alignItems: "center",
 						}}
