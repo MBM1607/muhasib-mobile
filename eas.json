@@ -14,10 +14,18 @@
 			"android": {
 				"buildType": "apk",
 				"gradleCommand": ":app:assembleRelease"
+			},
+			"env": {
+				"ENV": "production",
+				"IS_PROD": "true"
 			}
 		},
 		"production": {
-			"distribution": "store"
+			"distribution": "store",
+			"env": {
+				"ENV": "production",
+				"IS_PROD": "true"
+			}
 		}
 	},
 	"cli": {
