@@ -17,6 +17,7 @@ export const defaultLanguage: Language = "english";
 
 const english = {
 	title: "Muhasib",
+	loading: "Loading ...",
 	headings: {
 		setLocation: "Allow Location",
 		updateLocation: "Update Location",
@@ -192,6 +193,9 @@ const english = {
 	},
 	duas: {
 		shareMessage: "Provided by Muhasib",
+	},
+	quran: {
+		ayahs: "Ayahs",
 	},
 	0: "0",
 	1: "1",
