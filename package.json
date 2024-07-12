@@ -42,6 +42,7 @@
 	"dependencies": {
 		"@calidy/dayjs-calendarsystems": "^1.11.3",
 		"@react-native-async-storage/async-storage": "1.21.0",
+		"@shopify/flash-list": "1.6.3",
 		"expo": "~50.0.19",
 		"expo-application": "~5.8.4",
 		"expo-build-properties": "~0.11.1",
