@@ -26,6 +26,7 @@ import {
 	PrayersProvider,
 	prayersStore,
 } from "../../contexts/prayers.context.tsx";
+import { QuranProvider } from "../../contexts/quran.context.tsx";
 import { useStorage } from "../../hooks/storage.hook.tsx";
 
 const RootLayout = () => {
@@ -69,7 +70,9 @@ const RootLayout = () => {
 								<CalculationSettingsProvider>
 									<PrayerTimesProvider>
 										<DuasProvider>
-											<Slot />
+											<QuranProvider>
+												<Slot />
+											</QuranProvider>
 										</DuasProvider>
 									</PrayerTimesProvider>
 								</CalculationSettingsProvider>

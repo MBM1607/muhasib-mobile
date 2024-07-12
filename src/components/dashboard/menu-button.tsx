@@ -55,7 +55,7 @@ export const MenuButton = ({ icon, label, onPress }: MenuButtonProps) => {
 							fontFamily: "RobotoSlabBold",
 							color: theme.colors.primary,
 							textTransform: "capitalize",
-							textAlign: theme.rtl ? "right" : "left",
+							textAlign: "left",
 						}}
 					>
 						{label}

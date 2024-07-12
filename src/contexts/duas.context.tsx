@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 
 import { getRequest } from "../helpers/api.helpers.ts";
+import { events } from "../helpers/events.helpers.ts";
 import { duasSchema } from "../schemas/duas.schemas.ts";
 
 import type { PropsWithChildren } from "react";
@@ -12,7 +13,7 @@ export const DuasProvider = ({ children }: PropsWithChildren) => {
 	const [duas, setDuas] = useState<Duas>([]);
 
 	useEffect(() => {
-		(async () => {
+		const fetchDuas = async () => {
 			try {
 				const newDuas = await getRequest<typeof duasSchema>("dua", {
 					isPublic: true,
@@ -24,7 +25,13 @@ export const DuasProvider = ({ children }: PropsWithChildren) => {
 				console.info("Failed to fetch duas");
 				console.error(error);
 			}
-		})();
+		};
+
+		const { remove } = events.listen("loadDuas", fetchDuas);
+
+		return () => {
+			remove();
+		};
 	}, []);
 
 	return <DuasContext.Provider value={duas}>{children}</DuasContext.Provider>;

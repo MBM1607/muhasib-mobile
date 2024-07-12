@@ -60,14 +60,14 @@ export const ScreenWrapper = ({
 	const theme = useTheme();
 	const mode = useMode();
 
-	const iconMargin = theme.rtl ? { marginRight: 0 } : { marginLeft: 0 };
+	const iconMargin = { marginLeft: 0 };
 
 	return (
 		<SafeAreaView style={{ flex: 1, marginTop: Constants.statusBarHeight }}>
 			<Surface style={{ flex: 1, position: "relative", padding: 10 }}>
 				<View
 					style={{
-						flexDirection: theme.rtl ? "row-reverse" : "row",
+						flexDirection: "row",
 						height: 50,
 						flexShrink: 1,
 						flexWrap: "nowrap",
@@ -78,7 +78,7 @@ export const ScreenWrapper = ({
 					<View style={[theme.styles.view.row, { flexShrink: 1, padding: 7 }]}>
 						{back && (
 							<IconButton
-								icon={theme.rtl ? "arrow-next" : "arrow-back"}
+								icon={"arrow-back"}
 								style={iconMargin}
 								onPress={() => {
 									router.back();
@@ -92,7 +92,7 @@ export const ScreenWrapper = ({
 								style={{
 									color: theme.colors.primary,
 									textTransform: "capitalize",
-									textAlign: theme.rtl ? "right" : "left",
+									textAlign: "left",
 									flexGrow: 1,
 								}}
 							>

@@ -78,6 +78,8 @@ export const appIconMap = {
 	favorite: "heart-outline",
 	favored: "heart",
 	"message-submit": "send",
+	play: "play",
+	home: "home",
 } as const;
 
 type _ =

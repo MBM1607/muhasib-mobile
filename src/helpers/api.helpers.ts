@@ -19,6 +19,7 @@ const apiRequest = async <Response = unknown>(
 	method: "GET" | "PATCH" | "PUT" | "POST" | "DELETE",
 	body?: Obj | Obj[] | FormData,
 	isPublic: boolean = false,
+	isExternal: boolean = false,
 ): Promise<Response> => {
 	try {
 		if (!isFetchMocked) {
@@ -45,7 +46,9 @@ const apiRequest = async <Response = unknown>(
 			options.body = body;
 		}
 
-		const response = await fetch(`${backendPath}/${apiPath}`, options);
+		const apiURL = isExternal ? apiPath : `${backendPath}/${apiPath}`;
+
+		const response = await fetch(apiURL, options);
 		if (response.status === 401) throw new AuthError("login expired!");
 
 		const result = await response.json();
@@ -70,9 +73,16 @@ export const getRequest = async <Schema extends z.ZodSchema = z.ZodUnknown>(
 	options?: {
 		schema?: Schema;
 		isPublic?: boolean;
+		isExternal?: boolean;
 	},
 ): Promise<z.infer<Schema>> => {
-	const response = apiRequest(apiPath, "GET", undefined, options?.isPublic);
+	const response = apiRequest(
+		apiPath,
+		"GET",
+		undefined,
+		options?.isPublic,
+		options?.isExternal,
+	);
 	if (!options?.schema) return await response;
 	return await response.then(async (data) => {
 		return await ((

@@ -43,6 +43,8 @@ export type EventMap = {
 	setHijriDateAdjustment: number;
 	addAssistantMessage: Message;
 	aiResponseReceived: undefined;
+	loadQuran: undefined;
+	loadDuas: undefined;
 };
 
 export const events = {
