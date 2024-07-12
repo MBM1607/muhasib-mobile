@@ -13,12 +13,17 @@ export const DuasProvider = ({ children }: PropsWithChildren) => {
 
 	useEffect(() => {
 		(async () => {
-			const newDuas = await getRequest<typeof duasSchema>("duas", {
-				isPublic: true,
-				schema: duasSchema,
-			});
+			try {
+				const newDuas = await getRequest<typeof duasSchema>("dua", {
+					isPublic: true,
+					schema: duasSchema,
+				});
 
-			setDuas(newDuas);
+				setDuas(newDuas);
+			} catch (error) {
+				console.info("Failed to fetch duas");
+				console.error(error);
+			}
 		})();
 	}, []);
 
